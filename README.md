@@ -1,36 +1,29 @@
-# [Project Name]
+# Financial AML Graph Detection
 
-[One-sentence description of what this does and why it matters, framed around the real-world use case — not the algorithm.]
+Status: **building**. This is a pending research project, not a deployed compliance product and not evidence that any real entity is illicit.
 
-## Problem
-[What operational/business problem does this solve? Who would actually use this?]
+The intended workflow turns the public Elliptic Bitcoin transaction graph into a reproducible graph-learning benchmark: construct the graph, train an explainable baseline and GraphSAGE/GAT candidate, evaluate the minority illicit class, then expose only a bounded research scoring interface.
 
-## Data
-- **Source:** [dataset name + where it comes from]
-- **Access:** [open / requires credentialing — link to how]
-- **Size/shape:** [rows, time range, entities — whatever orients the reader]
+## Data boundary
 
-## Architecture
-[Diagram — even a simple one made in draw.io/excalidraw exported as PNG, or an ASCII/mermaid diagram. Show data flow: source → processing → model → API → deployment.]
+- Source: Elliptic transaction graph, obtained under its published access terms.
+- Classification: public research data.
+- Excluded: customer, bank, account, KYC, and confidential compliance data.
+- Record the exact source, license/access terms, checksum, and permitted use before adding data.
 
-## Key Results
-[The metrics that matter for this problem — not just accuracy. E.g. for fraud: precision/recall at a chosen threshold, latency. For healthcare: AUROC + calibration + a SHAP example. Be specific and honest, including failure modes.]
+## Planned architecture
 
-## How to Run Locally
-```bash
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
-docker compose up --build
-```
-[Any additional setup — env vars, data download steps, etc.]
-
-## How to Deploy (Azure)
-```bash
-# [exact commands or reference to infra/ scripts]
+```mermaid
+flowchart LR
+  A[Versioned Elliptic files] --> B[Validated graph builder]
+  B --> C[Time-aware train and holdout split]
+  C --> D[Baseline and GNN training]
+  D --> E[Precision recall and error analysis]
+  E --> F[Bounded research API and graph view]
 ```
 
-## Tech Stack
-[Bullet list — be specific about versions/services used, this is what gets scanned first]
+## Current gate
 
-## What I'd Improve Next
-[This section matters — shows you understand the limits of your own work. Be specific: what's the biggest gap, what would production-hardening actually require, what didn't you have time/data for.]
+The draft contract is structurally valid, but first-demo readiness is blocked on reproducible data provenance, implemented graph construction, versioned evaluation, safe examples, tests/CI evidence, and deployment evidence. See `docs/STATE.md`, `docs/HANDOFF.md`, and `portfolio/project.json`.
+
+No metric, demo URL, production claim, or compliance outcome should be added before that evidence exists.
