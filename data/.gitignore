@@ -1,3 +1,5 @@
 *
+!fixtures/
+!fixtures/public_casefile.json
 !.gitignore
 !.gitkeep

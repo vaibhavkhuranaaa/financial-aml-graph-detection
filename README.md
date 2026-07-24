@@ -27,3 +27,17 @@ flowchart LR
 The draft contract is structurally valid, but first-demo readiness is blocked on reproducible data provenance, implemented graph construction, versioned evaluation, safe examples, tests/CI evidence, and deployment evidence. See `docs/STATE.md`, `docs/HANDOFF.md`, and `portfolio/project.json`.
 
 No metric, demo URL, production claim, or compliance outcome should be added before that evidence exists.
+
+## Public workbench
+
+`frontend/` contains the React + TypeScript Signal Ledger workbench. It is backed by FastAPI in `src/app.py` and only reads the committed synthetic fixture in `data/fixtures/public_casefile.json`.
+
+```bash
+pip install -r requirements.txt
+uvicorn src.app:app --reload
+cd frontend && npm install && npm run dev
+```
+
+For a production-like local preview, build the frontend and start FastAPI, or use `docker compose -f docker/docker-compose.yml up --build`. The Docker context explicitly copies only the frontend build, FastAPI source, and synthetic fixture.
+
+See [data governance](docs/DATA_GOVERNANCE.md) for the strict separation between the public fixture and local Elliptic research.

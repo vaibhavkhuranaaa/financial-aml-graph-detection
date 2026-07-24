@@ -11,10 +11,19 @@ graphify-out/
 .agent-audit/
 .vscode/
 
+# Frontend build dependencies and disposable output
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+
 # Data
 data/*
 !data/.gitignore
 !data/.gitkeep
+!data/fixtures/
+!data/fixtures/public_casefile.json
 
 # Env
 .env

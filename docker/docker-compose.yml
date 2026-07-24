@@ -1,1 +1,12 @@
-# TODO: implement per CLAUDE.md
+services:
+  workbench:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_MODE=public-synthetic-fixture
+    read_only: true
+    tmpfs:
+      - /tmp
