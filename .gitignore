@@ -18,3 +18,7 @@ data/*
 .env
 .env.*
 !.env.example
+
+# Vendor-specific local adapters; AGENTS.md is canonical.
+CLAUDE.md
+.claude/
