@@ -1,19 +1,54 @@
 {
-  "version": 1,
+  "version": 2,
   "slug": "financial-aml-graph-detection",
   "title": "Financial AML Graph Detection",
   "summary": "Graph machine-learning research pipeline for detecting suspicious transaction patterns in the Elliptic Bitcoin dataset.",
   "outcome": "Release-pending portfolio project; public presentation waits for reproducible evaluation and a verified deployment.",
-  "industries": ["Financial services"],
-  "categories": ["AI/ML", "Cloud"],
-  "stack": ["Python", "Graph machine learning", "Docker"],
+  "industries": [
+    "Financial services"
+  ],
+  "categories": [
+    "AI/ML",
+    "Cloud"
+  ],
+  "stack": [
+    "Python",
+    "Graph machine learning",
+    "Docker"
+  ],
   "githubUrl": "https://github.com/vaibhavkhuranaaa/financial-aml-graph-detection",
   "liveUrl": null,
-  "deployment": {"provider": "TBD", "status": "release-pending", "runtime": "Local Docker workflow"},
-  "metrics": ["Evaluation evidence pending before public release"],
-  "stages": ["Dataset ingestion", "Graph construction", "Model training", "Evaluation", "Deployment hardening"],
-  "architecture": ["Elliptic transaction graph", "Feature pipeline", "Graph model", "Evaluation report"],
-  "evaluation": ["Versioned holdout split and operational precision-recall analysis required before release"],
-  "operationalTradeoffs": ["Graph-model complexity and data lineage must be balanced against explainability and serving cost"],
+  "deployment": {
+    "provider": "TBD",
+    "status": "release-pending",
+    "runtime": "Local Docker workflow",
+    "exposure": "private",
+    "productionClaim": false,
+    "verifiedAt": null,
+    "expiresAt": null,
+    "evidenceRefs": []
+  },
+  "metrics": [
+    "Evaluation evidence pending before public release"
+  ],
+  "stages": [
+    "Dataset ingestion",
+    "Graph construction",
+    "Model training",
+    "Evaluation",
+    "Deployment hardening"
+  ],
+  "architecture": [
+    "Elliptic transaction graph",
+    "Feature pipeline",
+    "Graph model",
+    "Evaluation report"
+  ],
+  "evaluation": [
+    "Versioned holdout split and operational precision-recall analysis required before release"
+  ],
+  "operationalTradeoffs": [
+    "Graph-model complexity and data lineage must be balanced against explainability and serving cost"
+  ],
   "disclaimer": "Research project using public data. It does not identify real-world illicit activity or provide compliance advice."
 }
