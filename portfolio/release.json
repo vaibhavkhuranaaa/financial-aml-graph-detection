@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "status": "planned",
+  "provider": "unselected",
+  "workflow": null,
+  "deploymentTarget": null,
+  "paidResource": false,
+  "costApprovalRequired": false
+}
