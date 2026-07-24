@@ -1,4 +1,4 @@
-"""Bounded public fixture API for the visual research workbench."""
+"""Bounded public IBM AML-Data v8 scenario API; no request-time inference."""
 from __future__ import annotations
 
 import json
@@ -12,53 +12,66 @@ from fastapi.staticfiles import StaticFiles
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_PATH = ROOT / "data" / "fixtures" / "public_casefile.json"
 DIST_PATH = ROOT / "frontend" / "dist"
-MAX_QUEUE = 12
+MAX_TIMELINE = 18
 MAX_GRAPH_NODES = 18
 
 
 def fixture() -> dict:
-    """Load precomputed synthetic content; never train or infer on requests."""
     return json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
 
 
-app = FastAPI(title="Signal Ledger", version="0.1.0")
+def selected(case_id: str) -> dict:
+    case = next((item for item in fixture()["cases"] if item["id"] == case_id), None)
+    if not case:
+        raise HTTPException(404, "Public simulated case not found.")
+    return case
+
+
+app = FastAPI(title="Signal Ledger", version="0.2.0")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173"], allow_methods=["GET"], allow_headers=["*"])
 
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"status": "ok", "mode": "public-synthetic-fixture"}
+    return {"status": "ok", "mode": "public-ibm-synthetic-scenario", "request_inference": False}
 
 
-@app.get("/api/brief")
-def brief() -> dict:
+@app.get("/api/cases")
+def catalogue() -> dict:
     data = fixture()
-    return {key: data[key] for key in ("brief", "governance", "evidence")}
-
-
-@app.get("/api/queue")
-def queue(limit: Annotated[int, Query(ge=1, le=MAX_QUEUE)] = 6) -> dict:
-    data = fixture()
-    return {"items": data["queue"][:limit], "limit": limit, "total": len(data["queue"])}
+    return {"items": [{"id": case["id"], "outcome": case["outcome"], "transaction_count": len(case["transactions"]), "research_rank": "precomputed illustrative ordering"} for case in data["cases"]], "maximum": 2}
 
 
 @app.get("/api/cases/{case_id}")
-def case(case_id: str) -> dict:
-    selected = next((item for item in fixture()["queue"] if item["id"] == case_id), None)
-    if not selected:
-        raise HTTPException(status_code=404, detail="Synthetic case not found.")
-    return selected
+def detail(case_id: str) -> dict:
+    case = selected(case_id)
+    return {"id": case["id"], "outcome": case["outcome"], "transaction_count": len(case["transactions"]), "uncertainty": "Illustrative research context only; not a compliance recommendation or accusation.", "rationale": "Simulated analyst rationale is stored only in this browser."}
 
 
-@app.get("/api/graph/{case_id}")
+@app.get("/api/cases/{case_id}/timeline")
+def timeline(case_id: str, rail: str | None = None, limit: Annotated[int, Query(ge=1, le=MAX_TIMELINE)] = MAX_TIMELINE) -> dict:
+    transactions = selected(case_id)["transactions"]
+    if rail:
+        transactions = [item for item in transactions if item["rail"] == rail]
+    return {"case_id": case_id, "items": transactions[:limit], "limit": limit, "bounded": True}
+
+
+@app.get("/api/cases/{case_id}/graph")
 def graph(case_id: str, depth: Annotated[int, Query(ge=1, le=2)] = 1) -> dict:
-    data = fixture()
-    graph_data = data["graphs"].get(case_id)
-    if graph_data is None:
-        raise HTTPException(status_code=404, detail="No bounded graph available for this case.")
-    nodes = graph_data["nodes"][:MAX_GRAPH_NODES]
-    node_ids = {node["id"] for node in nodes}
-    return {"case_id": case_id, "depth": depth, "bounded": True, "nodes": nodes, "edges": [edge for edge in graph_data["edges"] if edge["source"] in node_ids and edge["target"] in node_ids]}
+    transactions = selected(case_id)["transactions"]
+    parties = list(dict.fromkeys(party for item in transactions for party in (item["from"], item["to"])))[:MAX_GRAPH_NODES]
+    ids = {party: f"n{index}" for index, party in enumerate(parties)}
+    return {"case_id": case_id, "depth": depth, "bounded": True, "nodes": [{"id": ids[party], "label": party} for party in parties], "edges": [{"source": ids[item["from"]], "target": ids[item["to"]]} for item in transactions if item["from"] in ids and item["to"] in ids]}
+
+
+@app.get("/api/provenance")
+def provenance() -> dict:
+    return fixture()["provenance"] | {"slice_sha256": fixture()["slice_sha256"], "label": "realistic synthetic banking data"}
+
+
+@app.get("/api/methodology")
+def methodology() -> dict:
+    return {"public": "Scores and explanations are precomputed; visits never train or infer.", "elliptic": "Local-only: provenance gate, chronological split, unknown-label treatment, baseline/GNN comparison, PR-AUC, precision/recall, calibration, review-capacity and operational-error analysis. No rows, graphs, or metrics are public.", "limitations": ["Simulated outcomes", "No live feeds", "No production or compliance use", "Small bounded public slice"]}
 
 
 if DIST_PATH.exists():

@@ -2,7 +2,7 @@
 
 ## Public experience
 
-The public workbench serves only `data/fixtures/public_casefile.json`. It is authored synthetic data, has no real entities, and contains precomputed illustrative research scores. Browser visits do not train, fit, or invoke a model. The API exposes a maximum of 12 queue entries and 18 graph nodes.
+The public workbench serves only `data/fixtures/public_casefile.json`: a deterministic, attributed IBM AML-Data v8 HI-Small slice. It is **realistic synthetic banking data**, not anonymized customer data. The fixture records retrieval date, CDLA-Sharing-1.0, IBM/Erik Altman attribution, source and slice SHA-256 values, and its selection method. Browser visits do not train, fit, or invoke a model. The API exposes two cases, a maximum of 18 timeline rows and 18 graph nodes.
 
 ## Local research boundary
 

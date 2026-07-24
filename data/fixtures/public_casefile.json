@@ -1,17 +1,217 @@
 {
-  "brief": {"title":"Signal Ledger","subtitle":"A bounded graph investigation exercise","mode":"PUBLIC / SYNTHETIC FIXTURE","disclaimer":"This interface uses invented records and precomputed research scores. It is not a compliance decision, alerting system, or finding about a real person or organization.","updated":"Fixture v1 · static at build time"},
-  "governance":["Public mode is synthetic-fixture-only; local benchmark rows are never served.","Scores are precomputed for this illustrative casefile. Opening this page never trains a model.","Unknown labels are not silently treated as negative labels in research evaluation.","Chronological splitting and precision/recall review remain research requirements, not public performance claims."],
-  "evidence":{"fixture":"synthetic-aml-graph-v1","source":"Generated in repository for public demonstration","access":"Public demonstration and automated tests only","evaluation":"Illustrative fixture behavior; not a benchmark result","limitations":["Small, authored graph","No real entities","No threshold recommendation","Not representative of banking or production traffic"]},
-  "queue":[
-    {"id":"case-017","title":"Converging settlement path","score":0.91,"band":"Review first","status":"Unresolved","time":"Window 18","reason":"Three synthetic paths converge before a rapid exit.","signals":["convergence","timing","fan-out"],"evidence":["3 inbound paths","6-hop bounded view","Score generated offline"],"note":"Use the graph to inspect topology; the score is a research ranking only."},
-    {"id":"case-009","title":"Shared intermediary cluster","score":0.74,"band":"Review","status":"Open","time":"Window 15","reason":"A synthetic intermediary appears in two independent paths.","signals":["shared node","path overlap"],"evidence":["2 path overlaps","1 intermediate node","Precomputed fixture score"],"note":"The relationship is fictional and shown only to demonstrate an analyst workflow."},
-    {"id":"case-021","title":"Compressed transfer cadence","score":0.62,"band":"Context needed","status":"Open","time":"Window 21","reason":"Tight timing intervals merit contextual review, not a conclusion.","signals":["cadence","volume"],"evidence":["4 events","9 minute span","Synthetic timestamps"],"note":"Timing patterns alone do not establish intent."},
-    {"id":"case-004","title":"Peripheral fan-out","score":0.38,"band":"Monitor","status":"Deferred","time":"Window 09","reason":"A low-ranked fixture example retained to show operational trade-offs.","signals":["fan-out"],"evidence":["Low research rank","No automatic action"],"note":"Queue position is not a decision recommendation."}
+  "provenance": {
+    "provider": "IBM / Erik Altman",
+    "dataset": "IBM Transactions for Anti Money Laundering (AML)",
+    "version": 8,
+    "retrieved": "2026-07-24",
+    "license": "CDLA-Sharing-1.0",
+    "source_file": "HI-Small_Trans.csv",
+    "source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+    "selection": "first v8 HI-Small FAN-OUT manifest sequence; first five chronological non-laundering ACH comparison rows",
+    "attribution_url": "https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml"
+  },
+  "cases": [
+    {
+      "id": "sim-escalation-fanout",
+      "outcome": "Simulated escalation",
+      "transactions": [
+        {
+          "id": "txn-01",
+          "timestamp": "2022/09/01 00:06",
+          "from": "Party-1A5934",
+          "to": "Party-019F5D",
+          "amount": 2848.96,
+          "currency": "Euro",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-02",
+          "timestamp": "2022/09/01 04:33",
+          "from": "Party-1A5934",
+          "to": "Party-7713D1",
+          "amount": 8630.4,
+          "currency": "Euro",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-03",
+          "timestamp": "2022/09/01 09:14",
+          "from": "Party-1A5934",
+          "to": "Party-926E69",
+          "amount": 35642.49,
+          "currency": "Yuan",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-04",
+          "timestamp": "2022/09/01 09:56",
+          "from": "Party-1A5934",
+          "to": "Party-6B042E",
+          "amount": 5738987.96,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-05",
+          "timestamp": "2022/09/01 11:28",
+          "from": "Party-1A5934",
+          "to": "Party-68E24D",
+          "amount": 7254.53,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-06",
+          "timestamp": "2022/09/01 13:13",
+          "from": "Party-1A5934",
+          "to": "Party-3FB5A5",
+          "amount": 6990.87,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-07",
+          "timestamp": "2022/09/01 14:11",
+          "from": "Party-1A5934",
+          "to": "Party-5DFD21",
+          "amount": 12536.92,
+          "currency": "Euro",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-08",
+          "timestamp": "2022/09/02 15:40",
+          "from": "Party-1A5934",
+          "to": "Party-AADC25",
+          "amount": 3511.82,
+          "currency": "Euro",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-09",
+          "timestamp": "2022/09/02 21:23",
+          "from": "Party-1A5934",
+          "to": "Party-256D44",
+          "amount": 16135.09,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-10",
+          "timestamp": "2022/09/02 23:10",
+          "from": "Party-1A5934",
+          "to": "Party-337E77",
+          "amount": 12183.28,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-11",
+          "timestamp": "2022/09/03 09:29",
+          "from": "Party-1A5934",
+          "to": "Party-6452EF",
+          "amount": 15197.45,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-12",
+          "timestamp": "2022/09/03 14:22",
+          "from": "Party-1A5934",
+          "to": "Party-AEC76B",
+          "amount": 4717.76,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-13",
+          "timestamp": "2022/09/04 07:35",
+          "from": "Party-1A5934",
+          "to": "Party-8AB686",
+          "amount": 19332.59,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-14",
+          "timestamp": "2022/09/04 09:10",
+          "from": "Party-1A5934",
+          "to": "Party-925E3C",
+          "amount": 300.93,
+          "currency": "Euro",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-15",
+          "timestamp": "2022/09/04 12:03",
+          "from": "Party-1A5934",
+          "to": "Party-C861F6",
+          "amount": 2724.99,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-16",
+          "timestamp": "2022/09/04 15:48",
+          "from": "Party-1A5934",
+          "to": "Party-19BC82",
+          "amount": 15224.53,
+          "currency": "Euro",
+          "rail": "ACH"
+        }
+      ]
+    },
+    {
+      "id": "sim-closure-compare",
+      "outcome": "Simulated closure",
+      "transactions": [
+        {
+          "id": "txn-01",
+          "timestamp": "2022/09/01 00:11",
+          "from": "Party-39D9E6",
+          "to": "Party-021220",
+          "amount": 1210984.0,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-02",
+          "timestamp": "2022/09/01 00:26",
+          "from": "Party-59E9CA",
+          "to": "Party-FBB1CE",
+          "amount": 159271.0,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-03",
+          "timestamp": "2022/09/01 00:29",
+          "from": "Party-4E6838",
+          "to": "Party-ACD2E4",
+          "amount": 2995.0,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-04",
+          "timestamp": "2022/09/01 00:11",
+          "from": "Party-4E6838",
+          "to": "Party-1239BF",
+          "amount": 527190.0,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        },
+        {
+          "id": "txn-05",
+          "timestamp": "2022/09/01 00:11",
+          "from": "Party-832991",
+          "to": "Party-FA228D",
+          "amount": 8468.0,
+          "currency": "US Dollar",
+          "rail": "ACH"
+        }
+      ]
+    }
   ],
-  "graphs":{
-    "case-017":{"nodes":[{"id":"a","label":"Origin A","kind":"origin","x":18,"y":62},{"id":"b","label":"Origin B","kind":"origin","x":22,"y":24},{"id":"c","label":"Origin C","kind":"origin","x":26,"y":84},{"id":"m1","label":"Relay 01","kind":"relay","x":43,"y":36},{"id":"m2","label":"Relay 02","kind":"relay","x":46,"y":72},{"id":"hub","label":"Convergence","kind":"focus","x":63,"y":53},{"id":"e1","label":"Exit 01","kind":"exit","x":81,"y":25},{"id":"e2","label":"Exit 02","kind":"exit","x":84,"y":65},{"id":"e3","label":"Exit 03","kind":"exit","x":77,"y":86}],"edges":[{"source":"a","target":"m1"},{"source":"b","target":"m1"},{"source":"c","target":"m2"},{"source":"m1","target":"hub"},{"source":"m2","target":"hub"},{"source":"hub","target":"e1"},{"source":"hub","target":"e2"},{"source":"hub","target":"e3"}]},
-    "case-009":{"nodes":[{"id":"a","label":"Path A","kind":"origin","x":20,"y":28},{"id":"b","label":"Path B","kind":"origin","x":18,"y":74},{"id":"hub","label":"Shared relay","kind":"focus","x":52,"y":51},{"id":"e1","label":"Exit A","kind":"exit","x":81,"y":26},{"id":"e2","label":"Exit B","kind":"exit","x":82,"y":74}],"edges":[{"source":"a","target":"hub"},{"source":"b","target":"hub"},{"source":"hub","target":"e1"},{"source":"hub","target":"e2"}]},
-    "case-021":{"nodes":[{"id":"a","label":"Event 01","kind":"origin","x":17,"y":52},{"id":"b","label":"Event 02","kind":"relay","x":37,"y":35},{"id":"c","label":"Event 03","kind":"focus","x":57,"y":56},{"id":"d","label":"Event 04","kind":"exit","x":80,"y":38}],"edges":[{"source":"a","target":"b"},{"source":"b","target":"c"},{"source":"c","target":"d"}]},
-    "case-004":{"nodes":[{"id":"a","label":"Origin","kind":"origin","x":20,"y":51},{"id":"hub","label":"Split","kind":"focus","x":50,"y":51},{"id":"e1","label":"Route 01","kind":"exit","x":81,"y":22},{"id":"e2","label":"Route 02","kind":"exit","x":81,"y":50},{"id":"e3","label":"Route 03","kind":"exit","x":81,"y":78}],"edges":[{"source":"a","target":"hub"},{"source":"hub","target":"e1"},{"source":"hub","target":"e2"},{"source":"hub","target":"e3"}]}
-  }
+  "slice_sha256": "e77cbd708e1452ccdc33a35565fd03f374640da60b2064fdf6658fd89233b4fa"
 }
