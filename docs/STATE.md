@@ -7,7 +7,8 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **A — Product discovery and delivery plan** (complete).
+- Current milestone: **B — Data provenance and deterministic fixture/replay
+  pipeline** (in progress; not complete).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -25,6 +26,20 @@
 - First-demo evidence still required: dataset source/license/checksum, implemented graph construction, time-aware split, baseline comparison, minority-class evaluation, tests/CI results, safe graph visualization, and deployment observation.
 
 No new deployment, metric, or production claim was introduced by this migration.
+
+## Milestone B in progress — 2026-07-24
+
+- Independent metadata review verified Kaggle dataset version 8, Erik Altman
+  attribution, the HI-Small transaction schema listing, and CDLA-Sharing-1.0.
+  The distribution decision is blocked because the actual local v8 source file
+  is unavailable to reproduce the legacy checksum.
+- The public API now fails closed for the legacy fixture. An offline,
+  deterministic builder records local source metadata/schema/checksum, selection
+  and pseudonymization rules, pipeline run ID, and artifact checksum; it also
+  requires an owner-approved distribution decision for that exact source hash.
+- No IBM full input, Elliptic data, derived local research artifact, deployment,
+  publication, push, or merge occurred. Graphify was refreshed at `00f129a9`
+  before B implementation; refresh again after substantive B changes.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

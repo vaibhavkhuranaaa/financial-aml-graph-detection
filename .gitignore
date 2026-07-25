@@ -24,6 +24,8 @@ data/*
 !data/.gitkeep
 !data/fixtures/
 !data/fixtures/public_casefile.json
+!data/provenance/
+!data/provenance/*.json
 
 # Env
 .env

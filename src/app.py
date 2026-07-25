@@ -1,13 +1,14 @@
 """Bounded public IBM AML-Data v8 scenario API; no request-time inference."""
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+
+from src.public_replay import approved_public_artifact
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_PATH = ROOT / "data" / "fixtures" / "public_casefile.json"
@@ -17,7 +18,10 @@ MAX_GRAPH_NODES = 18
 
 
 def fixture() -> dict:
-    return json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
+    try:
+        return approved_public_artifact(FIXTURE_PATH)
+    except ValueError as error:
+        raise HTTPException(503, "Public replay artifact is not approved for delivery.") from error
 
 
 def selected(case_id: str) -> dict:

@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** A — Product discovery and delivery plan (complete)
+**Current milestone:** B — Data provenance and deterministic fixture/replay pipeline (in progress)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -105,6 +105,13 @@ unapproved data can enter the public path.
 
 **Verification:** generator reproduction command; checksum comparison; schema and
 selection tests; source/output boundary scan; `git diff --check`.
+
+**Current B status (2026-07-24):** independent metadata and license review is
+recorded, and the API now rejects the legacy unverified fixture. The stdlib-only
+offline builder and tests are in progress. Completion remains blocked on the
+actual `HI-Small_Trans.csv` v8 input: it is not present in this workspace, so
+the legacy source checksum cannot yet be independently reproduced and no public
+distribution decision has been approved.
 
 ### C — API contract, validation, and data-boundary tests
 

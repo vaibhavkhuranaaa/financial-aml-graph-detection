@@ -30,7 +30,10 @@ No metric, demo URL, production claim, or compliance outcome should be added bef
 
 ## Public workbench
 
-`frontend/` contains the React + TypeScript Signal Ledger workbench. It is backed by FastAPI in `src/app.py` and only reads the committed synthetic fixture in `data/fixtures/public_casefile.json`.
+`frontend/` contains the React + TypeScript Signal Ledger workbench. FastAPI will
+serve only a checksum-validated, explicitly approved synthetic replay artifact.
+The legacy fixture is fail-closed while its IBM source checksum and distribution
+decision remain unverified; it is not currently delivered by the API.
 
 ```bash
 pip install -r requirements.txt

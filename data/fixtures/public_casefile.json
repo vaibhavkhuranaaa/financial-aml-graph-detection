@@ -1,5 +1,9 @@
 {
   "provenance": {
+    "distribution": {
+      "status": "blocked",
+      "reason": "Legacy artifact is not admitted until its local source checksum and CDLA-Sharing-1.0 distribution record are independently verified."
+    },
     "provider": "IBM / Erik Altman",
     "dataset": "IBM Transactions for Anti Money Laundering (AML)",
     "version": 8,

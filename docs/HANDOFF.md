@@ -40,3 +40,17 @@ Owner-approved next action: retain Signal Ledger and build a recruiter-facing ba
 Before committing an IBM slice, verify its exact version, retrieval date, checksum, CDLA-Sharing-1.0 terms, attribution, and selection method. Exclude live telemetry from v1 and precompute all public scoring. In parallel, keep Elliptic local-only behind its provenance gate and evaluate chronological splits, unknown labels, baseline/GNN comparison, PR-AUC, precision/recall, calibration, review-capacity metrics, and operational errors. Never publish Elliptic raw/derived rows, graphs, or metrics without independently verified permission. Preserve local research artifacts and do not invent claims.
 
 Rollback the contract migration only through a reviewed `git revert 3ffc5b4f068c5c917ce8a0f04f314782702f81b7`; do not reset to `e291ceb98bc347d776d7999fbb49b5374a566c1e`.
+
+## Milestone B status — in progress (2026-07-24)
+
+Do not mark B complete yet. Kaggle metadata independently identifies the current
+dataset as version 8 under CDLA-Sharing-1.0; the license requires a published
+selected/pseudonymized subset to remain under the agreement with modification
+notice, provider attribution, and agreement text/link. The precise local
+`HI-Small_Trans.csv` input is not available in this workspace, so its source
+checksum and the legacy public fixture remain unverified. The API fails closed
+until a source manifest and owner-approved distribution decision admit a new
+artifact. Exact next work remains **B — Data provenance and deterministic
+fixture/replay pipeline**: obtain the verified local input, record and rerun the
+manifest, compare artifact hashes, record approval, and then complete the B
+handoff.
