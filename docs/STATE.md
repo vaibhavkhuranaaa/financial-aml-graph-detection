@@ -1,20 +1,20 @@
 # State
 
 - Lifecycle: `building`
-- Deployment: `release-pending`
-- Publication: `absent`
+- Deployment: `public-review`
+- Publication: `public-review`
 - Contract migration: v2 draft; no first-demo evidence has been approved
 
 ## Delivery ownership — 2026-07-25
 
-- Current milestone: **I — Owner-approved live deployment and post-deploy verification** (blocked pending owner direction on an unexpected Vercel production target).
+- Current milestone: **I — Owner-approved live deployment and post-deploy verification** (complete).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
-- A Vercel project and deployment now exist under the approved account, but
-  Vercel marked the initial preview attempt as a protected `production` target.
-  Public access is blocked by Vercel SSO protection; do not make a release or
-  public-availability claim.
+- The Vercel production deployment is publicly accessible for owner review at
+  `https://signal-ledger-workbench.vercel.app`. It serves only the approved
+  bounded synthetic replay; it is not a model-performance, operational, or
+  compliance release.
 - The authoritative acceptance criteria, legal/data gates, risks, milestones,
   and required handoff fields are recorded in `docs/DELIVERY_PLAN.md`.
 - No deployment, publication, evaluation, or production/compliance claim has
@@ -162,27 +162,27 @@ No new deployment, metric, or production claim was introduced by this migration.
   replaced by a locally verified Vercel FastAPI Function/static-build setup.
   Vercel remained owner-gated at H completion. Exact next milestone is **I**.
 
-## Milestone I — in progress / owner decision required (2026-07-25)
+## Milestone I — complete (2026-07-25)
 
 - The owner approved a preview deployment. Vercel authenticated as
   `vaibhavkhuranaaa`, created `reeper1/signal-ledger-workbench`, connected the
   existing GitHub repository, and deployed the exact local source state as
   `dpl_CsH9KTYozhdufF7ZFXH8iTo7Squa` at
   `https://signal-ledger-workbench-ggp44wt6i-reeper1.vercel.app`.
-- Vercel unexpectedly classified that initial deployment as target `production`
-  and assigned project aliases, while Vercel SSO deployment protection blocks
-  unauthenticated access. This is not the preview target the owner selected;
-  no production or public-availability claim is authorized.
-- Authenticated, read-only deployed probes passed: `/api/readiness` returned
+- Vercel classified the initial deployment as target `production` and assigned
+  project aliases. The owner chose to retain that single live deployment and
+  explicitly approved public review access; Vercel Authentication was removed
+  at project level without creating an additional deployment.
+- Unauthenticated, read-only deployed probes passed: `/api/readiness` returned
   `ready`, approved artifact delivery, `request_inference: false`, and
   `visitor_persistence: false`; an unapproved CORS preflight returned 400;
   POST returned 405; `/api/elliptic` and `/api/local-source` returned 404.
-  Browser validation cannot pass the Vercel SSO gate without an owner-approved
-  protection/access decision.
-- The owner chose to retain this single protected, production-target deployment
-  and not create additional preview resources. Browser validation remains
-  blocked by Vercel SSO protection; do not change aliases, protection, target,
-  or availability without further explicit direction.
+  Public browser validation found meaningful rendered content, no error overlay,
+  and no console errors. The visible product retains the synthetic-data and
+  simulated-review disclosures.
+- The project remains `building`: the separately local-only Elliptic evaluation
+  protocol has no approved evaluation result. Do not add model-performance,
+  operational, or compliance claims.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

@@ -1,6 +1,8 @@
 # Handoff
 
-Release automation is intentionally `planned` in `portfolio/release.json`. Do not deploy or publish until the project reaches release-candidate status with verified data provenance and evaluation evidence.
+The public-review deployment is recorded in `portfolio/release.json`. It serves
+the bounded synthetic replay only; it is not evidence of model performance,
+operational suitability, or compliance readiness.
 
 Read `AGENTS.md`, `README.md`, `docs/STATE.md`, and fresh Graphify output before work.
 
@@ -254,7 +256,7 @@ Exact next milestone is **I — Owner-approved live deployment and
 post-deploy verification**, which is blocked pending explicit owner approval;
 do not begin it without that approval.
 
-## Milestone I handoff — in progress / owner decision required (2026-07-25)
+## Milestone I handoff — complete (2026-07-25)
 
 The owner approved a Vercel preview attempt. The authenticated account
 `vaibhavkhuranaaa` created `reeper1/signal-ledger-workbench`, connected the
@@ -262,19 +264,17 @@ existing GitHub repository, and deployed the local source state as
 `dpl_CsH9KTYozhdufF7ZFXH8iTo7Squa` at
 `https://signal-ledger-workbench-ggp44wt6i-reeper1.vercel.app`.
 
-`vercel inspect` reports target `production` and assigned aliases, although the
-owner selected preview. Vercel SSO deployment protection redirects unauthenticated
-requests, so it is neither a verified preview target nor a publicly available
-release. No push, merge, source publication, or claim of production readiness
-occurred.
+`vercel inspect` reports target `production` and assigned aliases. The owner
+chose to retain this single deployment and approved removal of Vercel
+Authentication for public review; no additional deployment was created. The
+canonical review URL is `https://signal-ledger-workbench.vercel.app`.
 
-Authenticated read-only probes passed: `/api/readiness` returned ready plus
+Unauthenticated read-only probes passed: `/api/readiness` returned ready plus
 approved artifact delivery with no inference/persistence; the unapproved CORS
 preflight returned 400; POST returned 405; `/api/elliptic` and
-`/api/local-source` returned 404. Browser E2E is blocked by the SSO protection.
+`/api/local-source` returned 404. Public browser E2E rendered the case desk,
+found no error overlay, and reported no console errors.
 
-The owner chose to retain this single protected production-target deployment and
-not create additional preview resources. Do not change the target, aliases,
-Vercel protection, or public availability without further direction. Browser
-smoke validation remains blocked until the owner explicitly approves a change
-to the SSO protection posture.
+The project remains `building` only with respect to the separate local-only
+Elliptic evaluation protocol: no evaluation result, model metric, operational
+claim, or compliance claim may be added without independently approved evidence.

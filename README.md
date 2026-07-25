@@ -1,50 +1,62 @@
-# Financial AML Graph Detection
+# Signal Ledger
 
-Status: **building**. This is a pending research project, not a deployed compliance product and not evidence that any real entity is illicit.
+Signal Ledger is a read-only workbench for replaying a bounded, deterministic
+realistic synthetic banking-event case file. It is a portfolio research
+demonstration, not a compliance product, real-time monitor, or statement about
+any real person or organization.
 
-The intended workflow turns the public Elliptic Bitcoin transaction graph into a reproducible graph-learning benchmark: construct the graph, train an explainable baseline and GraphSAGE/GAT candidate, evaluate the minority illicit class, then expose only a bounded research scoring interface.
+## Live workbench
+
+The public-review URL is [signal-ledger-workbench.vercel.app](https://signal-ledger-workbench.vercel.app).
+It serves only the approved 21-row replay fixture. It has no authentication,
+telemetry, server-side visitor storage, request-time inference, or write API.
+
+## What it demonstrates
+
+- A bounded case queue, replayable timeline, and keyboard-operable topology.
+- Precomputed research context, evidence, uncertainty, provenance, and
+  methodology.
+- Browser-private simulated escalation/closure notes with local-only export.
+- Typed, validated FastAPI GET contracts with fixed limits and safe errors.
+
+The workbench labels the data as realistic synthetic banking data. It never
+describes it as anonymized customer data.
 
 ## Data boundary
 
-- Source: Elliptic transaction graph, obtained under its published access terms.
-- Classification: public research data.
-- Excluded: customer, bank, account, KYC, and confidential compliance data.
-- Record the exact source, license/access terms, checksum, and permitted use before adding data.
+The public artifact is a checksum-bound, pseudonymized slice derived from IBM
+AML-Data v8 under the recorded CDLA-Sharing-1.0 distribution decision. The full
+IBM source is not committed or served. Elliptic is strictly local-only: no
+Elliptic rows, graphs, models, artifacts, metrics, or endpoints are public.
 
-## Planned architecture
+See [data governance](docs/DATA_GOVERNANCE.md) and the [delivery plan](docs/DELIVERY_PLAN.md)
+for the source, disclosure, and release boundary.
 
-```mermaid
-flowchart LR
-  A[Versioned Elliptic files] --> B[Validated graph builder]
-  B --> C[Time-aware train and holdout split]
-  C --> D[Baseline and GNN training]
-  D --> E[Precision recall and error analysis]
-  E --> F[Bounded research API and graph view]
-```
-
-## Current gate
-
-The draft contract is structurally valid, but first-demo readiness is blocked on reproducible data provenance, implemented graph construction, versioned evaluation, safe examples, tests/CI evidence, and deployment evidence. See `docs/STATE.md`, `docs/HANDOFF.md`, and `portfolio/project.json`.
-
-No metric, demo URL, production claim, or compliance outcome should be added before that evidence exists.
-
-## Public workbench
-
-`frontend/` contains the React + TypeScript Signal Ledger workbench. FastAPI will
-serve only a checksum-validated, explicitly approved synthetic replay artifact.
-The approved v8 artifact is a bounded, pseudonymized IBM AML-Data slice; it is
-realistic synthetic banking data, not anonymized customer data. The full source
-remains local-only and is not delivered by the API.
+## Local development
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 uvicorn src.app:app --reload
-cd frontend && npm install && npm run dev
+
+cd frontend
+npm ci
+npm run dev
 ```
 
-For a production-like local preview, build the frontend and start FastAPI, or use `docker compose -f docker/docker-compose.yml up --build`. The Docker context explicitly copies only the frontend build, FastAPI source, and synthetic fixture.
+For a production-like local check:
 
-See [data governance](docs/DATA_GOVERNANCE.md) for the strict separation between the public fixture and local Elliptic research.
-The [local-only Elliptic evaluation protocol](docs/ELLIPTIC_EVALUATION_PROTOCOL.md)
-defines the required source gate and aggregate-report validation; it does not
-publish a benchmark result.
+```bash
+docker compose -f docker/docker-compose.yml up --build
+```
+
+## Verification
+
+```bash
+uv run pytest -q
+uv run ruff check src scripts tests
+cd frontend && npm ci && npm run lint && npm run build
+```
+
+The local-only Elliptic evaluation protocol is implemented but does not contain
+or publish an evaluation result. Do not make model-performance, operational, or
+compliance claims without separately approved aggregate evaluation evidence.

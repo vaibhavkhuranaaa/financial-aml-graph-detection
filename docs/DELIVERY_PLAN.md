@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** I — Owner-approved live deployment and post-deploy verification (blocked pending owner direction on the initial Vercel target)
+**Current milestone:** I — Owner-approved live deployment and post-deploy verification (complete; public review)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -329,23 +329,23 @@ merge was created by this readiness work.
   exclusion.
 - [x] Obtain owner direction to retain the single protected `production` target
   and not create additional preview resources.
-- [ ] Obtain explicit approval to change Vercel SSO protection before treating
-  any URL as publicly available or running unauthenticated browser E2E.
+- [x] Obtain explicit approval to remove Vercel Authentication for public review
+  and run unauthenticated browser E2E.
 
 **Complete when:** the owner-approved target and availability, release
 identifier, health result, rollback path, and post-deploy checks are recorded.
 
-**I deployment record (2026-07-25):** Vercel created
+**I completion record (2026-07-25):** Vercel created
 `reeper1/signal-ledger-workbench` and deployment
 `dpl_CsH9KTYozhdufF7ZFXH8iTo7Squa`,
 `https://signal-ledger-workbench-ggp44wt6i-reeper1.vercel.app`. `vercel
-inspect` reports target `production` and Vercel assigned aliases, contrary to
-the owner-approved preview intent. Vercel SSO protection returns 302 to
-unauthenticated visitors, so no public-access claim is made. Authenticated
-read-only probes passed: readiness 200 with approved/no-inference/no-persistence
-state, unapproved CORS preflight 400, POST 405, and Elliptic/local-source 404.
-Browser E2E and a public release remain blocked by the retained Vercel SSO
-protection.
+inspect` reports target `production` and Vercel assigned aliases. The owner
+retained this single deployment and explicitly approved removal of Vercel
+Authentication for public review; no additional deployment was created.
+Unauthenticated probes passed: readiness 200 with approved/no-inference/
+no-persistence state, unapproved CORS preflight 400, POST 405, and
+Elliptic/local-source 404. Public browser E2E rendered the investigation desk,
+found no error overlay, and reported no console errors.
 
 **Verification:** owner-approved deploy command, deployed health check,
 headers/CORS review, data-boundary probe, browser smoke after access is
