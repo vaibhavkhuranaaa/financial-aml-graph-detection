@@ -5,6 +5,23 @@
 - Publication: `absent`
 - Contract migration: v2 draft; no first-demo evidence has been approved
 
+## Delivery ownership — 2026-07-24
+
+- Current milestone: **A — Product discovery and delivery plan** (complete).
+- Product direction: anonymous, read-only deterministic synthetic-event replay;
+  browser-private simulated notes/decisions with local export; no authentication,
+  server-side visitor data, or request-time inference.
+- Deployment remains `release-pending`; publication remains absent. Render is a
+  future owner-gated target, not an approved deployment.
+- The authoritative acceptance criteria, legal/data gates, risks, milestones,
+  and required handoff fields are recorded in `docs/DELIVERY_PLAN.md`.
+- No deployment, publication, evaluation, or production/compliance claim has
+  been advanced by this planning milestone.
+- Milestone A verification passed: fresh Graphify at `925931e2`, Ponytail audit
+  recorded with no documentation-scope change, delivery-document consistency
+  search passed, and `git diff --check` passed. The exact next milestone is
+  **B — Data provenance and deterministic fixture/replay pipeline**.
+
 - First-demo evidence still required: dataset source/license/checksum, implemented graph construction, time-aware split, baseline comparison, minority-class evaluation, tests/CI results, safe graph visualization, and deployment observation.
 
 No new deployment, metric, or production claim was introduced by this migration.
