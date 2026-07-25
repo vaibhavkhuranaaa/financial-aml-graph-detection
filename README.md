@@ -32,8 +32,9 @@ No metric, demo URL, production claim, or compliance outcome should be added bef
 
 `frontend/` contains the React + TypeScript Signal Ledger workbench. FastAPI will
 serve only a checksum-validated, explicitly approved synthetic replay artifact.
-The legacy fixture is fail-closed while its IBM source checksum and distribution
-decision remain unverified; it is not currently delivered by the API.
+The approved v8 artifact is a bounded, pseudonymized IBM AML-Data slice; it is
+realistic synthetic banking data, not anonymized customer data. The full source
+remains local-only and is not delivered by the API.
 
 ```bash
 pip install -r requirements.txt

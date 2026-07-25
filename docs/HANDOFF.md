@@ -41,16 +41,32 @@ Before committing an IBM slice, verify its exact version, retrieval date, checks
 
 Rollback the contract migration only through a reviewed `git revert 3ffc5b4f068c5c917ce8a0f04f314782702f81b7`; do not reset to `e291ceb98bc347d776d7999fbb49b5374a566c1e`.
 
-## Milestone B status — in progress (2026-07-24)
+## Milestone B handoff — complete (2026-07-24)
 
-Do not mark B complete yet. Kaggle metadata independently identifies the current
-dataset as version 8 under CDLA-Sharing-1.0; the license requires a published
-selected/pseudonymized subset to remain under the agreement with modification
-notice, provider attribution, and agreement text/link. The precise local
-`HI-Small_Trans.csv` input was independently retrieved and verified on
-2026-07-25 UTC as
-`b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`. The API
-remains fail-closed until an owner-approved distribution decision admits a new
-artifact. Exact next work remains **B — Data provenance and deterministic
-fixture/replay pipeline**: record approval, rerun the manifest twice, compare
-artifact hashes, and then complete the B handoff.
+Completed work: independently verified IBM AML-Data v8 source metadata,
+attribution, CDLA-Sharing-1.0 obligations, exact checksum, and published schema;
+corrected the duplicate positional `Account` header mapping; recorded source and
+distribution manifests; materialized the approved 21-row bounded artifact;
+retired the legacy bypass; and preserved a read-only, precomputed API boundary.
+
+Commits: `65d8ed1 feat: gate public replay artifacts`, `7ee5446 docs: record
+IBM source verification`, and `5a04424 feat: materialize approved replay fixture`.
+
+Verification: the official `HI-Small_Trans.csv` v8 file reproduced source SHA-256
+`b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`; two
+`scripts/build_public_replay.py` runs produced byte-identical output (file
+SHA-256 `79ab2c9350cedd3eac394e13e0c67bd595cfbc3e2e4cca137cd46e75d69c9409`),
+artifact hash `62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2`,
+and run ID `d7bd5a14342256427d08604a6e7ce9d3f2ce60ff5e3b154298fffd8db6a31356`.
+`uv tool run ruff check src scripts tests`, `uv run pytest -q` (5 passed),
+`uv run python -m compileall -q src scripts`, `cd frontend && npm run build`,
+and `git diff --check` all passed.
+
+Data/access/deployment: the owner approved publication only for the bounded,
+pseudonymized CDLA-Sharing-1.0 artifact tied to the exact source checksum. The
+full IBM input and temporary outputs were removed; Elliptic remains local-only.
+No deployment, external publication, push, or merge occurred.
+
+Graphify: refresh after the final commit is required; JSON files have no
+structural nodes and the installed package/skill version warning is non-blocking.
+Exact next milestone: **C — API contract, validation, and data-boundary tests**.

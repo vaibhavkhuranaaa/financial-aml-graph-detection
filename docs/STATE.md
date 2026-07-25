@@ -7,8 +7,8 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **B — Data provenance and deterministic fixture/replay
-  pipeline** (in progress; not complete).
+- Current milestone: **C — API contract, validation, and data-boundary tests**
+  (next).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -27,20 +27,21 @@
 
 No new deployment, metric, or production claim was introduced by this migration.
 
-## Milestone B in progress — 2026-07-24
+## Milestone B — complete (2026-07-24)
 
 - Independent metadata review verified Kaggle dataset version 8, Erik Altman
   attribution, the HI-Small transaction schema listing, and CDLA-Sharing-1.0.
   The v8 source checksum was reproduced on 2026-07-25 UTC as
-  `b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`; the
-  distribution decision remains blocked pending owner approval.
-- The public API now fails closed for the legacy fixture. An offline,
+  `b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`; the owner
+  approved the bounded CDLA-Sharing-1.0 artifact for that exact checksum.
+- The public API serves the approved bounded artifact. An offline,
   deterministic builder records local source metadata/schema/checksum, selection
   and pseudonymization rules, pipeline run ID, and artifact checksum; it also
   requires an owner-approved distribution decision for that exact source hash.
-- No IBM full input, Elliptic data, derived local research artifact, deployment,
-  publication, push, or merge occurred. Graphify was refreshed at `00f129a9`
-  before B implementation; refresh again after substantive B changes.
+- Two local runs produced the same artifact hash
+  `62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2`; the full
+  IBM input and temporary outputs were removed. Elliptic remains local-only; no
+  deployment, publication, push, or merge occurred. Exact next milestone: **C**.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

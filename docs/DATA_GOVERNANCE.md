@@ -4,9 +4,8 @@
 
 The public workbench may serve only a checksum-validated, explicitly approved
 replay artifact. It is **realistic synthetic banking data**, never anonymized
-customer data. Browser visits do not train, fit, or invoke a model. The API is
-currently fail-closed: the source is verified, but no owner-approved Enhanced
-Data distribution decision exists for a public artifact.
+customer data. Browser visits do not train, fit, or invoke a model. The API
+serves the approved bounded artifact only; the full source remains local-only.
 
 ## IBM AML-Data provenance and publication decision
 
@@ -25,8 +24,10 @@ Data distribution decision exists for a public artifact.
   SHA-256 is `b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`;
   its published header contains positional duplicate `Account` fields, which
   the pipeline records and maps internally to from/to accounts.
-- Therefore `data/provenance/ibm_aml_data_v8_distribution.json` remains
-  **blocked** until the owner approves the corresponding public artifact.
+- The owner approved the exact verified source checksum on 2026-07-24 for the
+  bounded Signal Ledger replay scope. The admitted artifact has content hash
+  `62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2` and
+  pipeline run ID `d7bd5a14342256427d08604a6e7ce9d3f2ce60ff5e3b154298fffd8db6a31356`.
 
 The offline builder records source metadata, retrieval timestamp, source
 checksum, schema, deterministic selection rule, pseudonymization method,

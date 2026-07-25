@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** B — Data provenance and deterministic fixture/replay pipeline (in progress)
+**Current milestone:** C — API contract, validation, and data-boundary tests (next)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -91,13 +91,13 @@ documentation commit exists.
 
 ### B — Data provenance and deterministic fixture/replay pipeline
 
-- [ ] Validate the IBM input checksum, schema, exact version, retrieval record,
+- [x] Validate the IBM input checksum, schema, exact version, retrieval record,
   attribution, and CDLA-Sharing-1.0 access/distribution obligations.
-- [ ] Create a deterministic selection manifest and generator that records
+- [x] Create a deterministic selection manifest and generator that records
   inputs, selection rules, pseudonymization, output checksum, and pipeline run ID.
-- [ ] Materialize bounded public replay/case artifacts offline; no request-time
+- [x] Materialize bounded public replay/case artifacts offline; no request-time
   inference or full-dataset browser delivery.
-- [ ] Add provenance, determinism, and public-boundary tests.
+- [x] Add provenance, determinism, and public-boundary tests.
 
 **Complete when:** rerunning against the verified local input produces the
 recorded artifact/hash, the public-output decision is documented, and no
@@ -106,12 +106,16 @@ unapproved data can enter the public path.
 **Verification:** generator reproduction command; checksum comparison; schema and
 selection tests; source/output boundary scan; `git diff --check`.
 
-**Current B status (2026-07-24):** independent metadata and license review is
-recorded, and the API now rejects the legacy unverified fixture. The stdlib-only
-offline builder and tests are in progress. The actual `HI-Small_Trans.csv` v8
-input was independently reproduced on 2026-07-25 UTC with checksum
-`b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`; no public
-distribution decision has been approved.
+**B completion record (2026-07-24):** the official v8 input was retrieved,
+schema-validated, and matched SHA-256
+`b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`. The owner
+approved publication for that exact source checksum under CDLA-Sharing-1.0.
+Two local builds were byte-identical (file SHA-256
+`79ab2c9350cedd3eac394e13e0c67bd595cfbc3e2e4cca137cd46e75d69c9409`), with
+artifact hash `62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2`
+and pipeline run ID `d7bd5a14342256427d08604a6e7ce9d3f2ce60ff5e3b154298fffd8db6a31356`.
+The source and temporary outputs were removed after verification; only the
+bounded, pseudonymized artifact is committed.
 
 ### C — API contract, validation, and data-boundary tests
 
