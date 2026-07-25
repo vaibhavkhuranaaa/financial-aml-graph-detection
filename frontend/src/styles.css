@@ -13,7 +13,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, .node:focus-vis
 main { max-width: 1540px; min-height: 100vh; margin: auto; padding: 28px 30px 64px; }
 .masthead, .panel-heading, .replay-controls, .case-row, .timeline button { display: flex; align-items: center; }
 .masthead { justify-content: space-between; gap: 24px; border-bottom: 1px solid #405059; padding-bottom: 18px; }
-.masthead h1, .opening h2, .panel-heading h2, .section-intro h2, .method h2 { letter-spacing: -.035em; }
+.masthead h1, .opening h2, .panel-heading h2, .section-intro h2, .method h2, .audit-section h2 { letter-spacing: -.035em; }
 .masthead h1 { margin: 5px 0 0; font-size: 2.7rem; line-height: 1; }
 .stamp { margin: 0; color: #c6ee48; font: 700 .68rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .11em; text-transform: uppercase; }
 .mast-meta { margin: 0; color: #b4c1ba; font-size: .8rem; }
@@ -70,6 +70,30 @@ select { width: auto; margin: 0; }
 .next-step strong { display: block; margin: 7px 0; color: #f2f6e8; font-size: .89rem; }
 .next-step p:last-child { margin: 0; color: #b9c5be; font-size: .78rem; line-height: 1.5; }
 .inline-error { display: grid; gap: 10px; margin: 16px; padding-top: 14px; border-top: 1px solid #f38b4b; color: #f0cdb9; font-size: .78rem; }
+.audit-section { display: grid; grid-template-columns: minmax(260px, .7fr) minmax(520px, 1.3fr); gap: 70px; padding: 64px 0; border-bottom: 1px solid #405059; }
+.audit-section h2 { max-width: 14ch; margin: 8px 0 13px; font-size: 2rem; line-height: 1.08; }
+.audit-workspace { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #405059; }
+.audit-form { background: #172126; border-right: 1px solid #405059; }
+.audit-form > label { display: block; margin: 16px 16px 6px; color: #c4d0c8; font-size: .76rem; }
+textarea { width: calc(100% - 32px); min-height: 120px; margin: 0 16px; resize: vertical; border: 1px solid #52636a; border-radius: 0; background: #10171c; color: #edf2df; padding: 11px; line-height: 1.45; }
+.field-note, .local-notice, .history-intro, .audit-history li p, .audit-history li small { color: #b5c1ba; font-size: .74rem; line-height: 1.5; }
+.field-note, .local-notice, .history-intro { margin: 10px 16px; }
+.audit-actions, .history-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px; }
+.audit-actions button, .history-actions button { border: 1px solid #52636a; background: transparent; color: #edf2df; padding: 9px 11px; font-size: .75rem; }
+.audit-actions .primary { border-color: #c6ee48; background: #c6ee48; color: #10171c; font-weight: 800; }
+.local-notice { border-top: 1px solid #405059; padding-top: 13px; color: #c6ee48; font: 700 .62rem/1.45 ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; }
+.audit-history { min-width: 0; background: #111a1f; }
+.audit-history > ol { max-height: 355px; margin: 0; padding: 0; overflow: auto; list-style: none; }
+.audit-history li { padding: 14px 16px; border-bottom: 1px solid #324149; }
+.audit-history li > div { display: grid; grid-template-columns: 1fr auto; gap: 5px 10px; align-items: center; }
+.audit-history li strong { font-size: .82rem; }
+.audit-history li time { color: #aebbb4; font: .62rem ui-monospace, monospace; }
+.audit-history li p { margin: 8px 0 5px; }
+.audit-history li small { display: block; }
+.example-badge, .local-badge { grid-column: 1 / -1; width: max-content; padding: 3px 5px; font: 700 .59rem ui-monospace, monospace; text-transform: uppercase; }
+.example-badge { background: #314038; color: #e8f2d5; }
+.local-badge { background: #3b2c22; color: #f3cfb8; }
+.audit-message { min-height: 18px; margin: 0 16px 16px; color: #c6ee48; font-size: .73rem; line-height: 1.45; }
 .topology-section { display: grid; grid-template-columns: minmax(260px, .7fr) minmax(450px, 1.3fr); gap: 70px; padding: 64px 0; border-bottom: 1px solid #405059; }
 .section-intro h2, .method h2 { max-width: 14ch; margin: 8px 0 13px; font-size: 2rem; line-height: 1.08; }
 .topology-frame { position: relative; min-height: 420px; border: 1px solid #405059; background: #142026; }
@@ -92,5 +116,5 @@ select { width: auto; margin: 0; }
 @keyframes sweep { to { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
 @media (max-width: 1060px) { .workbench { grid-template-columns: minmax(220px, .72fr) 1.4fr; } .evidence-panel { grid-column: 1 / -1; border-top: 1px solid #405059; border-left: 0; display: grid; grid-template-columns: .8fr 1.2fr; } .evidence-panel .panel-heading, .evidence-panel .uncertainty, .evidence-panel .next-step, .evidence-panel .inline-error { grid-column: 1; } .evidence-panel .evidence-list { grid-column: 2; grid-row: 1 / span 4; margin: 16px; align-self: start; } }
-@media (max-width: 760px) { main { padding: 20px 16px 46px; } .masthead, .opening, .topology-section, .method { grid-template-columns: 1fr; gap: 28px; } .masthead { align-items: flex-start; flex-direction: column; } .opening { padding: 34px 0; } .opening h2 { font-size: 1.85rem; } .workbench { grid-template-columns: 1fr; } .queue, .evidence-panel { border: 0; border-bottom: 1px solid #405059; } .evidence-panel { display: block; } .evidence-panel .evidence-list { margin: 0; } .topology-section, .method { padding: 46px 0 0; } .topology-frame, .graph, .graph-empty { min-height: 320px; height: 320px; } .timeline time { width: 98px; flex-basis: 98px; } .timeline strong { display: none; } .replay-controls label { margin-left: 0; } }
+@media (max-width: 760px) { main { padding: 20px 16px 46px; } .masthead, .opening, .audit-section, .topology-section, .method { grid-template-columns: 1fr; gap: 28px; } .masthead { align-items: flex-start; flex-direction: column; } .opening { padding: 34px 0; } .opening h2 { font-size: 1.85rem; } .workbench, .audit-workspace { grid-template-columns: 1fr; } .queue, .evidence-panel, .audit-form { border: 0; border-bottom: 1px solid #405059; } .evidence-panel { display: block; } .evidence-panel .evidence-list { margin: 0; } .audit-section, .topology-section, .method { padding: 46px 0 0; } .topology-frame, .graph, .graph-empty { min-height: 320px; height: 320px; } .timeline time { width: 98px; flex-basis: 98px; } .timeline strong { display: none; } .replay-controls label { margin-left: 0; } }
 @media (max-width: 460px) { .masthead h1 { font-size: 2.25rem; } .timeline { padding: 5px 10px 0; } .timeline button { gap: 8px; } .timeline time { width: 82px; flex-basis: 82px; font-size: .58rem; } .transaction b { font-size: .69rem; } .topology-frame, .graph, .graph-empty { min-height: 270px; height: 270px; } }

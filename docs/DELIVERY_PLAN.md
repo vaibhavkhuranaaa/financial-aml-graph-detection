@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** E — Analyst decision and audit workflow (next)
+**Current milestone:** F — Evaluation and reproducibility boundary (next)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -194,12 +194,12 @@ LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### E — Analyst decision and audit workflow
 
-- [ ] Add browser-private rationale, simulated escalation/closure, local history,
+- [x] Add browser-private rationale, simulated escalation/closure, local history,
   reset, and JSON export containing fixture/version, visible evidence, action,
   rationale, and timestamp.
-- [ ] Include a seeded, read-only example history so visitors can understand the
+- [x] Include a seeded, read-only example history so visitors can understand the
   audit shape before writing anything.
-- [ ] State clearly that decisions are simulated, local to the browser, and not
+- [x] State clearly that decisions are simulated, local to the browser, and not
   compliance actions or server records.
 
 **Complete when:** refresh/reset/export behavior is understandable, accessible,
@@ -207,6 +207,26 @@ and cannot send visitor notes to the API.
 
 **Verification:** frontend behavior tests; browser storage/export/reset checks;
 network inspection confirming no write requests; accessibility checks.
+
+**E completion record (2026-07-24):** added browser-private simulated audit
+records with optional rationale, simulated escalation/closure, local history,
+clear reset, and JSON export. Every export records the fixture dataset version
+and replay checksum, visible evidence statements, selected simulated action,
+rationale, and timestamp. A seeded read-only example explains the audit shape;
+visitor-created records are isolated under one browser-local key and are never
+sent to the API. The UI explicitly says this is a local simulated exercise, not
+a server record, training/inference event, or compliance action.
+
+**E verification record (2026-07-24):** Impeccable detector returned `[]` and
+independent finish review found no material issue. `npm run lint`, `npm run
+build`, `uv run pytest -q` (6 passed), and `git diff --check` passed. Browser
+inspection verified rationale entry, simulated decision, refresh persistence,
+local export confirmation, reset back to the read-only example, keyboard
+controls, and zero browser-console warnings/errors. The in-app browser did not
+expose a download event, but the export confirmation and client-side Blob flow
+were verified. Static source inspection confirms the sole `fetch` has no write
+method and all visitor state uses localStorage only. No deployment,
+publication, push, merge, external access, or work from F occurred.
 
 ### F — Evaluation and reproducibility boundary
 

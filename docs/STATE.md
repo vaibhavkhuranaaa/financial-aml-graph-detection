@@ -7,7 +7,7 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **E — Analyst decision and audit workflow** (next).
+- Current milestone: **F — Evaluation and reproducibility boundary** (next).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -82,6 +82,23 @@ No new deployment, metric, or production claim was introduced by this migration.
 - Graphify was refreshed code-only and reclustered against `09e50125` after the
   implementation commit. Documentation semantic extraction has no LLM backend;
   the package/skill version warning is non-blocking.
+
+## Milestone E — complete (2026-07-24)
+
+- Added browser-private simulated audit records with optional rationale,
+  simulated escalation/closure, resettable local history, seeded read-only
+  example, and JSON export. The export captures the approved replay version and
+  checksum, visible evidence, action, rationale, and timestamp.
+- The page states that records are simulated, local to the browser, never sent
+  to the API, and not compliance actions. Static inspection confirms the
+  frontend retains one default GET `fetch`; visitor state is limited to one
+  browser-local storage key.
+- Verification passed: Impeccable detector and independent finish review found
+  no issues; frontend lint/build, API tests (6 passed), and `git diff --check`
+  passed. Browser testing confirmed persistence, local export confirmation,
+  reset to the read-only example, keyboard controls, and zero console errors.
+  No deployment, publication, push, merge, or external access occurred. Exact
+  next milestone: **F — Evaluation and reproducibility boundary**.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

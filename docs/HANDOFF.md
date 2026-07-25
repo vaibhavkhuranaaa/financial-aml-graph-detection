@@ -134,3 +134,33 @@ installed package/skill version warning is non-blocking. No deployment,
 publication, push, merge, or external access occurred. Exact next milestone:
 **E — Analyst decision and audit workflow**; do not begin it as part of this
 milestone handoff.
+
+## Milestone E handoff — complete (2026-07-24)
+
+Completed work: added an inline browser-private simulated audit workflow to the
+existing workbench. Visitors may enter an optional rationale and choose a
+simulated escalation or closure. Those records, plus resettable history, live
+only under a single browser-local key. A seeded read-only example remains after
+reset so the audit shape is understandable before a visitor writes anything.
+The local JSON export includes fixture dataset version and replay checksum,
+visible evidence statements, simulated action, rationale, and timestamp.
+
+Data/access boundary: the UI prominently says records are simulated, browser
+private, not compliance actions, and never sent to the API. Static inspection
+confirms its only `fetch` has no write method and all visitor state is limited
+to `localStorage`; the FastAPI allowlist and POST rejection tests remain intact.
+No local IBM source or Elliptic content is added or exposed.
+
+Verification: the Impeccable detector returned `[]` and the independent finish
+review found no material issue. `cd frontend && npm run lint && npm run build`,
+`uv run pytest -q` (6 passed), static request/storage scan, and `git diff
+--check` passed. Local browser testing verified rationale entry, simulated
+decision, persistence after refresh, local export confirmation, reset to the
+read-only example, keyboard controls, and zero console warnings/errors. The
+in-app browser did not emit a download event, but the export confirmation and
+client-side Blob download path were verified. Graphify must be refreshed after
+the implementation commit and recorded against that commit.
+
+No deployment, publication, push, merge, or external access occurred. Exact
+next milestone: **F — Evaluation and reproducibility boundary**; do not begin
+it as part of this milestone handoff.

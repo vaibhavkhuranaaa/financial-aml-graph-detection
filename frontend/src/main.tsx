@@ -33,6 +33,31 @@ type Provenance = {
   slice_sha256: string;
   label: string;
 };
+type AuditAction = "Simulated escalation" | "Simulated closure";
+type AuditEntry = {
+  id: string;
+  kind: "example" | "record";
+  timestamp: string;
+  case_id: string;
+  case_outcome: string;
+  action: AuditAction;
+  rationale: string;
+  fixture: { dataset_version: number | null; replay_sha256: string | null };
+  visible_evidence: string[];
+};
+
+const AUDIT_STORAGE_KEY = "signal-ledger-simulated-audit/v1";
+const SEEDED_AUDIT: AuditEntry = {
+  id: "example-closure-record",
+  kind: "example",
+  timestamp: "2026-07-24T09:00:00.000Z",
+  case_id: "sim-closure-compare",
+  case_outcome: "Simulated closure",
+  action: "Simulated closure",
+  rationale: "Example only: the bounded replay is reviewed as a synthetic exercise, not a real-world conclusion.",
+  fixture: { dataset_version: 8, replay_sha256: "62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2" },
+  visible_evidence: ["Precomputed context only", "No request-time inference"],
+};
 
 const api = <T,>(path: string) =>
   fetch(`/api${path}`).then((response) =>
@@ -40,6 +65,24 @@ const api = <T,>(path: string) =>
       ? (response.json() as Promise<T>)
       : Promise.reject(new Error("The bounded public casefile could not be loaded.")),
   );
+
+function loadLocalAudit(): AuditEntry[] {
+  try {
+    const saved = window.localStorage.getItem(AUDIT_STORAGE_KEY);
+    const parsed: unknown = saved ? JSON.parse(saved) : [];
+    return Array.isArray(parsed) ? parsed.filter((entry): entry is AuditEntry => typeof entry === "object" && entry !== null && "id" in entry && "action" in entry) : [];
+  } catch {
+    return [];
+  }
+}
+
+function storeLocalAudit(entries: AuditEntry[]) {
+  try {
+    window.localStorage.setItem(AUDIT_STORAGE_KEY, JSON.stringify(entries));
+  } catch {
+    // The simulated record remains visible for this page session if storage is unavailable.
+  }
+}
 
 function topologyPoint(index: number, count: number) {
   const angle = (Math.PI * 2 * index) / Math.max(count, 1) - Math.PI / 2;
@@ -62,6 +105,9 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [caseLoading, setCaseLoading] = useState(false);
   const [error, setError] = useState("");
+  const [rationale, setRationale] = useState("");
+  const [auditEntries, setAuditEntries] = useState<AuditEntry[]>(loadLocalAudit);
+  const [auditMessage, setAuditMessage] = useState("");
 
   const loadCatalogue = () => {
     setLoading(true);
@@ -130,6 +176,54 @@ function App() {
       ),
     [topology],
   );
+  const auditHistory = [SEEDED_AUDIT, ...auditEntries];
+
+  const recordSimulatedDecision = (action: AuditAction) => {
+    if (!active || !detail) return;
+    const entry: AuditEntry = {
+      id: window.crypto.randomUUID(),
+      kind: "record",
+      timestamp: new Date().toISOString(),
+      case_id: active.id,
+      case_outcome: detail.outcome,
+      action,
+      rationale: rationale.trim() || "No rationale entered.",
+      fixture: { dataset_version: provenance?.version ?? null, replay_sha256: provenance?.slice_sha256 ?? null },
+      visible_evidence: evidence?.items.map((item) => item.statement) ?? [],
+    };
+    const next = [entry, ...auditEntries];
+    setAuditEntries(next);
+    storeLocalAudit(next);
+    setRationale("");
+    setAuditMessage(`${action} saved in this browser only.`);
+  };
+
+  const resetLocalAudit = () => {
+    setAuditEntries([]);
+    setRationale("");
+    setAuditMessage("Your browser-local simulated records were cleared. The read-only example remains.");
+    try {
+      window.localStorage.removeItem(AUDIT_STORAGE_KEY);
+    } catch {
+      // The reset still applies to this page session if browser storage is unavailable.
+    }
+  };
+
+  const exportLocalAudit = () => {
+    const payload = {
+      format: "signal-ledger-simulated-audit/v1",
+      exported_at: new Date().toISOString(),
+      local_only: true,
+      records: auditHistory,
+    };
+    const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "signal-ledger-simulated-audit.json";
+    link.click();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    setAuditMessage("Exported a local JSON copy. Nothing was sent to Signal Ledger.");
+  };
 
   if (error && !active) {
     return (
@@ -218,9 +312,32 @@ function App() {
           <ul className="evidence-list">
             {evidence?.items.map((item) => <li key={item.kind}><span>{item.kind}</span>{item.statement}</li>)}
           </ul>
-          <div className="next-step"><p className="stamp">Next step</p><strong>Simulated human record</strong><p>The local-only rationale and simulated disposition workflow begins in the next milestone. Nothing is sent to this API.</p></div>
+          <div className="next-step"><p className="stamp">Simulated record</p><strong>Browser-private audit trail</strong><p>Any rationale and simulated decision stay in this browser and are never sent to this API.</p></div>
           {error && <div className="inline-error" role="alert"><span>{error}</span><button type="button" onClick={() => setActive(active)}>Retry case</button></div>}
         </aside>
+      </section>
+
+      <section className="audit-section" aria-labelledby="audit-title">
+        <div className="section-intro"><p className="stamp">Simulated human record</p><h2 id="audit-title">Record a review exercise, not a compliance action.</h2><p>Your rationale, simulated disposition, and export remain browser-private. The approved fixture, visible evidence, action, rationale, and timestamp are captured locally.</p></div>
+        <div className="audit-workspace">
+          <form className="audit-form" onSubmit={(event) => event.preventDefault()}>
+            <div className="panel-heading"><div><p className="stamp">Local-only entry</p><h2>{detail?.outcome ?? "Select a case"}</h2></div><span>{provenance ? `v${provenance.version}` : "—"}</span></div>
+            <label htmlFor="rationale">Simulated reviewer rationale</label>
+            <textarea id="rationale" value={rationale} onChange={(event) => setRationale(event.target.value)} placeholder="What did the bounded synthetic replay make easier or harder to understand?" />
+            <p className="field-note">Optional. If blank, the local record states that no rationale was entered. Visible evidence: {evidence?.items.length ?? 0} items.</p>
+            <div className="audit-actions"><button type="button" className="primary" onClick={() => recordSimulatedDecision("Simulated escalation")} disabled={!detail}>Simulate escalation</button><button type="button" onClick={() => recordSimulatedDecision("Simulated closure")} disabled={!detail}>Simulate closure</button></div>
+            <p className="local-notice">No server record · no training · no inference · no compliance action</p>
+          </form>
+          <aside className="audit-history" aria-label="Browser-private simulated audit history">
+            <div className="panel-heading"><div><p className="stamp">Local history</p><h2>Audit shape</h2></div><span>{auditHistory.length} entries</span></div>
+            <p className="history-intro">A seeded example explains the format. New entries are stored only in this browser until you reset them.</p>
+            <ol>
+              {auditHistory.map((entry) => <li key={entry.id}><div><span className={entry.kind === "example" ? "example-badge" : "local-badge"}>{entry.kind === "example" ? "Read-only example" : "Local record"}</span><strong>{entry.action}</strong><time>{new Date(entry.timestamp).toLocaleString()}</time></div><p>{entry.rationale}</p><small>{entry.case_outcome} · {entry.visible_evidence.length} visible evidence items</small></li>)}
+            </ol>
+            <div className="history-actions"><button type="button" onClick={exportLocalAudit}>Export local JSON</button><button type="button" onClick={resetLocalAudit} disabled={auditEntries.length === 0}>Reset my local records</button></div>
+            <p className="audit-message" aria-live="polite">{auditMessage}</p>
+          </aside>
+        </div>
       </section>
 
       <section className="topology-section" aria-labelledby="topology-title">
