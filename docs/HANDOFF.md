@@ -127,7 +127,10 @@ detector returned `[]`. `cd frontend && npm run lint && npm run build`, `uv run
 pytest -q` (6 passed), and `git diff --check` passed. Local browser inspection
 confirmed desktop and 390px mobile layouts, case selection, replay advancement,
 filter empty state, keyboard topology selection, and zero browser-console
-warnings/errors. Graphify must be refreshed after the implementation commit and
-recorded against that commit. No deployment, publication, push, merge, or
-external access occurred. Exact next milestone: **E — Analyst decision and
-audit workflow**; do not begin it as part of this milestone handoff.
+warnings/errors. Graphify was refreshed code-only and reclustered against
+`09e50125` after the implementation commit; documentation
+semantic extraction remains unavailable without an LLM backend, and the
+installed package/skill version warning is non-blocking. No deployment,
+publication, push, merge, or external access occurred. Exact next milestone:
+**E — Analyst decision and audit workflow**; do not begin it as part of this
+milestone handoff.

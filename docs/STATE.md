@@ -79,6 +79,9 @@ No new deployment, metric, or production claim was introduced by this migration.
   replay, empty filtering, keyboard topology, and zero console warnings/errors.
   No deployment, publication, push, merge, or external access occurred. Exact
   next milestone: **E — Analyst decision and audit workflow**.
+- Graphify was refreshed code-only and reclustered against `09e50125` after the
+  implementation commit. Documentation semantic extraction has no LLM backend;
+  the package/skill version warning is non-blocking.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

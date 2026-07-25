@@ -188,6 +188,9 @@ case selection, replay progression, filter empty state, keyboard topology
 selection, and no browser console warnings/errors. No deployment, publication,
 push, merge, external access, visitor persistence, or UI work from Milestone E
 occurred.
+Graphify was refreshed code-only and reclustered at implementation commit
+`09e50125`; documentation semantic extraction remains unavailable without an
+LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### E — Analyst decision and audit workflow
 
