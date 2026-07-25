@@ -17,7 +17,7 @@ compliance product, or a conclusion about a person or entity.
 - Demonstrate reproducible data engineering: validated local source ingestion,
   deterministic case selection, precomputed replay artifacts, and visible lineage.
 - Provide a polished, accessible React + TypeScript and FastAPI experience that
-  is ready to be deployed to Render after owner approval.
+  is ready to be deployed to Vercel after owner approval.
 - Keep the public surface safe: approved realistic synthetic banking data only;
   no request-time model training or inference.
 
@@ -68,7 +68,7 @@ flowchart LR
 | Elliptic isolation | Local-only path, documented source/access terms/checksum, exclusion tests, and no public rows/graphs/models/metrics. | Separate written permission is required before any public use. |
 | Claims | Versioned evidence for every evaluation or operational assertion. | Approve any aggregate research statement before publication. |
 | External services | No telemetry or paid resource in v1. | Explicit approval is required before adding either. |
-| Deployment | Render readiness evidence and approved account/project. | Explicit owner approval is required before creating a deployment. |
+| Deployment | Vercel readiness evidence and approved account/project. | Explicit owner approval is required before creating a deployment. |
 
 ## Milestones and acceptance criteria
 
@@ -293,12 +293,12 @@ production image, started the service, and `/api/health` returned the expected
 read-only, no-inference public response; the temporary container and network
 were removed afterward. No deployment, publication, or external access occurred.
 
-### H — Render deployment readiness
+### H — Vercel deployment readiness
 
 - [x] Pin reproducible dependencies/build commands and add CI coverage.
 - [x] Add Docker health/readiness checks, environment validation, production CORS
   allowlist, secure error handling, runtime documentation, and rollback runbook.
-- [x] Produce an owner-ready Render checklist without deploying.
+- [x] Produce an owner-ready Vercel checklist without deploying.
 
 **Complete when:** the container is reproducibly buildable, externally configurable
 without secrets in source, and deployment/rollback instructions are tested locally.
@@ -314,12 +314,16 @@ implemented. 18 tests, Ruff check, compilation, `npm ci` lint/build, Compose
 configuration, Blueprint YAML parsing, and diff check passed. A no-cache Compose
 rebuild served `/api/readiness`, reported Docker `healthy`, rejected an
 unapproved CORS preflight with 400, and tore down cleanly. A separate read-only
-`PORT=8080` container also served readiness and reported healthy. No Render
-account, service, token, deployment, publication, push, or merge was used.
+`PORT=8080` container also served readiness and reported healthy. The owner
+later selected Vercel as the hosting target; the Render-only Blueprint was
+removed and replaced by a Vercel FastAPI Function/static-build configuration.
+No Vercel account resource, project link, deployment, publication, push, or
+merge was created by this readiness work.
 
 ### I — Owner-approved live deployment and post-deploy verification
 
-- [ ] Obtain explicit approval for the Render account/project and production
+- [ ] Obtain explicit approval for the Vercel account/team, project, and
+  production
   deployment.
 - [ ] Deploy only the approved public synthetic artifact and record the release.
 - [ ] Verify public health, CORS, synthetic labels, no write routes, no local-only
@@ -340,7 +344,7 @@ test, headers/CORS review, data-boundary probe, and rollback dry-run or procedur
 | A large dataset leaks through API or build artifacts. | Offline materialization, explicit allowlist, response limits, Docker copy boundary, and negative tests. |
 | Browser-local audit state is mistaken for durable case management. | Prominent local-only/reset/export language and seeded read-only example history. |
 | UI scope turns into a generic dashboard. | Use the select → replay → inspect → record flow as the acceptance test for every surface. |
-| Render configuration weakens the public boundary. | Readiness, CORS, health, environment, and deployed-boundary gates before owner approval. |
+| Vercel configuration weakens the public boundary. | Readiness, CORS, health, environment, and deployed-boundary gates before owner approval. |
 
 ## Mandatory milestone handoff
 

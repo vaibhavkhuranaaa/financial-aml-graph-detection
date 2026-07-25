@@ -31,7 +31,9 @@ from src.public_replay import approved_public_artifact
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_PATH = ROOT / "data" / "fixtures" / "public_casefile.json"
-DIST_PATH = ROOT / "frontend" / "dist"
+DIST_PATH = (
+    ROOT / "public" if (ROOT / "public").exists() else ROOT / "frontend" / "dist"
+)
 MAX_TIMELINE = 18
 MAX_GRAPH_NODES = 18
 CASE_ID = Annotated[str, ApiPath(pattern=r"^sim-[a-z0-9-]{3,64}$")]

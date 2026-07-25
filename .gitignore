@@ -17,6 +17,7 @@ frontend/dist/
 frontend/*.tsbuildinfo
 frontend/vite.config.js
 frontend/vite.config.d.ts
+public/
 
 # Data
 data/*

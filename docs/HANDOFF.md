@@ -223,7 +223,7 @@ production image, started the workbench, and returned
 from `/api/health`; the temporary container and network were then removed.
 
 No deployment, publication, push, merge, or external access occurred. Exact
-next milestone: **H — Render deployment readiness**; do not begin it as part
+next milestone: **H — Vercel deployment readiness**; do not begin it as part
 of this milestone handoff.
 
 ## Milestone H handoff — complete (2026-07-24)
@@ -231,16 +231,17 @@ of this milestone handoff.
 Completed work: pinned Python and frontend dependency inputs, changed the Docker
 build to use `npm ci`, pinned its base images to verified digests, added dynamic
 `$PORT` binding and a readiness health check, introduced fail-closed explicit
-CORS configuration, and added CI container-readiness coverage. `render.yaml`
-describes one Docker web service with `autoDeploy: false`; it creates nothing
-until an owner chooses to use it. `docs/RENDER_READINESS.md` provides the owner
-checklist and rollback procedure.
+CORS configuration, and added CI container-readiness coverage. The owner later
+selected Vercel; `vercel.json` now builds the static workbench into `public/`
+and configures `src.app` as the FastAPI Function while excluding local-only
+paths. `docs/VERCEL_READINESS.md` provides the owner checklist and rollback
+procedure.
 
 Verification passed: 18 tests, Ruff check, Python compilation, `npm ci` plus
-lint/build, Compose configuration, Render Blueprint YAML parsing, and `git
-diff --check`. No Render CLI is installed or needed for this owner-gated
-preparation; no account, token, service, deployment, publication, push, or
-merge was used.
+lint/build, Compose configuration, Vercel-style static/API smoke testing, and
+`git diff --check`. The Vercel CLI authenticated as the local owner account,
+but no project was linked and no service, deployment, publication, push, or
+merge was created.
 
 Final container verification passed: a no-cache Compose rebuild served
 `/api/readiness`, reported Docker `healthy`, rejected an unapproved CORS
@@ -248,7 +249,7 @@ preflight with 400, and removed its container/network. A separate read-only
 container with `PORT=8080` also served readiness and reported healthy, verifying
 the external runtime-port contract.
 
-No Render account, token, service, deployment, publication, push, or merge was
-used. Exact next milestone is **I — Owner-approved live deployment and
+No Vercel project link, deployment, publication, push, or merge was created.
+Exact next milestone is **I — Owner-approved live deployment and
 post-deploy verification**, which is blocked pending explicit owner approval;
 do not begin it without that approval.
