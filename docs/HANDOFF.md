@@ -198,7 +198,7 @@ No deployment, publication, push, merge, or external access occurred. Exact
 next milestone: **G — Browser E2E, accessibility, responsive, and Docker
 verification**; do not begin it as part of this milestone handoff.
 
-## Milestone G handoff — in progress (2026-07-24)
+## Milestone G handoff — complete (2026-07-24)
 
 Completed work: added `scripts/verify_workbench_browser.sh`, a reusable
 read-only public-workbench browser journey, `tests/test_workbench_boundary.py`,
@@ -207,7 +207,8 @@ overlay absence, browser-private simulated audit action/reset, and interactive
 controls without making a write API call. The boundary test prevents public
 client routes for Elliptic, evaluation, or metrics content.
 
-Verification passed: `uv run pytest -q` (14 passed), Ruff format/check, Python
+Verification passed: `uv run pytest -q` (14 passed), Ruff check and formatting
+check for the new G file, Python
 compilation, frontend lint/build, Docker Compose configuration, `git diff
 --check`, and in-app desktop-browser verification. The browser confirmed
 labelled inputs, a keyboard-operable topology, focus/reduced-motion support,
@@ -215,9 +216,12 @@ no error overlay, and zero console warnings/errors. Graphify was refreshed
 code-only and reclustered at `62c75a8e`; the installed package/skill version
 warning is non-blocking.
 
-The repeatable `agent-browser` CLI journey now passes, including local simulated
-rationale/action/reset and interactive-control checks. Remaining blocker: Docker
-Desktop reports its daemon as stopped, so do not mark G complete or claim its
-Docker build/run/health check until the local daemon starts. No deployment,
-publication, push, merge, or external access occurred. Exact current milestone
-remains **G — Browser E2E, accessibility, responsive, and Docker verification**.
+The repeatable `agent-browser` CLI journey passes, including local simulated
+rationale/action/reset and interactive-control checks. Docker Compose built the
+production image, started the workbench, and returned
+`{"status":"ok","mode":"public-ibm-synthetic-scenario","request_inference":false,"read_only":true}`
+from `/api/health`; the temporary container and network were then removed.
+
+No deployment, publication, push, merge, or external access occurred. Exact
+next milestone: **H — Render deployment readiness**; do not begin it as part
+of this milestone handoff.

@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** G — Browser E2E, accessibility, responsive, and Docker verification (next)
+**Current milestone:** H — Render deployment readiness (next)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -268,9 +268,9 @@ LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### G — Browser E2E, accessibility, responsive, and Docker verification
 
-- [ ] Add repeatable browser E2E for replay, filters, topology, decision/export,
+- [x] Add repeatable browser E2E for replay, filters, topology, decision/export,
   error recovery, and public data boundary.
-- [ ] Verify keyboard navigation, accessible names, contrast/focus, reduced
+- [x] Verify keyboard navigation, accessible names, contrast/focus, reduced
   motion, mobile/tablet/desktop layouts, API tests, production build, and Docker.
 
 **Complete when:** all automated checks pass and browser inspection confirms the
@@ -279,18 +279,19 @@ critical journey without console errors.
 **Verification:** E2E/accessibility/responsive commands; API suite; frontend
 lint/build; Docker build/run/health; compose config; `git diff --check`.
 
-**G verification record (in progress, 2026-07-24):** the committed read-only
+**G completion record (2026-07-24):** the committed read-only
 browser journey and its public-boundary test are in
 `scripts/verify_workbench_browser.sh` and `tests/test_workbench_boundary.py`.
-The API suite (14 passed), Ruff format/check, compilation, frontend lint/build,
+The API suite (14 passed), Ruff check and formatting check for the new G file,
+compilation, frontend lint/build,
 Compose configuration, diff check, and local desktop-browser inspection passed.
 The inspection found labelled inputs, keyboard-operable topology nodes,
 focus/reduced-motion support, no error overlay, and no console warnings/errors.
-The repeatable `agent-browser` CLI journey now passes, including the local
-simulated rationale/action/reset flow and interactive controls. Docker Desktop
-still reports its daemon as stopped, so Docker build/run/health remains required
-before this milestone can be completed. No deployment, publication, or external
-access occurred.
+The repeatable `agent-browser` CLI journey passed, including the local simulated
+rationale/action/reset flow and interactive controls. Docker Compose built the
+production image, started the service, and `/api/health` returned the expected
+read-only, no-inference public response; the temporary container and network
+were removed afterward. No deployment, publication, or external access occurred.
 
 ### H — Render deployment readiness
 

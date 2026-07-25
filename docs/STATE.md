@@ -7,7 +7,7 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **G — Browser E2E, accessibility, responsive, and Docker verification** (in progress).
+- Current milestone: **H — Render deployment readiness** (next).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -122,25 +122,24 @@ No new deployment, metric, or production claim was introduced by this migration.
   implementation commit. Documentation semantic extraction has no LLM backend;
   the package/skill version warning is non-blocking.
 
-## Milestone G — in progress (2026-07-24)
+## Milestone G — complete (2026-07-24)
 
 - Added a reusable, read-only browser-verification harness and public-boundary
   test. The harness exercises rendered content, error-overlay absence, the
   browser-private simulated rationale/action/reset flow, and interactive
   controls; it never sends a write request.
-- Verification passed: API suite (14 passed), Ruff format/check, Python
+- Verification passed: API suite (14 passed), Ruff check and formatting check
+  for the new G file, Python
   compilation, frontend lint/production build, Docker Compose configuration,
   `git diff --check`, and local desktop-browser inspection. The browser found
   labelled inputs, keyboard-operable topology nodes, focus and reduced-motion
   rules, no error overlay, and no warnings/errors.
-- The repeatable `agent-browser` CLI journey now passes, including local
-  simulated rationale/action/reset and interactive-control checks. Completion
-  remains blocked only because Docker Desktop reports its daemon as stopped, so
-  the Docker build/run/health check has not been claimed. No deployment,
-  publication, push, merge, or external access occurred. Graphify was refreshed
-  code-only and reclustered at `62c75a8e`; documentation semantic extraction
-  remains unavailable without an LLM backend and the package/skill version
-  warning is non-blocking.
+- The repeatable `agent-browser` CLI journey passes, including local simulated
+  rationale/action/reset and interactive-control checks. Docker Compose built
+  the production image, started the read-only public service, and returned the
+  expected `/api/health` response; the temporary container and network were
+  then removed. No deployment, publication, push, merge, or external access
+  occurred. Exact next milestone: **H — Render deployment readiness**.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 
