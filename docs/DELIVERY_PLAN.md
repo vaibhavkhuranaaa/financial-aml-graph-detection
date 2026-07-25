@@ -286,10 +286,11 @@ The API suite (14 passed), Ruff format/check, compilation, frontend lint/build,
 Compose configuration, diff check, and local desktop-browser inspection passed.
 The inspection found labelled inputs, keyboard-operable topology nodes,
 focus/reduced-motion support, no error overlay, and no console warnings/errors.
-The `agent-browser` CLI is not installed/exposed and the local Docker daemon is
-unavailable, so the repeatable browser CLI run and Docker build/run/health
-check remain required before this milestone can be completed. No deployment,
-publication, or external access occurred.
+The repeatable `agent-browser` CLI journey now passes, including the local
+simulated rationale/action/reset flow and interactive controls. Docker Desktop
+still reports its daemon as stopped, so Docker build/run/health remains required
+before this milestone can be completed. No deployment, publication, or external
+access occurred.
 
 ### H — Render deployment readiness
 

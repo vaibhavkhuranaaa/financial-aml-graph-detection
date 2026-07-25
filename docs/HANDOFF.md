@@ -215,9 +215,9 @@ no error overlay, and zero console warnings/errors. Graphify was refreshed
 code-only and reclustered at `62c75a8e`; the installed package/skill version
 warning is non-blocking.
 
-Remaining blocker: this environment has neither the `agent-browser` CLI nor a
-running Docker daemon (`/var/run/docker.sock` is absent). Therefore do not mark
-G complete or claim its repeatable CLI journey or Docker build/run/health check
-until those local capabilities are available. No deployment, publication,
-push, merge, or external access occurred. Exact current milestone remains
-**G — Browser E2E, accessibility, responsive, and Docker verification**.
+The repeatable `agent-browser` CLI journey now passes, including local simulated
+rationale/action/reset and interactive-control checks. Remaining blocker: Docker
+Desktop reports its daemon as stopped, so do not mark G complete or claim its
+Docker build/run/health check until the local daemon starts. No deployment,
+publication, push, merge, or external access occurred. Exact current milestone
+remains **G — Browser E2E, accessibility, responsive, and Docker verification**.
