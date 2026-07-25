@@ -118,6 +118,9 @@ No new deployment, metric, or production claim was introduced by this migration.
   --check`. No deployment, publication, push, merge, external access, or
   evaluation run occurred. Exact next milestone: **G — Browser E2E,
   accessibility, responsive, and Docker verification**.
+- Graphify was refreshed code-only and reclustered against `420f82e7` after the
+  implementation commit. Documentation semantic extraction has no LLM backend;
+  the package/skill version warning is non-blocking.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

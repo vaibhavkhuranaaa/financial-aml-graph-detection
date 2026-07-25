@@ -189,8 +189,10 @@ Verification: `uv run pytest -q` passed (12 tests); Ruff format/check,
 `python -m compileall`, and `git diff --check` passed. Boundary tests cover
 aggregate-only evidence, local-only publication status, chronological splitting,
 baseline/GNN presence, raw-identifier rejection, missing metrics, and public
-delivery-path rejection. Graphify must be refreshed after the implementation
-commit and recorded against that commit.
+delivery-path rejection. Graphify was refreshed code-only and reclustered
+against `420f82e7` after the implementation commit; documentation semantic
+extraction remains unavailable without an LLM backend, and the installed
+package/skill version warning is non-blocking.
 
 No deployment, publication, push, merge, or external access occurred. Exact
 next milestone: **G — Browser E2E, accessibility, responsive, and Docker

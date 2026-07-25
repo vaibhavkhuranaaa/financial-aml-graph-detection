@@ -262,6 +262,9 @@ and incomplete-metric rejection. Ruff format/check, compileall, and `git diff
 reports; the public API retains its fixed route allowlist and does not import
 this local research contract. No deployment, publication, push, merge, external
 access, or work from G occurred.
+Graphify was refreshed code-only and reclustered at implementation commit
+`420f82e7`; documentation semantic extraction remains unavailable without an
+LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### G — Browser E2E, accessibility, responsive, and Docker verification
 
