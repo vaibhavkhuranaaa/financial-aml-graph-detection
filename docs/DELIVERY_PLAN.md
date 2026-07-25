@@ -279,6 +279,18 @@ critical journey without console errors.
 **Verification:** E2E/accessibility/responsive commands; API suite; frontend
 lint/build; Docker build/run/health; compose config; `git diff --check`.
 
+**G verification record (in progress, 2026-07-24):** the committed read-only
+browser journey and its public-boundary test are in
+`scripts/verify_workbench_browser.sh` and `tests/test_workbench_boundary.py`.
+The API suite (14 passed), Ruff format/check, compilation, frontend lint/build,
+Compose configuration, diff check, and local desktop-browser inspection passed.
+The inspection found labelled inputs, keyboard-operable topology nodes,
+focus/reduced-motion support, no error overlay, and no console warnings/errors.
+The `agent-browser` CLI is not installed/exposed and the local Docker daemon is
+unavailable, so the repeatable browser CLI run and Docker build/run/health
+check remain required before this milestone can be completed. No deployment,
+publication, or external access occurred.
+
 ### H — Render deployment readiness
 
 - [ ] Pin reproducible dependencies/build commands and add CI coverage.

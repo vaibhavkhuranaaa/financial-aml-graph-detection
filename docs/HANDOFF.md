@@ -197,3 +197,27 @@ package/skill version warning is non-blocking.
 No deployment, publication, push, merge, or external access occurred. Exact
 next milestone: **G — Browser E2E, accessibility, responsive, and Docker
 verification**; do not begin it as part of this milestone handoff.
+
+## Milestone G handoff — in progress (2026-07-24)
+
+Completed work: added `scripts/verify_workbench_browser.sh`, a reusable
+read-only public-workbench browser journey, `tests/test_workbench_boundary.py`,
+and `docs/WORKBENCH_VERIFICATION.md`. The journey checks the rendered product,
+overlay absence, browser-private simulated audit action/reset, and interactive
+controls without making a write API call. The boundary test prevents public
+client routes for Elliptic, evaluation, or metrics content.
+
+Verification passed: `uv run pytest -q` (14 passed), Ruff format/check, Python
+compilation, frontend lint/build, Docker Compose configuration, `git diff
+--check`, and in-app desktop-browser verification. The browser confirmed
+labelled inputs, a keyboard-operable topology, focus/reduced-motion support,
+no error overlay, and zero console warnings/errors. Graphify was refreshed
+code-only and reclustered at `62c75a8e`; the installed package/skill version
+warning is non-blocking.
+
+Remaining blocker: this environment has neither the `agent-browser` CLI nor a
+running Docker daemon (`/var/run/docker.sock` is absent). Therefore do not mark
+G complete or claim its repeatable CLI journey or Docker build/run/health check
+until those local capabilities are available. No deployment, publication,
+push, merge, or external access occurred. Exact current milestone remains
+**G — Browser E2E, accessibility, responsive, and Docker verification**.
