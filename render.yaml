@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: signal-ledger-workbench
+    runtime: docker
+    plan: free
+    autoDeploy: false
+    dockerfilePath: ./docker/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/readiness
+    envVars:
+      - key: APP_MODE
+        value: public-synthetic-fixture
+      - key: SIGNAL_LEDGER_CORS_ORIGINS
+        value: ""

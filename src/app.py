@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import os
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Annotated, Literal
+from typing import Annotated, Literal, NamedTuple
+from urllib.parse import urlparse
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi import Path as ApiPath
@@ -40,6 +43,32 @@ ERROR_RESPONSES = {
 }
 
 
+class RuntimeConfig(NamedTuple):
+    app_mode: str
+    cors_origins: tuple[str, ...]
+
+
+def runtime_config(values: Mapping[str, str]) -> RuntimeConfig:
+    app_mode = values.get("APP_MODE", "public-synthetic-fixture")
+    if app_mode != "public-synthetic-fixture":
+        raise RuntimeError("APP_MODE must be public-synthetic-fixture.")
+    origins = tuple(
+        origin.strip()
+        for origin in values.get("SIGNAL_LEDGER_CORS_ORIGINS", "").split(",")
+        if origin.strip()
+    )
+    for origin in origins:
+        parsed = urlparse(origin)
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc or origin == "*":
+            raise RuntimeError(
+                "SIGNAL_LEDGER_CORS_ORIGINS must be an explicit HTTP(S) allowlist."
+            )
+    return RuntimeConfig(app_mode=app_mode, cors_origins=origins)
+
+
+RUNTIME = runtime_config(os.environ)
+
+
 def fixture() -> dict:
     try:
         return approved_public_artifact(FIXTURE_PATH)
@@ -65,9 +94,10 @@ app = FastAPI(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=list(RUNTIME.cors_origins),
     allow_methods=["GET"],
-    allow_headers=["*"],
+    allow_headers=[],
+    allow_credentials=False,
 )
 
 
