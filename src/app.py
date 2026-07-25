@@ -70,7 +70,14 @@ def graph(case_id: str, depth: Annotated[int, Query(ge=1, le=2)] = 1) -> dict:
 
 @app.get("/api/provenance")
 def provenance() -> dict:
-    return fixture()["provenance"] | {"slice_sha256": fixture()["slice_sha256"], "label": "realistic synthetic banking data"}
+    data = fixture()
+    record = data["provenance"]
+    return record | {
+        "version": record["dataset_version"],
+        "retrieved": record["retrieved_at"],
+        "slice_sha256": data["artifact_sha256"],
+        "label": "realistic synthetic banking data",
+    }
 
 
 @app.get("/api/methodology")

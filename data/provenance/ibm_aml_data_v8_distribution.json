@@ -15,7 +15,12 @@
     "Provide the CDLA-Sharing-1.0 text or a reliable hyperlink.",
     "Admit only an artifact reproduced from a verified local source manifest."
   ],
-  "public_distribution_status": "blocked",
+  "public_distribution_status": "approved",
+  "approved_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
   "verified_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
-  "blocker": "Owner approval to publish an Enhanced Data artifact for this exact verified source checksum has not been recorded."
+  "owner_approval": {
+    "approved_at": "2026-07-24",
+    "scope": "Bounded Signal Ledger replay artifacts derived from the exact verified HI-Small v8 source checksum only."
+  },
+  "blocker": null
 }
