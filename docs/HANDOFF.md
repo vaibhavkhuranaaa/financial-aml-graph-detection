@@ -225,3 +225,24 @@ from `/api/health`; the temporary container and network were then removed.
 No deployment, publication, push, merge, or external access occurred. Exact
 next milestone: **H — Render deployment readiness**; do not begin it as part
 of this milestone handoff.
+
+## Milestone H handoff — in progress (2026-07-24)
+
+Completed work: pinned Python and frontend dependency inputs, changed the Docker
+build to use `npm ci`, pinned its base images to verified digests, added dynamic
+`$PORT` binding and a readiness health check, introduced fail-closed explicit
+CORS configuration, and added CI container-readiness coverage. `render.yaml`
+describes one Docker web service with `autoDeploy: false`; it creates nothing
+until an owner chooses to use it. `docs/RENDER_READINESS.md` provides the owner
+checklist and rollback procedure.
+
+Verification passed: 18 tests, Ruff check, Python compilation, `npm ci` plus
+lint/build, Compose configuration, Render Blueprint YAML parsing, and `git
+diff --check`. No Render CLI is installed or needed for this owner-gated
+preparation; no account, token, service, deployment, publication, push, or
+merge was used.
+
+Remaining blocker: Docker Desktop stopped while starting the final hardened
+image verification. Do not mark H complete until `docker compose ... up --build`,
+`/api/readiness`, the image health status, and teardown have passed. Exact
+current milestone remains **H — Render deployment readiness**.

@@ -306,6 +306,16 @@ without secrets in source, and deployment/rollback instructions are tested local
 **Verification:** clean dependency install/build, CI equivalent, Docker health
 probe, configuration validation, production CORS tests, and deployment-doc review.
 
+**H verification record (in progress, 2026-07-24):** pinned Python/frontend
+inputs, deterministic Docker install/build, dynamic `$PORT` binding, a readiness
+health check, fail-closed explicit CORS configuration, CI container coverage,
+an owner-gated Blueprint with `autoDeploy: false`, and a rollback runbook are
+implemented. 18 tests, Ruff check, compilation, `npm ci` lint/build, Compose
+configuration, Blueprint YAML parsing, and diff check passed. Docker Desktop
+stopped before the final hardened-image build/run/readiness check, so this
+milestone remains in progress. No Render account, service, token, deployment,
+publication, push, or merge was used.
+
 ### I — Owner-approved live deployment and post-deploy verification
 
 - [ ] Obtain explicit approval for the Render account/project and production
