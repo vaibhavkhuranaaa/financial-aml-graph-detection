@@ -150,6 +150,9 @@ disabled docs/OpenAPI paths; and 405 rejection of visitor-input POST bodies.
 Static boundary search found only the explicit local-only methodology statement,
 the provenance filename contract, and the negative tests. No UI work,
 deployment, publication, push, merge, or external access occurred.
+Graphify was refreshed code-only and reclustered at implementation commit
+`7ed3cef7`; documentation semantic extraction remains unavailable without an
+LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### D — Useful investigation UX redesign
 

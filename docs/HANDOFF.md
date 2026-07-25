@@ -100,6 +100,8 @@ publication, push, merge, or external access occurred.
 
 Ponytail audit: no verified-safe simplification was applied; the existing API
 was already minimal and the typed contracts/validation/tests are required C
-scope. Graphify must be refreshed after the intentional commit and recorded
-against that commit. Exact next milestone: **D — Useful investigation UX
-redesign**; do not begin it as part of this milestone handoff.
+scope. Graphify was refreshed code-only and reclustered against implementation
+commit `7ed3cef7`; documentation semantic extraction remains unavailable without
+an LLM backend, and the installed package/skill version warning is non-blocking.
+Exact next milestone: **D — Useful investigation UX redesign**; do not begin it
+as part of this milestone handoff.

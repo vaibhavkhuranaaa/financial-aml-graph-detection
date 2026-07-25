@@ -58,6 +58,9 @@ No new deployment, metric, or production claim was introduced by this migration.
   visitor data can be persisted or trigger inference. No UI work, deployment,
   publication, push, merge, or external access occurred. Exact next milestone:
   **D — Useful investigation UX redesign**.
+- Graphify was refreshed code-only and reclustered against `7ed3cef7` after the
+  implementation commit. Documentation semantic extraction has no LLM backend;
+  the package/skill version warning is non-blocking.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 
