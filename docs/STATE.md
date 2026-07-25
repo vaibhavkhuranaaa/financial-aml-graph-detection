@@ -99,6 +99,9 @@ No new deployment, metric, or production claim was introduced by this migration.
   reset to the read-only example, keyboard controls, and zero console errors.
   No deployment, publication, push, merge, or external access occurred. Exact
   next milestone: **F — Evaluation and reproducibility boundary**.
+- Graphify was refreshed code-only and reclustered against `21427a4c` after the
+  implementation commit. Documentation semantic extraction has no LLM backend;
+  the package/skill version warning is non-blocking.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

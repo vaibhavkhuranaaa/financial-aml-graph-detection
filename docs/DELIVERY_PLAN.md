@@ -227,6 +227,9 @@ expose a download event, but the export confirmation and client-side Blob flow
 were verified. Static source inspection confirms the sole `fetch` has no write
 method and all visitor state uses localStorage only. No deployment,
 publication, push, merge, external access, or work from F occurred.
+Graphify was refreshed code-only and reclustered at implementation commit
+`21427a4c`; documentation semantic extraction remains unavailable without an
+LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### F — Evaluation and reproducibility boundary
 

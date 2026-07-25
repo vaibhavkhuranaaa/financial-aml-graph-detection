@@ -158,8 +158,10 @@ review found no material issue. `cd frontend && npm run lint && npm run build`,
 decision, persistence after refresh, local export confirmation, reset to the
 read-only example, keyboard controls, and zero console warnings/errors. The
 in-app browser did not emit a download event, but the export confirmation and
-client-side Blob download path were verified. Graphify must be refreshed after
-the implementation commit and recorded against that commit.
+client-side Blob download path were verified. Graphify was refreshed code-only
+and reclustered against `21427a4c` after the implementation commit;
+documentation semantic extraction remains unavailable without an LLM backend,
+and the installed package/skill version warning is non-blocking.
 
 No deployment, publication, push, merge, or external access occurred. Exact
 next milestone: **F — Evaluation and reproducibility boundary**; do not begin
