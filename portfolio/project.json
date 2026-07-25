@@ -39,7 +39,7 @@
     "Aggregate-only local chronological evaluation: PR-AUC 0.345 baseline and 0.381 one-hop message passing; see docs/ELLIPTIC_EVALUATION_SUMMARY.md"
   ],
   "stages": [
-    "Approved synthetic fixture",
+    "Six-case deterministic synthetic fixture",
     "Bounded replay API",
     "Timeline and topology inspection",
     "Browser-private simulated audit",
