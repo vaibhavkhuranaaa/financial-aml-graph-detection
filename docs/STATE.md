@@ -7,8 +7,7 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **C — API contract, validation, and data-boundary tests**
-  (next).
+- Current milestone: **D — Useful investigation UX redesign** (next).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -42,6 +41,23 @@ No new deployment, metric, or production claim was introduced by this migration.
   `62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2`; the full
   IBM input and temporary outputs were removed. Elliptic remains local-only; no
   deployment, publication, push, or merge occurred. Exact next milestone: **C**.
+
+## Milestone C — complete (2026-07-24)
+
+- Added strict typed FastAPI response contracts for health/readiness, replay
+  catalogue/detail, timeline, bounded topology, evidence, provenance, and
+  methodology. The API is a fixed GET-only public allowlist; malformed inputs
+  receive stable safe errors, docs/OpenAPI routes are disabled, and all replay
+  access remains bounded and precomputed.
+- Added contract, positive, negative, limit-boundary, forbidden-route, and
+  rejected-write tests. Verification passed: `uv run pytest -q` (6 passed),
+  Ruff format/check, Python compilation, static local-boundary search, and
+  `git diff --check`. The test client emits a third-party Starlette/httpx
+  deprecation warning only.
+- Elliptic and local source remain unavailable through the public API; no
+  visitor data can be persisted or trigger inference. No UI work, deployment,
+  publication, push, merge, or external access occurred. Exact next milestone:
+  **D — Useful investigation UX redesign**.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

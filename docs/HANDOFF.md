@@ -72,3 +72,34 @@ The final map is code-only because documentation semantic extraction has no LLM
 backend; JSON provenance files have no structural nodes, and the installed
 package/skill version warning is non-blocking.
 Exact next milestone: **C — API contract, validation, and data-boundary tests**.
+
+## Milestone C handoff — complete (2026-07-24)
+
+Completed work: added `src/contracts.py` with strict public response contracts
+for health/readiness, catalogue/detail, timeline, bounded topology, evidence,
+provenance, and methodology. `src/app.py` now validates the public case-ID
+shape, permitted rails, timeline limit (1–18), and topology depth (1–2), has a
+fixed GET-only API allowlist, disables docs/OpenAPI routes, and returns the
+stable safe 422 body `{"detail": "Invalid request parameters."}`. New evidence
+is derived only from the already approved bounded synthetic replay artifact.
+
+Verification: `uv run pytest -q` passed (6 tests); `uv tool run ruff format
+--check src/app.py src/contracts.py tests/test_app.py`, `uv tool run ruff check
+src tests`, `uv run python -m compileall -q src tests`, static local-boundary
+search, and `git diff --check` passed. The suite covers typed responses,
+positive requests, invalid and limit-boundary requests, safe 404/422 errors,
+route allowlisting, missing Elliptic/local-source/docs/OpenAPI routes, and 405
+rejection of POSTed visitor data. The test client reports only a third-party
+Starlette/httpx deprecation warning.
+
+Data/access/deployment: public mode remains the exact approved, checksum-bound
+IBM v8 artifact only, labeled realistic synthetic banking data. Elliptic and
+the full IBM input remain local-only and unavailable by route or payload. No
+visitor input reaches persistence, training, or inference. No deployment,
+publication, push, merge, or external access occurred.
+
+Ponytail audit: no verified-safe simplification was applied; the existing API
+was already minimal and the typed contracts/validation/tests are required C
+scope. Graphify must be refreshed after the intentional commit and recorded
+against that commit. Exact next milestone: **D — Useful investigation UX
+redesign**; do not begin it as part of this milestone handoff.

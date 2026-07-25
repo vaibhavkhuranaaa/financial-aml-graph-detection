@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** C — API contract, validation, and data-boundary tests (next)
+**Current milestone:** D — Useful investigation UX redesign (next)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -119,11 +119,11 @@ bounded, pseudonymized artifact is committed.
 
 ### C — API contract, validation, and data-boundary tests
 
-- [ ] Define typed contracts for health/readiness, replay catalogue/detail,
+- [x] Define typed contracts for health/readiness, replay catalogue/detail,
   timeline, bounded topology, evidence, provenance, and methodology.
-- [ ] Validate all path/query parameters; enforce response limits and stable
+- [x] Validate all path/query parameters; enforce response limits and stable
   secure error messages.
-- [ ] Make API access read-only, prevent Elliptic/local-source routes, and test
+- [x] Make API access read-only, prevent Elliptic/local-source routes, and test
   that visitor input cannot be persisted or trigger inference.
 
 **Complete when:** contract and negative tests cover valid, invalid, boundary,
@@ -131,6 +131,25 @@ and forbidden access paths; API behavior matches public data governance.
 
 **Verification:** FastAPI tests, schema/contract tests, public-route allowlist
 test, forbidden-route tests, and static search for local data paths.
+
+**C completion record (2026-07-24):** `src/contracts.py` defines strict public
+response models for health, readiness, catalogue, detail, timeline, bounded
+topology, evidence, provenance, and methodology. The API exposes a fixed
+GET-only allowlist, disables unauthenticated documentation endpoints, validates
+case IDs, rails, timeline limits (1–18), and topology depth (1–2), and returns
+the stable `{"detail": "Invalid request parameters."}` body for malformed
+requests. The only new public data surface is bounded, precomputed synthetic
+replay evidence; it does not accept visitor input or perform inference.
+
+**C verification record (2026-07-24):** `uv run pytest -q` passed (6 tests);
+`uv tool run ruff format --check src/app.py src/contracts.py tests/test_app.py`,
+`uv tool run ruff check src tests`, `uv run python -m compileall -q src tests`,
+and `git diff --check` passed. Tests cover valid, invalid, and boundary
+parameters; fixed route allowlist; unavailable Elliptic/local-source paths;
+disabled docs/OpenAPI paths; and 405 rejection of visitor-input POST bodies.
+Static boundary search found only the explicit local-only methodology statement,
+the provenance filename contract, and the negative tests. No UI work,
+deployment, publication, push, merge, or external access occurred.
 
 ### D — Useful investigation UX redesign
 
