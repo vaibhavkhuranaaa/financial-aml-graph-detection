@@ -226,7 +226,7 @@ No deployment, publication, push, merge, or external access occurred. Exact
 next milestone: **H — Render deployment readiness**; do not begin it as part
 of this milestone handoff.
 
-## Milestone H handoff — in progress (2026-07-24)
+## Milestone H handoff — complete (2026-07-24)
 
 Completed work: pinned Python and frontend dependency inputs, changed the Docker
 build to use `npm ci`, pinned its base images to verified digests, added dynamic
@@ -242,7 +242,13 @@ diff --check`. No Render CLI is installed or needed for this owner-gated
 preparation; no account, token, service, deployment, publication, push, or
 merge was used.
 
-Remaining blocker: Docker Desktop stopped while starting the final hardened
-image verification. Do not mark H complete until `docker compose ... up --build`,
-`/api/readiness`, the image health status, and teardown have passed. Exact
-current milestone remains **H — Render deployment readiness**.
+Final container verification passed: a no-cache Compose rebuild served
+`/api/readiness`, reported Docker `healthy`, rejected an unapproved CORS
+preflight with 400, and removed its container/network. A separate read-only
+container with `PORT=8080` also served readiness and reported healthy, verifying
+the external runtime-port contract.
+
+No Render account, token, service, deployment, publication, push, or merge was
+used. Exact next milestone is **I — Owner-approved live deployment and
+post-deploy verification**, which is blocked pending explicit owner approval;
+do not begin it without that approval.

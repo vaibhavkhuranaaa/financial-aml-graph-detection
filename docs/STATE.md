@@ -7,7 +7,7 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **H — Render deployment readiness** (in progress).
+- Current milestone: **I — Owner-approved live deployment and post-deploy verification** (blocked pending owner approval).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -141,7 +141,7 @@ No new deployment, metric, or production claim was introduced by this migration.
   then removed. No deployment, publication, push, merge, or external access
   occurred. Exact next milestone: **H — Render deployment readiness**.
 
-## Milestone H — in progress (2026-07-24)
+## Milestone H — complete (2026-07-24)
 
 - Added pinned runtime and frontend dependency inputs, deterministic Docker
   install/build commands, dynamic `$PORT` binding, a readiness health check,
@@ -151,10 +151,13 @@ No new deployment, metric, or production claim was introduced by this migration.
   pinned `npm ci` lint/build, Compose configuration, Blueprint YAML parsing,
   and `git diff --check`. No Render account, service, API token, deployment,
   publication, push, or merge was used.
-- Completion remains blocked only on the final hardened Docker image run: the
-  local Docker Desktop daemon stopped during startup after the previous G run.
-  Do not claim the new container health check or mark H complete until it stays
-  available for the local build/run/readiness verification.
+- Final container verification passed: a no-cache Compose rebuild served
+  `/api/readiness`, reported Docker `healthy`, rejected an unapproved CORS
+  preflight with 400, and cleaned up its container/network. A separate
+  read-only `PORT=8080` container also served readiness and reported healthy.
+  Render remains owner-gated: no account, token, service, deployment,
+  publication, push, or merge was used. Exact next milestone is **I**, which
+  requires explicit owner approval before any deployment action.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** H — Render deployment readiness (next)
+**Current milestone:** I — Owner-approved live deployment and post-deploy verification (blocked pending owner approval)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -295,10 +295,10 @@ were removed afterward. No deployment, publication, or external access occurred.
 
 ### H — Render deployment readiness
 
-- [ ] Pin reproducible dependencies/build commands and add CI coverage.
-- [ ] Add Docker health/readiness checks, environment validation, production CORS
+- [x] Pin reproducible dependencies/build commands and add CI coverage.
+- [x] Add Docker health/readiness checks, environment validation, production CORS
   allowlist, secure error handling, runtime documentation, and rollback runbook.
-- [ ] Produce an owner-ready Render checklist without deploying.
+- [x] Produce an owner-ready Render checklist without deploying.
 
 **Complete when:** the container is reproducibly buildable, externally configurable
 without secrets in source, and deployment/rollback instructions are tested locally.
@@ -306,15 +306,16 @@ without secrets in source, and deployment/rollback instructions are tested local
 **Verification:** clean dependency install/build, CI equivalent, Docker health
 probe, configuration validation, production CORS tests, and deployment-doc review.
 
-**H verification record (in progress, 2026-07-24):** pinned Python/frontend
+**H completion record (2026-07-24):** pinned Python/frontend
 inputs, deterministic Docker install/build, dynamic `$PORT` binding, a readiness
 health check, fail-closed explicit CORS configuration, CI container coverage,
 an owner-gated Blueprint with `autoDeploy: false`, and a rollback runbook are
 implemented. 18 tests, Ruff check, compilation, `npm ci` lint/build, Compose
-configuration, Blueprint YAML parsing, and diff check passed. Docker Desktop
-stopped before the final hardened-image build/run/readiness check, so this
-milestone remains in progress. No Render account, service, token, deployment,
-publication, push, or merge was used.
+configuration, Blueprint YAML parsing, and diff check passed. A no-cache Compose
+rebuild served `/api/readiness`, reported Docker `healthy`, rejected an
+unapproved CORS preflight with 400, and tore down cleanly. A separate read-only
+`PORT=8080` container also served readiness and reported healthy. No Render
+account, service, token, deployment, publication, push, or merge was used.
 
 ### I — Owner-approved live deployment and post-deploy verification
 
