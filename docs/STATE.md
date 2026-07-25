@@ -7,7 +7,7 @@
 
 ## Delivery ownership — 2026-07-25
 
-- Current milestone: **I — Owner-approved live deployment and post-deploy verification** (complete).
+- Current milestone: **J — aggregate research disclosure and simulation expansion** (complete).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -17,8 +17,9 @@
   compliance release.
 - The authoritative acceptance criteria, legal/data gates, risks, milestones,
   and required handoff fields are recorded in `docs/DELIVERY_PLAN.md`.
-- No deployment, publication, evaluation, or production/compliance claim has
-  been advanced by this planning milestone.
+- Public review remains limited to the deterministic synthetic replay; the only
+  Elliptic disclosure is the separately documented, owner-approved aggregate
+  research summary.
 - Milestone A verification passed: fresh Graphify at `925931e2`, Ponytail audit
   recorded with no documentation-scope change, delivery-document consistency
   search passed, and `git diff --check` passed. The exact next milestone is
@@ -180,9 +181,26 @@ No new deployment, metric, or production claim was introduced by this migration.
   Public browser validation found meaningful rendered content, no error overlay,
   and no console errors. The visible product retains the synthetic-data and
   simulated-review disclosures.
-- The project remains `building`: the separately local-only Elliptic evaluation
-  protocol has no approved evaluation result. Do not add model-performance,
-  operational, or compliance claims.
+- The project remains `building`. A checksum-verified local chronological run
+  now supports the owner-approved aggregate research summary only; do not add
+  model-performance, operational, or compliance claims.
+
+## Milestone J — complete (2026-07-25)
+
+- Rebuilt the approved IBM v8 artifact from the verified source into six
+  deterministic synthetic replay cases (55 transactions). The artifact checksum
+  is `e78b20e8445a7e818c95af6216258487c46cf59ac061c6fcef531f45e10b0160`; its
+  deterministic pipeline run ID is
+  `098fc76310d08f4263fb91e1ba772c7e976444e72eff18a9502f11e930f74140`.
+- Added the bounded local Elliptic runner and recorded the owner-approved
+  aggregate-only summary: it uses a chronological split, explicit unknown-label
+  exclusion, baseline/message-passing comparison, PR-AUC, precision, recall,
+  Brier score, review-capacity, and error counts. No raw, graph, model,
+  prediction, or full-report material is committed, served, or displayed.
+- Added `docs/SIMULATION_EXPANSION_PLAN.md`, which constrains future cases to
+  provenance-reviewed deterministic selections and fixed API/UI limits.
+- Exact next milestone: owner review of the public workbench; no additional
+  product scope is scheduled.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

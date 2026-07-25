@@ -15,9 +15,12 @@ from src.public_replay import (
 def write_source(path: Path) -> None:
     rows = []
     for index in range(16):
-        rows.append([f"2022/09/01 00:{index:02d}", "1", "fanout", "2", f"target-{index}", "10", "US Dollar", "10", "US Dollar", "ACH", "1"])
-    for index in range(5):
+        rail = ("ACH", "Cheque", "Credit Card")[index % 3]
+        rows.append([f"2022/09/01 00:{index:02d}", "1", "fanout", "2", f"target-{index}", "10", "US Dollar", "10", "US Dollar", rail, "1"])
+    for index in range(8):
         rows.append([f"2022/09/02 00:{index:02d}", "1", f"normal-{index}", "2", f"receiver-{index}", "10", "US Dollar", "10", "US Dollar", "ACH", "0"])
+        rows.append([f"2022/09/03 00:{index:02d}", "1", f"card-{index}", "2", f"card-receiver-{index}", "10", "US Dollar", "10", "US Dollar", "Credit Card", "0"])
+        rows.append([f"2022/09/04 00:{index:02d}", "1", f"cash-{index}", "2", f"cash-target-{index}", "10", "US Dollar", "10", "US Dollar", "Cash", "1"])
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
         writer.writerow(REQUIRED_COLUMNS)
@@ -39,7 +42,7 @@ def test_replay_is_deterministic_and_bounded(tmp_path: Path) -> None:
     assert first.read_bytes() == second.read_bytes()
     assert first_artifact["artifact_sha256"] == second_artifact["artifact_sha256"]
     assert first_artifact["provenance"]["pipeline_run_id"] == second_artifact["provenance"]["pipeline_run_id"]
-    assert [len(case["transactions"]) for case in first_artifact["cases"]] == [16, 5]
+    assert [len(case["transactions"]) for case in first_artifact["cases"]] == [16, 8, 10, 5, 8, 8]
     public_transactions = [transaction for case in first_artifact["cases"] for transaction in case["transactions"]]
     assert all("fanout" not in transaction["from"] and "target-" not in transaction["to"] for transaction in public_transactions)
     assert approved_public_artifact(first)["artifact_sha256"] == first_artifact["artifact_sha256"]

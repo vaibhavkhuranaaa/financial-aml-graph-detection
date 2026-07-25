@@ -36,7 +36,7 @@
     ]
   },
   "metrics": [
-    "No model-performance metrics are claimed or published"
+    "Aggregate-only local chronological evaluation: PR-AUC 0.345 baseline and 0.381 one-hop message passing; see docs/ELLIPTIC_EVALUATION_SUMMARY.md"
   ],
   "stages": [
     "Approved synthetic fixture",
@@ -52,7 +52,7 @@
     "Vercel static and function runtime"
   ],
   "evaluation": [
-    "Local-only Elliptic protocol exists; no evaluation result is published"
+    "Aggregate-only Elliptic summary is owner-approved; raw data, graph artifacts, predictions, models, and full report remain local-only"
   ],
   "operationalTradeoffs": [
     "Public replay is bounded and precomputed; visitor inputs stay in the browser"

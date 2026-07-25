@@ -35,8 +35,8 @@ class CaseCatalogueItem(PublicContract):
 
 
 class CatalogueResponse(PublicContract):
-    items: list[CaseCatalogueItem] = Field(max_length=2)
-    maximum: Literal[2]
+    items: list[CaseCatalogueItem] = Field(max_length=6)
+    maximum: Literal[6]
 
 
 class CaseDetailResponse(PublicContract):

@@ -24,10 +24,10 @@ serves the approved bounded artifact only; the full source remains local-only.
   SHA-256 is `b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`;
   its published header contains positional duplicate `Account` fields, which
   the pipeline records and maps internally to from/to accounts.
-- The owner approved the exact verified source checksum on 2026-07-24 for the
-  bounded Signal Ledger replay scope. The admitted artifact has content hash
-  `62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2` and
-  pipeline run ID `d7bd5a14342256427d08604a6e7ce9d3f2ce60ff5e3b154298fffd8db6a31356`.
+- The owner approved the exact verified source checksum for the bounded Signal
+  Ledger replay scope. The current six-case artifact has content hash
+  `e78b20e8445a7e818c95af6216258487c46cf59ac061c6fcef531f45e10b0160` and
+  pipeline run ID `098fc76310d08f4263fb91e1ba772c7e976444e72eff18a9502f11e930f74140`.
 
 The offline builder records source metadata, retrieval timestamp, source
 checksum, schema, deterministic selection rule, pseudonymization method,
@@ -39,6 +39,12 @@ distribution decision, or a tampered artifact.
 
 The Elliptic benchmark is research-only and local-only. Before use, record the source, permitted use, file checksum, and retrieval date. Do not commit benchmark files, derived raw rows, identifiers, or API responses; do not serve or raw-display them. Local evaluation must preserve chronological splitting, explicitly handle unknown labels, and report precision/recall plus operational errors rather than accuracy alone.
 
+The owner approved one narrow disclosure on 2026-07-25: the aggregate-only
+portfolio summary in `docs/ELLIPTIC_EVALUATION_SUMMARY.md`. It may state the
+versioned local-run metrics and comparison, but it must not expose a source row,
+identifier, graph, embedding, prediction, model file, full report, or public API
+metric. This exception does not make Elliptic part of the public workbench.
+
 ## Claims boundary
 
-This project is building. The synthetic workbench is neither a deployed compliance product nor evidence of illicit activity, real-world effectiveness, or benchmark performance. Versioned local evidence is required before publishing any research evaluation statement.
+This project is building. The synthetic workbench is neither a deployed compliance product nor evidence of illicit activity, real-world effectiveness, or benchmark performance. Versioned local evidence and explicit owner approval are required before publishing any aggregate research evaluation statement.

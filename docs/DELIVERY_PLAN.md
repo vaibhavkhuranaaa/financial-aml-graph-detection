@@ -351,6 +351,30 @@ found no error overlay, and reported no console errors.
 headers/CORS review, data-boundary probe, browser smoke after access is
 approved, and rollback dry-run or procedure.
 
+### J — Aggregate research disclosure and bounded simulation expansion
+
+- [x] Rebuild the approved IBM artifact from the verified v8 source with six
+  deterministic, pseudonymized simulation cases.
+- [x] Execute and validate the local-only chronological Elliptic comparison.
+- [x] Publish only the explicitly owner-approved aggregate summary; retain the
+  local-only exclusion for rows, graph artifacts, predictions, model files, and
+  full report.
+- [x] Record a deterministic expansion plan that preserves API and UI limits.
+
+**Complete when:** the expanded artifact is reproducible from the approved
+source, the local evidence passes its validator, disclosure remains aggregate
+only, and the public surface remains read-only and source-bounded.
+
+**J completion record (2026-07-25):** a verified-source rebuild created the
+current six-case / 55-transaction artifact, SHA-256
+`e78b20e8445a7e818c95af6216258487c46cf59ac061c6fcef531f45e10b0160`, pipeline
+run ID `098fc76310d08f4263fb91e1ba772c7e976444e72eff18a9502f11e930f74140`.
+The external local Elliptic evidence passed its validator. The owner approved
+only `docs/ELLIPTIC_EVALUATION_SUMMARY.md`, which contains aggregate metrics and
+operational-error context; raw data, graph structures, model artifacts,
+predictions, and full report remain local-only. Future case guardrails are
+recorded in `docs/SIMULATION_EXPANSION_PLAN.md`.
+
 ## Risks and dependencies
 
 | Risk/dependency | Control |

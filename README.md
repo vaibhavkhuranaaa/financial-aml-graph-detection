@@ -8,7 +8,7 @@ any real person or organization.
 ## Live workbench
 
 The public-review URL is [signal-ledger-workbench.vercel.app](https://signal-ledger-workbench.vercel.app).
-It serves only the approved 21-row replay fixture. It has no authentication,
+It serves only the approved 55-row, six-case replay fixture. It has no authentication,
 telemetry, server-side visitor storage, request-time inference, or write API.
 
 ## What it demonstrates
@@ -26,8 +26,10 @@ describes it as anonymized customer data.
 
 The public artifact is a checksum-bound, pseudonymized slice derived from IBM
 AML-Data v8 under the recorded CDLA-Sharing-1.0 distribution decision. The full
-IBM source is not committed or served. Elliptic is strictly local-only: no
-Elliptic rows, graphs, models, artifacts, metrics, or endpoints are public.
+IBM source is not committed or served. Elliptic rows, graphs, models, artifacts,
+and endpoints are strictly local-only. The sole exception is the owner-approved,
+aggregate-only research summary linked below; it is documentation, not a public
+API or workbench feature.
 
 See [data governance](docs/DATA_GOVERNANCE.md) and the [delivery plan](docs/DELIVERY_PLAN.md)
 for the source, disclosure, and release boundary.
@@ -57,6 +59,7 @@ uv run ruff check src scripts tests
 cd frontend && npm ci && npm run lint && npm run build
 ```
 
-The local-only Elliptic evaluation protocol is implemented but does not contain
-or publish an evaluation result. Do not make model-performance, operational, or
-compliance claims without separately approved aggregate evaluation evidence.
+The [aggregate Elliptic evaluation summary](docs/ELLIPTIC_EVALUATION_SUMMARY.md)
+is owner-approved for portfolio disclosure. Raw data, graph artifacts,
+predictions, model files, and the full report remain local-only; the summary is
+not a model-performance, operational, or compliance recommendation.

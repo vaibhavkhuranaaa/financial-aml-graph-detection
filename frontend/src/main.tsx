@@ -55,7 +55,7 @@ const SEEDED_AUDIT: AuditEntry = {
   case_outcome: "Simulated closure",
   action: "Simulated closure",
   rationale: "Example only: the bounded replay is reviewed as a synthetic exercise, not a real-world conclusion.",
-  fixture: { dataset_version: 8, replay_sha256: "62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2" },
+  fixture: { dataset_version: 8, replay_sha256: "e78b20e8445a7e818c95af6216258487c46cf59ac061c6fcef531f45e10b0160" },
   visible_evidence: ["Precomputed context only", "No request-time inference"],
 };
 
@@ -250,7 +250,7 @@ function App() {
         <div>
           <p className="stamp">Research workbench</p>
           <h2 id="workbench-title">Inspect the sequence before the simulated human record.</h2>
-          <p>Two bounded cases make the time, counterparties, evidence, and limits inspectable. They do not identify people, produce a finding, or recommend a compliance action.</p>
+          <p>Six bounded cases make the time, counterparties, evidence, and limits inspectable. They do not identify people, produce a finding, or recommend a compliance action.</p>
         </div>
         <ol className="flow" aria-label="Investigation flow">
           <li><b>01</b><span>Select a synthetic case</span></li>
@@ -271,7 +271,7 @@ function App() {
           <div className="case-list" aria-live="polite">
             {loading ? <p className="empty">Loading approved public cases…</p> : matchingCases.length === 0 ? <p className="empty">No simulated case matches that filter.</p> : matchingCases.map((item) => (
               <button className={`case-row ${active?.id === item.id ? "selected" : ""}`} type="button" key={item.id} onClick={() => setActive(item)} aria-pressed={active?.id === item.id}>
-                <span className="case-index">{item.id.endsWith("fanout") ? "A" : "B"}</span>
+                <span className="case-index">{String.fromCharCode(65 + matchingCases.indexOf(item))}</span>
                 <span className="case-copy"><strong>{item.outcome}</strong><small>{item.transaction_count} bounded transactions</small></span>
                 <span aria-hidden="true">→</span>
               </button>
@@ -359,7 +359,7 @@ function App() {
 
       <section className="method" aria-labelledby="provenance-title">
         <div><p className="stamp">Provenance & limits</p><h2 id="provenance-title">Data lineage stays in view.</h2><p>{provenance?.label}. This approved public slice is a deterministic IBM AML-Data v{provenance?.version} replay, not anonymized customer data.</p></div>
-        <dl><div><dt>Provider</dt><dd>{provenance?.provider}</dd></div><div><dt>Source checksum</dt><dd>{provenance?.source_sha256}</dd></div><div><dt>Replay checksum</dt><dd>{provenance?.slice_sha256}</dd></div><div><dt>Research boundary</dt><dd>Elliptic remains local-only. No public rows, graphs, models, or metrics are included.</dd></div></dl>
+        <dl><div><dt>Provider</dt><dd>{provenance?.provider}</dd></div><div><dt>Source checksum</dt><dd>{provenance?.source_sha256}</dd></div><div><dt>Replay checksum</dt><dd>{provenance?.slice_sha256}</dd></div><div><dt>Research boundary</dt><dd>Elliptic rows, graphs, models, and reports remain local-only. This workbench exposes none of them.</dd></div></dl>
       </section>
     </main>
   );
