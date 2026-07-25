@@ -7,7 +7,7 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **D — Useful investigation UX redesign** (next).
+- Current milestone: **E — Analyst decision and audit workflow** (next).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -61,6 +61,24 @@ No new deployment, metric, or production claim was introduced by this migration.
 - Graphify was refreshed code-only and reclustered against `7ed3cef7` after the
   implementation commit. Documentation semantic extraction has no LLM backend;
   the package/skill version warning is non-blocking.
+
+## Milestone D — complete (2026-07-24)
+
+- Rebuilt the public Signal Ledger workbench as an accessible operate-mode
+  investigation desk: search/filter the two approved synthetic cases, replay
+  their bounded timelines with rail filtering and controls, inspect a bounded
+  keyboard-operable pseudonymous topology, read evidence/uncertainty and
+  provenance, and recover from loading, empty, and API-error states.
+- The screen preserves the concrete flow select → replay/inspect → understand
+  limits → proceed to the later simulated human record. It deliberately does
+  not add the browser-local decision, notes, persistence, history, or export
+  work reserved for E.
+- Verification passed: Impeccable detector returned no findings; frontend lint
+  and production build, API tests (6 passed), and `git diff --check` passed.
+  Local rendered desktop and 390px mobile inspection verified selection,
+  replay, empty filtering, keyboard topology, and zero console warnings/errors.
+  No deployment, publication, push, merge, or external access occurred. Exact
+  next milestone: **E — Analyst decision and audit workflow**.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

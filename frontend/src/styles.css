@@ -1,9 +1,96 @@
-/* THESIS: A synthetic casefile is read like an evidence desk, not a KPI dashboard.
-OWN-WORLD: Midnight navy paper, acid chartreuse evidence marks, and archive-orange focus nodes.
-STORY: Inspect a bounded ranked case, then see the boundary that makes it safe to show.
-FIRST VIEWPORT: A compact masthead gives way to a three-part desk: queue, graph, evidence brief.
-FORM: Casefile-console, assigned direction 6 from seed 6bc4f910; canvas graph is the staging device. */
-:root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#edf2df;background:#10171c;font-synthesis:none}*{box-sizing:border-box}body{margin:0;background:#10171c}button{font:inherit}main{min-height:100vh;max-width:1540px;margin:auto;padding:26px 30px 50px}.masthead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #405059;padding-bottom:18px}.masthead h1{font-size:clamp(1.9rem,4vw,3.4rem);letter-spacing:-.04em;margin:4px 0 0}.stamp,.section-line span{margin:0;color:#c6ee48;font:700 .67rem/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.11em;text-transform:uppercase}.mast-meta{color:#aebbb4;font-size:.8rem}.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#c6ee48;margin-right:8px}.opening{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:60px;padding:38px 0}.lede{font-size:clamp(1.5rem,2.5vw,2.35rem);max-width:20ch;margin:0 0 14px;line-height:1.06;letter-spacing:-.035em}.disclaimer{color:#bac5be;max-width:65ch;line-height:1.5;margin:0}.opening aside{border-top:1px solid #c6ee48;padding-top:12px;display:grid;gap:8px;color:#afbbb5}.opening aside span,.score-block span{font-size:.75rem;text-transform:uppercase;letter-spacing:.09em}.opening aside strong{font-size:1.1rem;color:#f2f6e8}.workbench{display:grid;grid-template-columns:minmax(230px,.8fr) minmax(400px,1.65fr) minmax(240px,.8fr);border:1px solid #405059}.queue,.evidence{background:#172126}.queue{border-right:1px solid #405059}.evidence{border-left:1px solid #405059}.section-line{display:flex;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid #405059}.section-line b{font-size:.7rem;font-weight:500;color:#9eaaa5}.case-row{width:100%;text-align:left;border:0;border-bottom:1px solid #324149;background:transparent;color:#edf2df;padding:15px;display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:start;cursor:pointer}.case-row:hover,.case-row.selected{background:#263238}.case-row:focus-visible,button:focus-visible{outline:3px solid #c6ee48;outline-offset:-3px}.case-score{font:700 .9rem ui-monospace,monospace;color:#c6ee48}.case-copy{display:grid;gap:5px}.case-copy strong{font-size:.9rem;line-height:1.2}.case-copy small,.case-status{color:#aebbb4;font-size:.72rem}.case-status{white-space:nowrap}.investigation{min-width:0;background:#111a1f}.graph-wrap{height:365px;position:relative;color:#678077;background:#142026}.graph{display:block;width:100%;height:100%}.edge{stroke:#6f827a;stroke-width:.55;stroke-dasharray:1.5 1}.node circle{fill:#91a59a;stroke:#142026;stroke-width:1}.node.focus circle{fill:#f38b4b}.node.exit circle{fill:#c6ee48}.node text{fill:#dce4d8;font:2.7px ui-monospace,monospace;text-anchor:middle}.graph-legend{position:absolute;bottom:14px;right:14px;background:#10171ce8;padding:8px 10px;font:600 .64rem ui-monospace,monospace;color:#b6c2ba}.graph-legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin:0 4px 0 8px;background:#91a59a}.graph-legend .focus{background:#f38b4b}.graph-legend .exit{background:#c6ee48}.case-summary{display:flex;justify-content:space-between;gap:30px;padding:22px}.case-summary h2,.evidence h2,.method h2{font-size:1.45rem;line-height:1.08;letter-spacing:-.03em;margin:7px 0}.case-summary p:not(.stamp),.evidence li,.evidence p{color:#c2ccc5;line-height:1.5;font-size:.88rem}.score-block{text-align:right;display:grid;align-content:start;color:#aebbb4}.score-block strong{font:800 2.6rem/.9 ui-monospace,monospace;color:#c6ee48;letter-spacing:-.08em;margin:9px 0}.evidence{padding-bottom:18px}.evidence h2,.evidence h3,.evidence ul,.evidence .callout{margin-left:16px;margin-right:16px}.evidence h3{font-size:.8rem;margin-top:28px;color:#f1f5e8}.evidence ul{padding-left:17px}.signal-list{display:flex;flex-wrap:wrap;gap:7px;padding:0!important;list-style:none}.signal-list li{background:#314038;color:#ecf3dc;padding:4px 7px;font-size:.7rem!important}.callout{border-top:1px solid #f38b4b;padding-top:11px;color:#f0d1bd!important}.method{display:grid;grid-template-columns:1.1fr 1fr;gap:70px;padding:62px 0;border-bottom:1px solid #405059}.method h2{font-size:clamp(1.6rem,3vw,2.8rem);max-width:13ch}.method>div>p:not(.stamp){max-width:56ch;color:#bec9c2;line-height:1.55}.method dl{margin:0;border-top:1px solid #405059}.method dl div{padding:16px 0;border-bottom:1px solid #405059}.method dt{font-size:.7rem;text-transform:uppercase;letter-spacing:.09em;color:#9eaaa5}.method dd{margin:5px 0 0;color:#edf2df}footer{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding-top:30px;color:#aebbb4;font-size:.8rem;line-height:1.45}footer p:not(.stamp){max-width:55ch}.state{display:grid;place-content:center;gap:9px;max-width:680px;min-height:100vh}.state h1{font-size:clamp(2rem,5vw,4rem);letter-spacing:-.05em;margin:0}.state p:not(.stamp){color:#bdc8c1;line-height:1.5}.state button{width:max-content;background:#c6ee48;border:0;padding:11px 16px;color:#10171c;font-weight:800;cursor:pointer}
-@media (max-width:960px){main{padding:20px}.opening,.method{grid-template-columns:1fr;gap:28px}.workbench{grid-template-columns:1fr}.queue{border-right:0;border-bottom:1px solid #405059;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.queue .section-line{grid-column:1 / -1}.evidence{border-left:0;border-top:1px solid #405059}.graph-wrap{height:330px}}
-@media (max-width:600px){main{padding:16px}.masthead{align-items:flex-start;gap:15px;flex-direction:column}.queue{display:block}.case-summary,footer{grid-template-columns:1fr;display:grid}.score-block{text-align:left}.graph-wrap{height:270px}.opening{padding:28px 0}.method{padding:42px 0}.mast-meta{font-size:.7rem}}
-.graph-empty{display:grid;place-content:center;height:100%;padding:24px;color:#c2ccc5;text-align:center}.graph-empty button{margin:12px auto 0;background:#c6ee48;border:0;padding:9px 12px;color:#10171c;font-weight:800;cursor:pointer}.node{cursor:pointer}.node-selected circle,.node:focus circle{stroke:#f5f8ee;stroke-width:1.4}.node:focus{outline:none}
+/* THESIS: A synthetic casefile is operated as an evidence desk, never a score dashboard.
+OWN-WORLD: Midnight navy paper, acid chartreuse evidence marks, archive-orange inspection focus, square archival panels.
+STORY: Select a bounded replay, control time, inspect context, then understand the handoff to a simulated human record.
+FIRST VIEWPORT: A research boundary masthead leads into a three-part desk: guided queue, replay controls, and limitations brief.
+FORM: Established Signal Ledger operate console; the topology is an interactive data surface, not decoration. */
+:root { color: #edf2df; background: #10171c; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #10171c; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .55; }
+button:focus-visible, input:focus-visible, select:focus-visible, .node:focus-visible { outline: 3px solid #c6ee48; outline-offset: 3px; }
+main { max-width: 1540px; min-height: 100vh; margin: auto; padding: 28px 30px 64px; }
+.masthead, .panel-heading, .replay-controls, .case-row, .timeline button { display: flex; align-items: center; }
+.masthead { justify-content: space-between; gap: 24px; border-bottom: 1px solid #405059; padding-bottom: 18px; }
+.masthead h1, .opening h2, .panel-heading h2, .section-intro h2, .method h2 { letter-spacing: -.035em; }
+.masthead h1 { margin: 5px 0 0; font-size: 2.7rem; line-height: 1; }
+.stamp { margin: 0; color: #c6ee48; font: 700 .68rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .11em; text-transform: uppercase; }
+.mast-meta { margin: 0; color: #b4c1ba; font-size: .8rem; }
+.mast-meta i { display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; background: #c6ee48; }
+.opening { display: grid; grid-template-columns: minmax(0, 1fr) 370px; gap: 70px; padding: 48px 0; }
+.opening h2 { max-width: 19ch; margin: 9px 0 14px; font-size: 2.25rem; line-height: 1.06; }
+.opening > div > p:last-child, .section-intro > p:last-child, .method > div > p:last-child { max-width: 64ch; margin: 0; color: #bdc9c1; line-height: 1.55; }
+.flow { display: grid; gap: 0; align-content: start; margin: 0; padding: 0; list-style: none; border-top: 1px solid #c6ee48; }
+.flow li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid #405059; color: #c8d2cb; font-size: .84rem; }
+.flow b { color: #c6ee48; font: 700 .75rem ui-monospace, monospace; }
+.workbench { display: grid; grid-template-columns: minmax(230px, .78fr) minmax(450px, 1.65fr) minmax(270px, .9fr); border: 1px solid #405059; background: #111a1f; }
+.queue, .evidence-panel { background: #172126; }
+.queue { border-right: 1px solid #405059; }
+.evidence-panel { border-left: 1px solid #405059; }
+.panel-heading { justify-content: space-between; gap: 12px; padding: 16px; border-bottom: 1px solid #405059; }
+.panel-heading h2 { margin: 5px 0 0; font-size: 1.06rem; }
+.panel-heading > span { color: #aebbb4; font: .68rem ui-monospace, monospace; }
+.search-label { display: block; margin: 16px 16px 6px; color: #afbbb4; font-size: .73rem; }
+input, select { width: calc(100% - 32px); margin: 0 16px; border: 1px solid #52636a; border-radius: 0; background: #10171c; color: #edf2df; padding: 10px 11px; }
+select { width: auto; margin: 0; }
+.case-list { margin-top: 14px; }
+.case-row { width: 100%; border: 0; border-top: 1px solid #324149; background: transparent; color: #edf2df; padding: 0; text-align: left; }
+.case-row:hover, .case-row.selected { background: #263238; }
+.case-row > span { padding: 15px; }
+.case-index { color: #c6ee48; font: 700 .86rem ui-monospace, monospace; }
+.case-copy { display: grid; flex: 1; gap: 5px; }
+.case-copy strong { font-size: .88rem; }
+.case-copy small, .queue-note { color: #aebbb4; font-size: .73rem; line-height: 1.45; }
+.queue-note { margin: 0; padding: 16px; border-top: 1px solid #405059; }
+.replay-panel { min-width: 0; }
+.replay-controls { flex-wrap: wrap; gap: 9px; padding: 13px 16px; border-bottom: 1px solid #405059; }
+.replay-controls button, .state button, .inline-error button { border: 1px solid #52636a; background: transparent; color: #edf2df; padding: 8px 11px; font-size: .78rem; }
+.replay-controls .primary, .state button { border-color: #c6ee48; background: #c6ee48; color: #10171c; font-weight: 800; }
+.replay-controls label { margin-left: auto; color: #afbbb4; font-size: .72rem; }
+.timeline { margin: 0; padding: 5px 16px 0; list-style: none; }
+.timeline li { position: relative; opacity: .36; transition: opacity 180ms ease-out; }
+.timeline li.shown { opacity: 1; }
+.timeline button { width: 100%; gap: 12px; border: 0; border-bottom: 1px solid #324149; background: transparent; color: inherit; padding: 11px 0; text-align: left; }
+.timeline button:hover { background: #172126; }
+.timeline time { width: 121px; flex: 0 0 121px; color: #b7c4bd; font: .67rem ui-monospace, monospace; }
+.timeline-dot { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: #c6ee48; }
+.transaction { display: grid; min-width: 0; flex: 1; gap: 3px; }
+.transaction b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .77rem; }
+.transaction small { color: #9fafa7; font-size: .68rem; }
+.timeline strong { color: #dce4d8; font: 700 .7rem ui-monospace, monospace; text-align: right; }
+.replay-status { margin: 0; padding: 12px 16px 16px; color: #b6c3bb; font-size: .75rem; }
+.timeline-skeleton { height: 375px; margin: 16px; background: linear-gradient(90deg, #172126 20%, #263238 45%, #172126 70%); background-size: 200% 100%; animation: sweep 1.3s ease-in-out infinite; }
+.replay-empty, .empty { padding: 20px 16px; color: #bdc8c1; line-height: 1.5; }
+.uncertainty { margin: 0; padding: 16px; color: #c4cec7; line-height: 1.5; font-size: .86rem; }
+.evidence-list { display: grid; gap: 1px; margin: 0; padding: 0; list-style: none; }
+.evidence-list li { padding: 13px 16px; background: #111a1f; color: #c3cec6; font-size: .78rem; line-height: 1.5; }
+.evidence-list span { display: block; margin-bottom: 5px; color: #c6ee48; font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; }
+.next-step { margin: 16px; padding: 14px 0 0; border-top: 1px solid #f38b4b; }
+.next-step strong { display: block; margin: 7px 0; color: #f2f6e8; font-size: .89rem; }
+.next-step p:last-child { margin: 0; color: #b9c5be; font-size: .78rem; line-height: 1.5; }
+.inline-error { display: grid; gap: 10px; margin: 16px; padding-top: 14px; border-top: 1px solid #f38b4b; color: #f0cdb9; font-size: .78rem; }
+.topology-section { display: grid; grid-template-columns: minmax(260px, .7fr) minmax(450px, 1.3fr); gap: 70px; padding: 64px 0; border-bottom: 1px solid #405059; }
+.section-intro h2, .method h2 { max-width: 14ch; margin: 8px 0 13px; font-size: 2rem; line-height: 1.08; }
+.topology-frame { position: relative; min-height: 420px; border: 1px solid #405059; background: #142026; }
+.graph { display: block; width: 100%; height: 420px; }
+.graph line { stroke: #668076; stroke-width: .45; stroke-dasharray: 1.2 1.2; }
+.node { cursor: pointer; }
+.node circle { fill: #91a59a; stroke: #142026; stroke-width: 1.1; transition: fill 180ms ease-out; }
+.node:hover circle, .selected-node circle { fill: #f38b4b; }
+.node text { fill: #dce4d8; font: 2.4px ui-monospace, monospace; text-anchor: middle; pointer-events: none; }
+.graph-caption { position: absolute; right: 14px; bottom: 12px; max-width: 280px; margin: 0; background: #10171ce8; color: #d0dad3; padding: 8px 10px; font: .67rem/1.4 ui-monospace, monospace; }
+.graph-empty { display: grid; min-height: 420px; place-content: center; color: #c2ccc5; text-align: center; }
+.method { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; padding: 64px 0 0; }
+.method dl { margin: 0; border-top: 1px solid #405059; }
+.method dl div { padding: 14px 0; border-bottom: 1px solid #405059; }
+.method dt { color: #aebbb4; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+.method dd { overflow-wrap: anywhere; margin: 5px 0 0; color: #edf2df; font-size: .82rem; }
+.state { display: grid; max-width: 650px; place-content: center; gap: 10px; }
+.state h1 { margin: 0; font-size: 2.8rem; letter-spacing: -.04em; }
+.state > p:not(.stamp) { color: #bdc8c1; line-height: 1.5; }
+@keyframes sweep { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+@media (max-width: 1060px) { .workbench { grid-template-columns: minmax(220px, .72fr) 1.4fr; } .evidence-panel { grid-column: 1 / -1; border-top: 1px solid #405059; border-left: 0; display: grid; grid-template-columns: .8fr 1.2fr; } .evidence-panel .panel-heading, .evidence-panel .uncertainty, .evidence-panel .next-step, .evidence-panel .inline-error { grid-column: 1; } .evidence-panel .evidence-list { grid-column: 2; grid-row: 1 / span 4; margin: 16px; align-self: start; } }
+@media (max-width: 760px) { main { padding: 20px 16px 46px; } .masthead, .opening, .topology-section, .method { grid-template-columns: 1fr; gap: 28px; } .masthead { align-items: flex-start; flex-direction: column; } .opening { padding: 34px 0; } .opening h2 { font-size: 1.85rem; } .workbench { grid-template-columns: 1fr; } .queue, .evidence-panel { border: 0; border-bottom: 1px solid #405059; } .evidence-panel { display: block; } .evidence-panel .evidence-list { margin: 0; } .topology-section, .method { padding: 46px 0 0; } .topology-frame, .graph, .graph-empty { min-height: 320px; height: 320px; } .timeline time { width: 98px; flex-basis: 98px; } .timeline strong { display: none; } .replay-controls label { margin-left: 0; } }
+@media (max-width: 460px) { .masthead h1 { font-size: 2.25rem; } .timeline { padding: 5px 10px 0; } .timeline button { gap: 8px; } .timeline time { width: 82px; flex-basis: 82px; font-size: .58rem; } .transaction b { font-size: .69rem; } .topology-frame, .graph, .graph-empty { min-height: 270px; height: 270px; } }

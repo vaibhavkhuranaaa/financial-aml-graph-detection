@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** D — Useful investigation UX redesign (next)
+**Current milestone:** E — Analyst decision and audit workflow (next)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -156,12 +156,12 @@ LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### D — Useful investigation UX redesign
 
-- [ ] Build the replay workbench: searchable/filterable case queue, replay
+- [x] Build the replay workbench: searchable/filterable case queue, replay
   controls, time-filtered timeline, bounded interactive topology, evidence,
   uncertainty, provenance, and recovery states.
-- [ ] Preserve one concrete flow: select case → replay/inspect → understand
+- [x] Preserve one concrete flow: select case → replay/inspect → understand
   evidence/limits → proceed to simulated human record.
-- [ ] Support keyboard use, semantic labels, focus visibility, reduced motion,
+- [x] Support keyboard use, semantic labels, focus visibility, reduced motion,
   responsive layout, and loading/empty/error states.
 
 **Complete when:** the defined workflow works at desktop and mobile widths, every
@@ -169,6 +169,25 @@ screen supports a concrete analyst action, and no UI presents a score as a decis
 
 **Verification:** Impeccable context/review and detector; rendered browser
 inspection; keyboard, responsive, loading/empty/error checks; frontend lint/build.
+
+**D completion record (2026-07-24):** rebuilt the existing Signal Ledger
+operate-mode workbench without changing its public-data contract. The new
+surface provides a searchable guided case queue, rail filter, play/pause/reset
+timeline replay, bounded keyboard-operable topology, evidence/uncertainty,
+provenance, loading/empty/error recovery, responsive layout, and a visible
+handoff to—rather than an implementation of—the next browser-local simulated
+record workflow. It remains explicitly a deterministic realistic synthetic
+banking-data replay, with no score-as-decision language, no writes, and no
+request-time inference.
+
+**D verification record (2026-07-24):** `node .../impeccable/scripts/detect.mjs
+--json frontend/src/main.tsx frontend/src/styles.css` returned `[]`; `npm run
+lint`, `npm run build`, `uv run pytest -q` (6 passed), and `git diff --check`
+passed. Local rendered inspection verified desktop and 390px mobile layouts,
+case selection, replay progression, filter empty state, keyboard topology
+selection, and no browser console warnings/errors. No deployment, publication,
+push, merge, external access, visitor persistence, or UI work from Milestone E
+occurred.
 
 ### E — Analyst decision and audit workflow
 

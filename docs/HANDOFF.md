@@ -105,3 +105,29 @@ commit `7ed3cef7`; documentation semantic extraction remains unavailable without
 an LLM backend, and the installed package/skill version warning is non-blocking.
 Exact next milestone: **D — Useful investigation UX redesign**; do not begin it
 as part of this milestone handoff.
+
+## Milestone D handoff — complete (2026-07-24)
+
+Completed work: rebuilt `frontend/src/main.tsx` and `frontend/src/styles.css`
+within the established Signal Ledger evidence-desk visual system. The public
+workbench now supports filtering the approved case queue, selecting a case,
+play/pause/reset replay, rail-filtered bounded timeline, keyboard-operable
+bounded pseudonymous topology, evidence, uncertainty, provenance, and clear
+loading/empty/error recovery. The visible flow is select → replay/inspect →
+understand evidence and limits → proceed to the simulated-record workflow.
+
+Scope boundary: D does not implement the browser-local rationale, decision,
+history, reset, or JSON export planned for E. It explicitly states that the
+later simulated record sends nothing to the API. The page continues to label
+the fixture realistic synthetic banking data; it makes no real-person,
+compliance, production, benchmark, or request-time inference claim.
+
+Verification: Impeccable context and finish review completed; its mechanical
+detector returned `[]`. `cd frontend && npm run lint && npm run build`, `uv run
+pytest -q` (6 passed), and `git diff --check` passed. Local browser inspection
+confirmed desktop and 390px mobile layouts, case selection, replay advancement,
+filter empty state, keyboard topology selection, and zero browser-console
+warnings/errors. Graphify must be refreshed after the implementation commit and
+recorded against that commit. No deployment, publication, push, merge, or
+external access occurred. Exact next milestone: **E — Analyst decision and
+audit workflow**; do not begin it as part of this milestone handoff.
