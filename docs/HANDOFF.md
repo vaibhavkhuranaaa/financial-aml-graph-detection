@@ -67,6 +67,8 @@ pseudonymized CDLA-Sharing-1.0 artifact tied to the exact source checksum. The
 full IBM input and temporary outputs were removed; Elliptic remains local-only.
 No deployment, external publication, push, or merge occurred.
 
-Graphify: refresh after the final commit is required; JSON files have no
-structural nodes and the installed package/skill version warning is non-blocking.
+Graphify: refreshed after the final handoff commit and confirmed to match `HEAD`.
+The final map is code-only because documentation semantic extraction has no LLM
+backend; JSON provenance files have no structural nodes, and the installed
+package/skill version warning is non-blocking.
 Exact next milestone: **C — API contract, validation, and data-boundary tests**.
