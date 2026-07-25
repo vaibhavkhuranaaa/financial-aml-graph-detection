@@ -5,14 +5,16 @@
 - Publication: `absent`
 - Contract migration: v2 draft; no first-demo evidence has been approved
 
-## Delivery ownership — 2026-07-24
+## Delivery ownership — 2026-07-25
 
-- Current milestone: **I — Owner-approved live deployment and post-deploy verification** (blocked pending owner approval).
+- Current milestone: **I — Owner-approved live deployment and post-deploy verification** (blocked pending owner direction on an unexpected Vercel production target).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
-- Deployment remains `release-pending`; publication remains absent. Vercel is a
-  future owner-gated target, not an approved deployment.
+- A Vercel project and deployment now exist under the approved account, but
+  Vercel marked the initial preview attempt as a protected `production` target.
+  Public access is blocked by Vercel SSO protection; do not make a release or
+  public-availability claim.
 - The authoritative acceptance criteria, legal/data gates, risks, milestones,
   and required handoff fields are recorded in `docs/DELIVERY_PLAN.md`.
 - No deployment, publication, evaluation, or production/compliance claim has
@@ -158,9 +160,29 @@ No new deployment, metric, or production claim was introduced by this migration.
   read-only `PORT=8080` container also served readiness and reported healthy.
   The owner subsequently selected Vercel, so the Render-only configuration was
   replaced by a locally verified Vercel FastAPI Function/static-build setup.
-  Vercel remains owner-gated: no project link, deployment, publication, push,
-  or merge was used. Exact next milestone is **I**, which requires explicit
-  owner approval before any deployment action.
+  Vercel remained owner-gated at H completion. Exact next milestone is **I**.
+
+## Milestone I — in progress / owner decision required (2026-07-25)
+
+- The owner approved a preview deployment. Vercel authenticated as
+  `vaibhavkhuranaaa`, created `reeper1/signal-ledger-workbench`, connected the
+  existing GitHub repository, and deployed the exact local source state as
+  `dpl_CsH9KTYozhdufF7ZFXH8iTo7Squa` at
+  `https://signal-ledger-workbench-ggp44wt6i-reeper1.vercel.app`.
+- Vercel unexpectedly classified that initial deployment as target `production`
+  and assigned project aliases, while Vercel SSO deployment protection blocks
+  unauthenticated access. This is not the preview target the owner selected;
+  no production or public-availability claim is authorized.
+- Authenticated, read-only deployed probes passed: `/api/readiness` returned
+  `ready`, approved artifact delivery, `request_inference: false`, and
+  `visitor_persistence: false`; an unapproved CORS preflight returned 400;
+  POST returned 405; `/api/elliptic` and `/api/local-source` returned 404.
+  Browser validation cannot pass the Vercel SSO gate without an owner-approved
+  protection/access decision.
+- Required next action: the owner must choose whether to retain this protected
+  production-target deployment, replace it with a preview-target deployment, or
+  remove it. Do not change aliases, protection, target, or availability without
+  that explicit direction.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

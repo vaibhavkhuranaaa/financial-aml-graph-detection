@@ -1,8 +1,10 @@
 # Vercel readiness and owner gate
 
-This document prepares Signal Ledger for Vercel. It does not authorize a
+This document prepared Signal Ledger for Vercel. It did not itself authorize a
 deployment, link a Vercel project, create a public URL, or change the project
-status from `building`.
+status from `building`. The subsequent owner-approved deployment attempt and
+its unresolved target/protection decision are recorded in `docs/STATE.md` and
+`docs/HANDOFF.md`.
 
 ## Public service boundary
 

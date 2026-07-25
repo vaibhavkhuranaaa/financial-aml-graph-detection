@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** I — Owner-approved live deployment and post-deploy verification (blocked pending owner approval)
+**Current milestone:** I — Owner-approved live deployment and post-deploy verification (blocked pending owner direction on the initial Vercel target)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -322,18 +322,32 @@ merge was created by this readiness work.
 
 ### I — Owner-approved live deployment and post-deploy verification
 
-- [ ] Obtain explicit approval for the Vercel account/team, project, and
-  production
-  deployment.
-- [ ] Deploy only the approved public synthetic artifact and record the release.
-- [ ] Verify public health, CORS, synthetic labels, no write routes, no local-only
-  exposure, and rollback procedure.
+- [x] Obtain explicit owner approval for `reeper1`, project
+  `signal-ledger-workbench`, and a preview deployment attempt.
+- [x] Deploy the approved public synthetic artifact and record the release.
+- [x] Verify authenticated health, CORS, no-write routes, and local-only-route
+  exclusion.
+- [ ] Obtain owner direction on Vercel's unexpected `production` target,
+  aliases, and SSO deployment protection before treating any URL as preview or
+  publicly available.
 
-**Complete when:** the owner-approved URL, release identifier, health result,
-rollback path, and post-deploy checks are recorded.
+**Complete when:** the owner-approved target and availability, release
+identifier, health result, rollback path, and post-deploy checks are recorded.
 
-**Verification:** owner-approved deploy command, deployed health check, smoke/E2E
-test, headers/CORS review, data-boundary probe, and rollback dry-run or procedure.
+**I deployment record (2026-07-25):** Vercel created
+`reeper1/signal-ledger-workbench` and deployment
+`dpl_CsH9KTYozhdufF7ZFXH8iTo7Squa`,
+`https://signal-ledger-workbench-ggp44wt6i-reeper1.vercel.app`. `vercel
+inspect` reports target `production` and Vercel assigned aliases, contrary to
+the owner-approved preview intent. Vercel SSO protection returns 302 to
+unauthenticated visitors, so no public-access claim is made. Authenticated
+read-only probes passed: readiness 200 with approved/no-inference/no-persistence
+state, unapproved CORS preflight 400, POST 405, and Elliptic/local-source 404.
+Browser E2E and a public release remain blocked pending owner direction.
+
+**Verification:** owner-approved deploy command, deployed health check,
+headers/CORS review, data-boundary probe, browser smoke after access is
+approved, and rollback dry-run or procedure.
 
 ## Risks and dependencies
 

@@ -253,3 +253,28 @@ No Vercel project link, deployment, publication, push, or merge was created.
 Exact next milestone is **I — Owner-approved live deployment and
 post-deploy verification**, which is blocked pending explicit owner approval;
 do not begin it without that approval.
+
+## Milestone I handoff — in progress / owner decision required (2026-07-25)
+
+The owner approved a Vercel preview attempt. The authenticated account
+`vaibhavkhuranaaa` created `reeper1/signal-ledger-workbench`, connected the
+existing GitHub repository, and deployed the local source state as
+`dpl_CsH9KTYozhdufF7ZFXH8iTo7Squa` at
+`https://signal-ledger-workbench-ggp44wt6i-reeper1.vercel.app`.
+
+`vercel inspect` reports target `production` and assigned aliases, although the
+owner selected preview. Vercel SSO deployment protection redirects unauthenticated
+requests, so it is neither a verified preview target nor a publicly available
+release. No push, merge, source publication, or claim of production readiness
+occurred.
+
+Authenticated read-only probes passed: `/api/readiness` returned ready plus
+approved artifact delivery with no inference/persistence; the unapproved CORS
+preflight returned 400; POST returned 405; `/api/elliptic` and
+`/api/local-source` returned 404. Browser E2E is blocked by the SSO protection.
+
+Required owner decision: retain the protected production-target deployment,
+replace it with an explicit preview-target deployment, or remove it. Do not
+change the target, aliases, Vercel protection, or public availability without
+that direction. After the decision, run browser smoke validation and record the
+final target/access posture before completing I.
