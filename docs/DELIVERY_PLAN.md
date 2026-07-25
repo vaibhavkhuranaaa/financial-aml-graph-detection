@@ -108,9 +108,9 @@ selection tests; source/output boundary scan; `git diff --check`.
 
 **Current B status (2026-07-24):** independent metadata and license review is
 recorded, and the API now rejects the legacy unverified fixture. The stdlib-only
-offline builder and tests are in progress. Completion remains blocked on the
-actual `HI-Small_Trans.csv` v8 input: it is not present in this workspace, so
-the legacy source checksum cannot yet be independently reproduced and no public
+offline builder and tests are in progress. The actual `HI-Small_Trans.csv` v8
+input was independently reproduced on 2026-07-25 UTC with checksum
+`b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`; no public
 distribution decision has been approved.
 
 ### C — API contract, validation, and data-boundary tests

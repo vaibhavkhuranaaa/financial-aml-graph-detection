@@ -16,5 +16,6 @@
     "Admit only an artifact reproduced from a verified local source manifest."
   ],
   "public_distribution_status": "blocked",
-  "blocker": "The full HI-Small_Trans.csv input is not present locally, so its recorded source checksum and legacy fixture cannot yet be independently reproduced."
+  "verified_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+  "blocker": "Owner approval to publish an Enhanced Data artifact for this exact verified source checksum has not been recorded."
 }

@@ -9,6 +9,11 @@ from pathlib import Path
 from typing import Any
 
 REQUIRED_COLUMNS = (
+    "Timestamp", "From Bank", "Account", "To Bank", "Account",
+    "Amount Received", "Receiving Currency", "Amount Paid", "Payment Currency",
+    "Payment Format", "Is Laundering",
+)
+NORMALIZED_COLUMNS = (
     "Timestamp", "From Bank", "From Account", "To Bank", "To Account",
     "Amount Received", "Receiving Currency", "Amount Paid", "Payment Currency",
     "Payment Format", "Is Laundering",
@@ -34,6 +39,17 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def source_rows(source: Path):
+    with source.open(newline="", encoding="utf-8-sig") as handle:
+        reader = csv.reader(handle)
+        if tuple(next(reader, [])) != REQUIRED_COLUMNS:
+            raise ValueError("Source schema does not match the recorded HI-Small transaction schema.")
+        for values in reader:
+            if len(values) != len(NORMALIZED_COLUMNS):
+                raise ValueError("Source contains a row outside the recorded HI-Small transaction schema.")
+            yield dict(zip(NORMALIZED_COLUMNS, values, strict=True))
+
+
 def validate_source(source: Path, manifest: dict[str, Any]) -> str:
     if manifest.get("verification_status") != "verified":
         raise ValueError("Source manifest is not verified.")
@@ -44,10 +60,8 @@ def validate_source(source: Path, manifest: dict[str, Any]) -> str:
     actual = sha256_file(source)
     if manifest.get("source_sha256") != actual:
         raise ValueError("Source checksum does not match its verified manifest.")
-    with source.open(newline="", encoding="utf-8") as handle:
-        header = tuple(csv.DictReader(handle).fieldnames or ())
-    if header != REQUIRED_COLUMNS:
-        raise ValueError("Source schema does not match the recorded HI-Small transaction schema.")
+    rows = source_rows(source)
+    next(rows, None)
     return actual
 
 
@@ -82,15 +96,14 @@ def build_artifact(source: Path, source_manifest: dict[str, Any], distribution: 
     ordering = lambda item: (item[1]["Timestamp"], item[0])
     laundering_by_party: dict[str, list[tuple[int, dict[str, str]]]] = {}
     closure: list[tuple[int, dict[str, str]]] = []
-    with source.open(newline="", encoding="utf-8") as handle:
-        for index, row in enumerate(csv.DictReader(handle)):
-            item = (index, row)
-            if row["Is Laundering"] == "1":
-                laundering_by_party.setdefault(row["From Account"], []).append(item)
-            if row["Is Laundering"] == "0" and row["Payment Format"] == "ACH":
-                closure.append(item)
-                closure.sort(key=ordering)
-                del closure[5:]
+    for index, row in enumerate(source_rows(source)):
+        item = (index, row)
+        if row["Is Laundering"] == "1":
+            laundering_by_party.setdefault(row["From Account"], []).append(item)
+        if row["Is Laundering"] == "0" and row["Payment Format"] == "ACH":
+            closure.append(item)
+            closure.sort(key=ordering)
+            del closure[5:]
     candidates = [(party, sorted(items, key=ordering)) for party, items in laundering_by_party.items() if len(items) >= 16]
     if not candidates:
         raise ValueError("No source party has 16 laundering rows for the bounded escalation case.")
@@ -143,10 +156,8 @@ def write_artifact(source: Path, source_manifest_path: Path, distribution_path: 
 
 def record_source_manifest(source: Path, retrieved_at: str, source_ref: str) -> dict[str, Any]:
     datetime.fromisoformat(retrieved_at.replace("Z", "+00:00"))
-    with source.open(newline="", encoding="utf-8") as handle:
-        header = tuple(csv.DictReader(handle).fieldnames or ())
-    if header != REQUIRED_COLUMNS:
-        raise ValueError("Source schema does not match the recorded HI-Small transaction schema.")
+    rows = source_rows(source)
+    next(rows, None)
     return {"schema": "signal-ledger-source-manifest/v1", "verification_status": "verified", "provider": "IBM / Erik Altman", "dataset": "IBM Transactions for Anti Money Laundering (AML)", "dataset_version": 8, "source_ref": source_ref, "retrieved_at": retrieved_at, "source_file": source.name, "source_sha256": sha256_file(source), "source_schema": list(REQUIRED_COLUMNS), "license": LICENSE, "license_url": LICENSE_URL}
 
 

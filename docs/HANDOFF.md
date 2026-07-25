@@ -47,10 +47,10 @@ Do not mark B complete yet. Kaggle metadata independently identifies the current
 dataset as version 8 under CDLA-Sharing-1.0; the license requires a published
 selected/pseudonymized subset to remain under the agreement with modification
 notice, provider attribution, and agreement text/link. The precise local
-`HI-Small_Trans.csv` input is not available in this workspace, so its source
-checksum and the legacy public fixture remain unverified. The API fails closed
-until a source manifest and owner-approved distribution decision admit a new
+`HI-Small_Trans.csv` input was independently retrieved and verified on
+2026-07-25 UTC as
+`b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`. The API
+remains fail-closed until an owner-approved distribution decision admits a new
 artifact. Exact next work remains **B — Data provenance and deterministic
-fixture/replay pipeline**: obtain the verified local input, record and rerun the
-manifest, compare artifact hashes, record approval, and then complete the B
-handoff.
+fixture/replay pipeline**: record approval, rerun the manifest twice, compare
+artifact hashes, and then complete the B handoff.

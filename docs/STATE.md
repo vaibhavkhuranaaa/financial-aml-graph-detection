@@ -31,8 +31,9 @@ No new deployment, metric, or production claim was introduced by this migration.
 
 - Independent metadata review verified Kaggle dataset version 8, Erik Altman
   attribution, the HI-Small transaction schema listing, and CDLA-Sharing-1.0.
-  The distribution decision is blocked because the actual local v8 source file
-  is unavailable to reproduce the legacy checksum.
+  The v8 source checksum was reproduced on 2026-07-25 UTC as
+  `b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040`; the
+  distribution decision remains blocked pending owner approval.
 - The public API now fails closed for the legacy fixture. An offline,
   deterministic builder records local source metadata/schema/checksum, selection
   and pseudonymization rules, pipeline run ID, and artifact checksum; it also
