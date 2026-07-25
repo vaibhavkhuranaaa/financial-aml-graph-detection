@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "status": "planned",
-  "provider": "unselected",
-  "workflow": null,
-  "deploymentTarget": null,
+  "status": "public-review",
+  "provider": "Vercel",
+  "workflow": "GitHub Actions CI plus Vercel deployment",
+  "deploymentTarget": "https://signal-ledger-workbench.vercel.app",
   "paidResource": false,
   "costApprovalRequired": false
 }

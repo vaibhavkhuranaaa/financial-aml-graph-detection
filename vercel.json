@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "sh scripts/build_vercel.sh",
+  "functions": {
+    "src/app.py": {
+      "excludeFiles": "{.git/**,.github/**,docker/**,docs/**,frontend/**,graphify-out/**,tests/**,data/provenance/**,data/raw/**}"
+    }
+  }
+}

@@ -1,3 +1,2 @@
-flask
-torch
-torch-geometric
+fastapi==0.139.2
+uvicorn[standard]==0.51.0

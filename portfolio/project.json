@@ -1,54 +1,61 @@
 {
   "version": 2,
   "slug": "financial-aml-graph-detection",
-  "title": "Financial AML Graph Detection",
-  "summary": "Graph machine-learning research pipeline for detecting suspicious transaction patterns in the Elliptic Bitcoin dataset.",
-  "outcome": "Release-pending portfolio project; public presentation waits for reproducible evaluation and a verified deployment.",
+  "title": "Signal Ledger",
+  "summary": "Read-only deterministic replay workbench for a bounded realistic synthetic banking-event case file.",
+  "outcome": "Public-review portfolio workbench with a verified Vercel deployment; it does not make model-performance or compliance claims.",
   "industries": [
     "Financial services"
   ],
   "categories": [
-    "AI/ML",
-    "Cloud"
+    "Data visualization",
+    "Financial research"
   ],
   "stack": [
     "Python",
-    "Graph machine learning",
+    "FastAPI",
+    "React",
+    "TypeScript",
+    "Vercel",
     "Docker"
   ],
   "githubUrl": "https://github.com/vaibhavkhuranaaa/financial-aml-graph-detection",
-  "liveUrl": null,
+  "liveUrl": "https://signal-ledger-workbench.vercel.app",
   "deployment": {
-    "provider": "TBD",
-    "status": "release-pending",
-    "runtime": "Local Docker workflow",
-    "exposure": "private",
+    "provider": "Vercel",
+    "status": "public-review",
+    "runtime": "Vercel FastAPI Function with static React build",
+    "exposure": "public",
     "productionClaim": false,
-    "verifiedAt": null,
+    "verifiedAt": "2026-07-25",
     "expiresAt": null,
-    "evidenceRefs": []
+    "evidenceRefs": [
+      "docs/STATE.md",
+      "docs/HANDOFF.md",
+      "docs/DELIVERY_PLAN.md"
+    ]
   },
   "metrics": [
-    "Evaluation evidence pending before public release"
+    "No model-performance metrics are claimed or published"
   ],
   "stages": [
-    "Dataset ingestion",
-    "Graph construction",
-    "Model training",
-    "Evaluation",
-    "Deployment hardening"
+    "Approved synthetic fixture",
+    "Bounded replay API",
+    "Timeline and topology inspection",
+    "Browser-private simulated audit",
+    "Public-review deployment"
   ],
   "architecture": [
-    "Elliptic transaction graph",
-    "Feature pipeline",
-    "Graph model",
-    "Evaluation report"
+    "Approved synthetic replay fixture",
+    "FastAPI read-only contracts",
+    "React investigation desk",
+    "Vercel static and function runtime"
   ],
   "evaluation": [
-    "Versioned holdout split and operational precision-recall analysis required before release"
+    "Local-only Elliptic protocol exists; no evaluation result is published"
   ],
   "operationalTradeoffs": [
-    "Graph-model complexity and data lineage must be balanced against explainability and serving cost"
+    "Public replay is bounded and precomputed; visitor inputs stay in the browser"
   ],
-  "disclaimer": "Research project using public data. It does not identify real-world illicit activity or provide compliance advice."
+  "disclaimer": "Portfolio research workbench using realistic synthetic banking data. It does not identify real-world illicit activity or provide compliance advice."
 }

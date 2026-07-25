@@ -1,0 +1,26 @@
+{
+  "schema": "signal-ledger-distribution-decision/v1",
+  "dataset": "IBM Transactions for Anti Money Laundering (AML)",
+  "dataset_version": 8,
+  "provider": "IBM / Erik Altman",
+  "source_ref": "https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml/versions/8",
+  "source_metadata_checked_at": "2026-07-24",
+  "license": "CDLA-Sharing-1.0",
+  "license_url": "https://cdla.dev/sharing-1-0/",
+  "classification": "A selected and pseudonymized subset is Enhanced Data, not an unrestricted Result.",
+  "publication_conditions": [
+    "Publish the artifact under CDLA-Sharing-1.0.",
+    "Carry a prominent modification, selection, and pseudonymization notice.",
+    "Retain IBM / Erik Altman attribution and source hyperlink.",
+    "Provide the CDLA-Sharing-1.0 text or a reliable hyperlink.",
+    "Admit only an artifact reproduced from a verified local source manifest."
+  ],
+  "public_distribution_status": "approved",
+  "approved_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+  "verified_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+  "owner_approval": {
+    "approved_at": "2026-07-24",
+    "scope": "Bounded Signal Ledger replay artifacts derived from the exact verified HI-Small v8 source checksum only."
+  },
+  "blocker": null
+}
