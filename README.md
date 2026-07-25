@@ -45,3 +45,6 @@ cd frontend && npm install && npm run dev
 For a production-like local preview, build the frontend and start FastAPI, or use `docker compose -f docker/docker-compose.yml up --build`. The Docker context explicitly copies only the frontend build, FastAPI source, and synthetic fixture.
 
 See [data governance](docs/DATA_GOVERNANCE.md) for the strict separation between the public fixture and local Elliptic research.
+The [local-only Elliptic evaluation protocol](docs/ELLIPTIC_EVALUATION_PROTOCOL.md)
+defines the required source gate and aggregate-report validation; it does not
+publish a benchmark result.

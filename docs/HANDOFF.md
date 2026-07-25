@@ -166,3 +166,32 @@ and the installed package/skill version warning is non-blocking.
 No deployment, publication, push, merge, or external access occurred. Exact
 next milestone: **F — Evaluation and reproducibility boundary**; do not begin
 it as part of this milestone handoff.
+
+## Milestone F handoff — complete (2026-07-24)
+
+Completed work: added `docs/ELLIPTIC_EVALUATION_PROTOCOL.md`, the versioned
+`signal-ledger-local-evaluation/v1` validator contract, and
+`scripts/validate_local_evaluation.py`. A future untracked local manifest must
+record source/access terms, absolute local source path, retrieval time, SHA-256,
+chronological boundaries, explicit unknown-label treatment, and versioned
+baseline/GNN identifiers. An aggregate-only local report must include PR-AUC,
+precision, recall, calibration, review capacity, and operational-error analysis
+for both families.
+
+Data/access boundary: the validator rejects public delivery paths, public or
+unapproved reports, raw/derived identifiers, mismatched source checksums,
+non-chronological splits, and incomplete metrics. It does not run training or
+evaluation, and no Elliptic source, graph, model, prediction, metric, or claim
+was created. Public API routes remain fixed and do not import local evaluation
+evidence.
+
+Verification: `uv run pytest -q` passed (12 tests); Ruff format/check,
+`python -m compileall`, and `git diff --check` passed. Boundary tests cover
+aggregate-only evidence, local-only publication status, chronological splitting,
+baseline/GNN presence, raw-identifier rejection, missing metrics, and public
+delivery-path rejection. Graphify must be refreshed after the implementation
+commit and recorded against that commit.
+
+No deployment, publication, push, merge, or external access occurred. Exact
+next milestone: **G — Browser E2E, accessibility, responsive, and Docker
+verification**; do not begin it as part of this milestone handoff.

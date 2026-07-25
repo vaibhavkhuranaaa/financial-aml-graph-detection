@@ -2,7 +2,7 @@
 
 ## Delivery contract
 
-**Current milestone:** F — Evaluation and reproducibility boundary (next)
+**Current milestone:** G — Browser E2E, accessibility, responsive, and Docker verification (next)
 
 Signal Ledger will be a deployable public research workbench for a deterministic,
 synthetic banking-event replay. A visitor can replay a bounded case, inspect its
@@ -233,11 +233,11 @@ LLM backend, and the installed package/skill version warning is non-blocking.
 
 ### F — Evaluation and reproducibility boundary
 
-- [ ] Version a local-only evaluation procedure for Elliptic research with source
+- [x] Version a local-only evaluation procedure for Elliptic research with source
   gate, chronological split, explicit unknown-label treatment, baseline/GNN
   comparison, PR-AUC, precision/recall, calibration, review capacity, and
   operational-error analysis.
-- [ ] Separate research evidence from public replay artifacts and prevent public
+- [x] Separate research evidence from public replay artifacts and prevent public
   metrics until independently verified and owner-approved.
 
 **Complete when:** the procedure is reproducible with versioned evidence and the
@@ -245,6 +245,23 @@ claims/publication boundary is mechanically documented and tested.
 
 **Verification:** evaluation command and manifest validation; report schema
 checks; boundary tests; review of class-imbalance/operational-error reporting.
+
+**F completion record (2026-07-24):** added
+`docs/ELLIPTIC_EVALUATION_PROTOCOL.md`, a versioned `local-only` manifest/report
+contract, and `scripts/validate_local_evaluation.py`. The protocol requires
+source access terms, checksum, retrieval record, chronological split, explicit
+unknown-label treatment, a versioned baseline/GNN comparison, and aggregate
+PR-AUC, precision, recall, calibration, review-capacity, and operational-error
+analysis. It is a procedure only: no Elliptic input, graph, model, prediction,
+metric, or effectiveness claim was produced.
+
+**F verification record (2026-07-24):** `uv run pytest -q` passed (12 tests),
+including public-path, publication-status, chronological-split, raw-identifier,
+and incomplete-metric rejection. Ruff format/check, compileall, and `git diff
+--check` passed. The validator rejects public delivery paths and unapproved
+reports; the public API retains its fixed route allowlist and does not import
+this local research contract. No deployment, publication, push, merge, external
+access, or work from G occurred.
 
 ### G — Browser E2E, accessibility, responsive, and Docker verification
 

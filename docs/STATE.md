@@ -7,7 +7,7 @@
 
 ## Delivery ownership — 2026-07-24
 
-- Current milestone: **F — Evaluation and reproducibility boundary** (next).
+- Current milestone: **G — Browser E2E, accessibility, responsive, and Docker verification** (next).
 - Product direction: anonymous, read-only deterministic synthetic-event replay;
   browser-private simulated notes/decisions with local export; no authentication,
   server-side visitor data, or request-time inference.
@@ -102,6 +102,22 @@ No new deployment, metric, or production claim was introduced by this migration.
 - Graphify was refreshed code-only and reclustered against `21427a4c` after the
   implementation commit. Documentation semantic extraction has no LLM backend;
   the package/skill version warning is non-blocking.
+
+## Milestone F — complete (2026-07-24)
+
+- Added a versioned local-only Elliptic evaluation protocol, manifest/report
+  validator, and command. It enforces source/access/checksum evidence,
+  chronological splitting, explicit unknown-label treatment, baseline/GNN
+  comparison, and aggregate PR-AUC, precision/recall, calibration,
+  review-capacity, and operational-error reporting.
+- The validator rejects public paths, public/unapproved reports, raw/derived
+  identifiers, source-checksum mismatches, and incomplete evaluation evidence.
+  The protocol does not produce or publish a dataset, graph, model, prediction,
+  metric, or claim.
+- Verification passed: 12 tests, Ruff format/check, compilation, and `git diff
+  --check`. No deployment, publication, push, merge, external access, or
+  evaluation run occurred. Exact next milestone: **G — Browser E2E,
+  accessibility, responsive, and Docker verification**.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 
