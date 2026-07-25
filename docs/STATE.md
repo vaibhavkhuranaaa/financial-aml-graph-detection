@@ -179,10 +179,10 @@ No new deployment, metric, or production claim was introduced by this migration.
   POST returned 405; `/api/elliptic` and `/api/local-source` returned 404.
   Browser validation cannot pass the Vercel SSO gate without an owner-approved
   protection/access decision.
-- Required next action: the owner must choose whether to retain this protected
-  production-target deployment, replace it with a preview-target deployment, or
-  remove it. Do not change aliases, protection, target, or availability without
-  that explicit direction.
+- The owner chose to retain this single protected, production-target deployment
+  and not create additional preview resources. Browser validation remains
+  blocked by Vercel SSO protection; do not change aliases, protection, target,
+  or availability without further explicit direction.
 
 ## Signal Ledger public-fixture workbench — 2026-07-24
 

@@ -273,8 +273,8 @@ approved artifact delivery with no inference/persistence; the unapproved CORS
 preflight returned 400; POST returned 405; `/api/elliptic` and
 `/api/local-source` returned 404. Browser E2E is blocked by the SSO protection.
 
-Required owner decision: retain the protected production-target deployment,
-replace it with an explicit preview-target deployment, or remove it. Do not
-change the target, aliases, Vercel protection, or public availability without
-that direction. After the decision, run browser smoke validation and record the
-final target/access posture before completing I.
+The owner chose to retain this single protected production-target deployment and
+not create additional preview resources. Do not change the target, aliases,
+Vercel protection, or public availability without further direction. Browser
+smoke validation remains blocked until the owner explicitly approves a change
+to the SSO protection posture.

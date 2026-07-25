@@ -327,9 +327,10 @@ merge was created by this readiness work.
 - [x] Deploy the approved public synthetic artifact and record the release.
 - [x] Verify authenticated health, CORS, no-write routes, and local-only-route
   exclusion.
-- [ ] Obtain owner direction on Vercel's unexpected `production` target,
-  aliases, and SSO deployment protection before treating any URL as preview or
-  publicly available.
+- [x] Obtain owner direction to retain the single protected `production` target
+  and not create additional preview resources.
+- [ ] Obtain explicit approval to change Vercel SSO protection before treating
+  any URL as publicly available or running unauthenticated browser E2E.
 
 **Complete when:** the owner-approved target and availability, release
 identifier, health result, rollback path, and post-deploy checks are recorded.
@@ -343,7 +344,8 @@ the owner-approved preview intent. Vercel SSO protection returns 302 to
 unauthenticated visitors, so no public-access claim is made. Authenticated
 read-only probes passed: readiness 200 with approved/no-inference/no-persistence
 state, unapproved CORS preflight 400, POST 405, and Elliptic/local-source 404.
-Browser E2E and a public release remain blocked pending owner direction.
+Browser E2E and a public release remain blocked by the retained Vercel SSO
+protection.
 
 **Verification:** owner-approved deploy command, deployed health check,
 headers/CORS review, data-boundary probe, browser smoke after access is
