@@ -275,6 +275,31 @@ preflight returned 400; POST returned 405; `/api/elliptic` and
 `/api/local-source` returned 404. Public browser E2E rendered the case desk,
 found no error overlay, and reported no console errors.
 
-The project remains `building` only with respect to the separate local-only
-Elliptic evaluation protocol: no evaluation result, model metric, operational
-claim, or compliance claim may be added without independently approved evidence.
+The project remains `building`. No operational or compliance claim may be added
+without independently approved evidence.
+
+## Milestone J handoff — complete (2026-07-25)
+
+Completed work: expanded the approved public replay to six deterministic,
+pseudonymized IBM AML-Data v8 cases (55 transactions), added a local-only
+chronological Elliptic baseline/message-passing runner, documented the
+owner-approved aggregate portfolio summary, and added a bounded simulation
+expansion plan.
+
+Evidence: the current artifact checksum is
+`e78b20e8445a7e818c95af6216258487c46cf59ac061c6fcef531f45e10b0160`; pipeline
+run ID is `098fc76310d08f4263fb91e1ba772c7e976444e72eff18a9502f11e930f74140`.
+The external local manifest/report passed `scripts/validate_local_evaluation.py`.
+The documented holdout comparison reports only aggregates: baseline PR-AUC
+0.345 and one-hop message-passing PR-AUC 0.381, with precision/recall,
+calibration, review-capacity, and operational-error context in the summary.
+
+Data/access boundary: the public workbench continues to serve IBM realistic
+synthetic banking replay only. The Elliptic exception is limited to the
+owner-approved aggregate summary; no raw data, identifiers, rows, graphs,
+predictions, model files, full report, or endpoint is public. The full IBM
+source remains outside the repository.
+
+Next action: run the final verification and deployment checks, refresh Graphify,
+and record the resulting commit/deployment. No further feature milestone is
+authorized without owner direction.

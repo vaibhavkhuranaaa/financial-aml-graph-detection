@@ -96,23 +96,41 @@ def build_artifact(source: Path, source_manifest: dict[str, Any], distribution: 
     ordering = lambda item: (item[1]["Timestamp"], item[0])
     laundering_by_party: dict[str, list[tuple[int, dict[str, str]]]] = {}
     closure: list[tuple[int, dict[str, str]]] = []
+    cash_escalation: list[tuple[int, dict[str, str]]] = []
+    mixed_rail_escalation: list[tuple[int, dict[str, str]]] = []
+    card_closure: list[tuple[int, dict[str, str]]] = []
+
+    def keep_first(bucket: list[tuple[int, dict[str, str]]], item: tuple[int, dict[str, str]], maximum: int) -> None:
+        bucket.append(item)
+        bucket.sort(key=ordering)
+        del bucket[maximum:]
+
     for index, row in enumerate(source_rows(source)):
         item = (index, row)
         if row["Is Laundering"] == "1":
             laundering_by_party.setdefault(row["From Account"], []).append(item)
+            if row["Payment Format"] == "Cash":
+                keep_first(cash_escalation, item, 8)
+            keep_first(mixed_rail_escalation, item, 18)
         if row["Is Laundering"] == "0" and row["Payment Format"] == "ACH":
-            closure.append(item)
-            closure.sort(key=ordering)
-            del closure[5:]
+            keep_first(closure, item, 8)
+        if row["Is Laundering"] == "0" and row["Payment Format"] == "Credit Card":
+            keep_first(card_closure, item, 8)
     candidates = [(party, sorted(items, key=ordering)) for party, items in laundering_by_party.items() if len(items) >= 16]
     if not candidates:
         raise ValueError("No source party has 16 laundering rows for the bounded escalation case.")
     escalation_party, escalation = min(candidates, key=lambda item: (ordering(item[1][0]), item[0]))
-    if len(closure) != 5:
-        raise ValueError("Expected at least five non-laundering ACH rows for the closure case.")
+    if len(cash_escalation) != 8 or len(closure) != 8 or len(card_closure) != 8:
+        raise ValueError("Expected enough ordered rows for the bounded synthetic sequence cases.")
+    mixed_rails = {row["Payment Format"] for _, row in mixed_rail_escalation}
+    if len(mixed_rail_escalation) < 10 or len(mixed_rails) < 3:
+        raise ValueError("Expected an ordered laundering sequence spanning at least three payment rails.")
     selection = {
         "escalation": "earliest source account with at least 16 laundering rows; first 16 ordered by Timestamp then CSV row index",
-        "closure": "first five non-laundering ACH rows ordered by Timestamp then CSV row index",
+        "cash_sequence": "first eight laundering Cash rows ordered by Timestamp then CSV row index",
+        "mixed_rail_sequence": "first ten laundering rows from the earliest ordered sequence spanning at least three payment rails",
+        "ach_sequence": "first eight non-laundering ACH rows ordered by Timestamp then CSV row index",
+        "card_sequence": "first eight non-laundering Credit Card rows ordered by Timestamp then CSV row index",
         "pseudonymization": "SHA-256(account identifier), first 10 uppercase hexadecimal characters, prefixed Party-",
         "selected_source_account_sha256": hashlib.sha256(escalation_party.encode("utf-8")).hexdigest(),
     }
@@ -140,7 +158,11 @@ def build_artifact(source: Path, source_manifest: dict[str, Any], distribution: 
         },
         "cases": [
             {"id": "sim-escalation-fanout", "outcome": "Simulated escalation", "transactions": [transaction(row, index) for index, (_, row) in enumerate(escalation[:16], 1)]},
-            {"id": "sim-closure-compare", "outcome": "Simulated closure", "transactions": [transaction(row, index) for index, (_, row) in enumerate(closure, 1)]},
+            {"id": "sim-escalation-cash-sequence", "outcome": "Simulated escalation", "transactions": [transaction(row, index) for index, (_, row) in enumerate(cash_escalation, 1)]},
+            {"id": "sim-escalation-mixed-rails", "outcome": "Simulated escalation", "transactions": [transaction(row, index) for index, (_, row) in enumerate(mixed_rail_escalation[:10], 1)]},
+            {"id": "sim-closure-compare", "outcome": "Simulated closure", "transactions": [transaction(row, index) for index, (_, row) in enumerate(closure[:5], 1)]},
+            {"id": "sim-closure-ach-sequence", "outcome": "Simulated closure", "transactions": [transaction(row, index) for index, (_, row) in enumerate(closure, 1)]},
+            {"id": "sim-closure-card-sequence", "outcome": "Simulated closure", "transactions": [transaction(row, index) for index, (_, row) in enumerate(card_closure, 1)]},
         ],
     }
     payload["artifact_sha256"] = hashlib.sha256(canonical_bytes(payload)).hexdigest()

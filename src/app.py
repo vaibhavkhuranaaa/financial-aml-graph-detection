@@ -144,7 +144,7 @@ def catalogue() -> CatalogueResponse:
             }
             for case in data["cases"]
         ],
-        maximum=2,
+        maximum=6,
     )
 
 
@@ -252,7 +252,7 @@ def provenance() -> ProvenanceResponse:
 def methodology() -> MethodologyResponse:
     return MethodologyResponse(
         public="Scores and explanations are precomputed; visits never train or infer.",
-        elliptic="Local-only: provenance gate, chronological split, unknown-label treatment, baseline/GNN comparison, PR-AUC, precision/recall, calibration, review-capacity and operational-error analysis. No rows, graphs, or metrics are public.",
+        elliptic="Aggregate portfolio summary only: provenance gate, chronological split, unknown-label treatment, baseline/GNN comparison, PR-AUC, precision/recall, calibration, review-capacity and operational-error analysis. No rows, graphs, predictions, models, or full report are public.",
         limitations=[
             "Simulated outcomes",
             "No live feeds",

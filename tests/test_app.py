@@ -32,9 +32,13 @@ def test_public_contracts_are_typed_bounded_and_synthetic() -> None:
     cases = client.get("/api/cases").json()
     assert {item["id"] for item in cases["items"]} == {
         "sim-escalation-fanout",
+        "sim-escalation-cash-sequence",
+        "sim-escalation-mixed-rails",
         "sim-closure-compare",
+        "sim-closure-ach-sequence",
+        "sim-closure-card-sequence",
     }
-    assert cases["maximum"] == 2
+    assert cases["maximum"] == 6
     assert (
         client.get(f"/api/cases/{CASE_ID}").json()["rationale"]
         == "Simulated analyst rationale is stored only in this browser."
@@ -55,10 +59,10 @@ def test_public_contracts_are_typed_bounded_and_synthetic() -> None:
     assert provenance["label"] == "realistic synthetic banking data"
     assert (
         provenance["slice_sha256"]
-        == "62b1d7476466f5456f61ef0d019db52536cf13e46e584724d5346a9ad8b75db2"
+        == "e78b20e8445a7e818c95af6216258487c46cf59ac061c6fcef531f45e10b0160"
     )
     assert (
-        "No rows, graphs, or metrics are public."
+        "No rows, graphs, predictions, models, or full report are public."
         in client.get("/api/methodology").json()["elliptic"]
     )
 
