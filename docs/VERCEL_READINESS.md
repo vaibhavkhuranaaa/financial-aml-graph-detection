@@ -1,10 +1,9 @@
-# Vercel readiness and owner gate
+# Vercel operations
 
-This document prepared Signal Ledger for Vercel. It did not itself authorize a
-deployment, link a Vercel project, create a public URL, or change the project
-status from `building`. The subsequent owner-approved deployment attempt and
-its unresolved target/protection decision are recorded in `docs/STATE.md` and
-`docs/HANDOFF.md`.
+Signal Ledger is live for public review at
+`https://signal-ledger-workbench.vercel.app`. The active deployment is the
+canonical Vercel production alias recorded in `portfolio/release.json`; it is
+not a production or compliance claim.
 
 ## Public service boundary
 
@@ -22,18 +21,16 @@ its unresolved target/protection decision are recorded in `docs/STATE.md` and
 - No secret, token, database, worker, cron job, telemetry, local IBM source, or
   Elliptic resource is required by the application.
 
-## Owner checklist before any deployment
+## Release checklist
 
-1. Select and explicitly approve the Vercel account/team, project, plan, public
-   URL, release branch, and whether the release is preview or production.
-2. Install/login or provide a Vercel token outside source control, then link the
-   exact project with `vercel link --yes --project <project> --scope <team>`.
-   Never commit `.vercel/project.json`, `VERCEL_TOKEN`, org IDs, or project IDs.
-3. Run `vercel build --prod`, then review the built static workbench and the
-   single FastAPI Function before any `vercel deploy --prebuilt --prod` command.
-4. After an owner-approved deployment, run the Milestone I health, CORS,
-   synthetic-label, no-write, and local-only boundary probes before making any
-   public claim.
+1. Keep only the canonical verified production deployment plus any actively
+   reviewed preview; remove superseded deployments after verification.
+2. Never commit `.vercel/project.json`, `VERCEL_TOKEN`, organization IDs, or
+   project IDs.
+3. Before merging a release, run the repository verification suite and review
+   the generated static workbench and FastAPI Function.
+4. After deployment, verify readiness, CORS, synthetic labeling, GET-only
+   behavior, and the exclusion of Elliptic/local-source routes.
 
 ## Local readiness verification
 

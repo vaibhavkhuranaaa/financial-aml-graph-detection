@@ -12,15 +12,24 @@ AML analytics leaders, ML hiring managers, and risk/compliance recruiters review
 
 ## Product Purpose
 
-Signal Ledger is a recruiter-facing research workbench that demonstrates a time-bound transaction-monitoring review: timeline, bounded graph context, precomputed research rank, human rationale, and an audit record.
+Signal Ledger is a recruiter-facing research workbench that demonstrates a
+time-bound transaction-monitoring review: timeline, bounded topology,
+illustrative ordering, human rationale, and a browser-private audit record.
 
 ## Positioning
 
-It makes both a simulated escalation and a simulated closure inspectable using realistic synthetic banking data while exposing the data, model, and deployment limits in the same experience.
+It makes six simulated escalation/closure exercises inspectable using realistic
+synthetic banking data while exposing data, research, and deployment limits in
+the same experience.
 
 ## Capabilities and Constraints
 
-React and TypeScript front end; FastAPI public fixture API; precomputed scores and explanations only; browser-memory simulated decisions; strict response and graph limits; no live feeds or visitor-request inference. Elliptic remains local-only and must never be served. The project is building, non-production, and not compliance advice.
+React and TypeScript front end; FastAPI public fixture API; precomputed
+illustrative ordering and explanations only; browser-memory simulated decisions;
+strict response and topology limits; no live feeds or visitor-request inference.
+Elliptic rows, graphs, models, predictions, and reports remain local-only. The
+owner-approved aggregate summary is documentation only, never a workbench API
+feature. The project is non-production and not compliance advice.
 
 ## Evidence on Hand
 

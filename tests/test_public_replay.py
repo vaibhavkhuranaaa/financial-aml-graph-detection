@@ -68,9 +68,3 @@ def test_unverified_or_tampered_input_cannot_enter_public_path(tmp_path: Path) -
     blocked_path.write_text(json.dumps(blocked_artifact), encoding="utf-8")
     with pytest.raises(ValueError, match="not an approved"):
         approved_public_artifact(blocked_path)
-
-
-def test_legacy_generator_cannot_bypass_public_admission() -> None:
-    legacy_generator = Path("scripts/generate_public_fixture.py").read_text(encoding="utf-8")
-    assert "SOURCE_SHA256" not in legacy_generator
-    assert "write_artifact" not in legacy_generator

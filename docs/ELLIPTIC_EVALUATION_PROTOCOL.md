@@ -1,9 +1,10 @@
 # Local-only Elliptic evaluation protocol
 
-This protocol governs a future local research run. It is not an evaluation
-result, a public metric, a deployed capability, or evidence about real-world
-activity. Do not commit the Elliptic source, graph, model files, predictions,
-node/edge identifiers, or report; all remain local-only.
+This protocol governs local Elliptic research runs, including the completed
+aggregate-only run summarized in `docs/ELLIPTIC_EVALUATION_SUMMARY.md`. It is
+not a deployed capability or evidence about real-world activity. Do not commit
+the Elliptic source, graph, model files, predictions, node/edge identifiers, or
+full report; all remain local-only.
 
 ## Source gate
 
@@ -55,6 +56,8 @@ checksums.
 ## Claims and publication boundary
 
 The validator confirms structural completeness only; it does not verify a
-metric, model quality, or permitted publication. Public metrics, raw/derived
-Elliptic data, graphs, predictions, model artifacts, and any research claim
-remain prohibited until independently verified and explicitly owner-approved.
+metric, model quality, or permitted publication. Raw/derived Elliptic data,
+graphs, predictions, model artifacts, and any research claim remain prohibited
+until independently verified and explicitly owner-approved. The current approval
+is limited to the aggregate summary; it does not authorize public API metrics or
+research artifacts.
