@@ -1,0 +1,60 @@
+# Those patterns are held in .git/info/exclude, which is per clone and is not
+# published. Delivery state lives in the private sibling folder
+# ../financial-aml-graph-detection-ops
+
+# Data stays local. The bounded approved public fixture and the provenance
+# records are the only committed exceptions.
+data/*
+!data/.gitignore
+!data/.gitkeep
+!data/fixtures/
+!data/fixtures/public_casefile.json
+!data/fixtures/public_triage.json
+!data/provenance/
+!data/provenance/*.json
+*.csv
+*.tsv
+*.parquet
+*.xlsx
+*.xls
+*.db
+*.sqlite
+*.sqlite3
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.feather
+*.npz
+
+# Generated artifacts and evidence
+artifacts/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Frontend build dependencies and disposable output
+node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+public/
+dist/
+build/
+.vercel/
+
+# Operating system artifacts
+.DS_Store
+
+# Env
+.env
+.env.*
+!.env.example

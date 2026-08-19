@@ -1,0 +1,10 @@
+-r requirements.txt
+httpx==0.28.1
+pytest==8.4.2
+ruff==0.16.0
+
+# Pipeline only. The deployed runtime stays on requirements.txt, which the demo
+# serves from; nothing below reaches Vercel.
+polars==1.43.2
+pyarrow==24.0.0
+lightgbm==4.7.0

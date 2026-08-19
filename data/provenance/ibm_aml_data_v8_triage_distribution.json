@@ -1,0 +1,29 @@
+{
+  "schema": "signal-ledger-distribution-decision/v1",
+  "dataset": "IBM Transactions for Anti Money Laundering (AML)",
+  "dataset_version": 8,
+  "provider": "IBM / Erik Altman",
+  "source_ref": "https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml/versions/8",
+  "source_metadata_checked_at": "2026-08-17",
+  "license": "CDLA-Sharing-1.0",
+  "license_url": "https://cdla.dev/sharing-1-0/",
+  "classification": "A selected and pseudonymized subset is Enhanced Data, not an unrestricted Result.",
+  "scope_requested": "One review period of the alert store, carried whole, with each alert's pseudonymized subject, its computed trigger quantities, a bounded sample of its contributing transactions, its position under each baseline ordering and under the learned ranker, and its simulated outcome.",
+  "why_a_separate_decision": "The approved replay decision covers bounded replay artifacts of 55 transactions across six cases. The triage slice is a different and much larger selection, and an approval granted for one scope never carries over to another.",
+  "publication_conditions": [
+    "Publish the artifact under CDLA-Sharing-1.0.",
+    "Carry a prominent modification, selection, and pseudonymization notice.",
+    "Retain IBM / Erik Altman attribution and source hyperlink.",
+    "Provide the CDLA-Sharing-1.0 text or a reliable hyperlink.",
+    "Admit only an artifact reproduced from a verified local source manifest.",
+    "Publish computed trigger quantities only; the tuned rule parameter values stay private and are described by name, unit and direction of effect."
+  ],
+  "public_distribution_status": "approved",
+  "approved_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+  "verified_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+  "owner_approval": {
+    "approved_at": "2026-08-17",
+    "scope": "One review period of the Signal Ledger triage artifact, derived from the exact verified HI-Small v8 source checksum only, under the publication conditions recorded above. This approval does not extend to any other period, to the LI-Small variant, to the alert store, to the feature table, or to the tuned rule parameter values."
+  },
+  "blocker": null
+}

@@ -1,0 +1,13 @@
+services:
+  workbench:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_MODE=public-synthetic-fixture
+      - SIGNAL_LEDGER_CORS_ORIGINS=
+    read_only: true
+    tmpfs:
+      - /tmp

@@ -1,0 +1,37 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - uses: actions/setup-node@v4
+        with: {node-version: "22"}
+      - name: Verify API contract
+        run: |
+          pip install -r requirements-dev.txt
+          pytest -q
+          ruff check src scripts tests
+          python scripts/verify_release.py
+      - name: Verify workbench build
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run lint
+          npm run build
+      - name: Verify container readiness
+        run: |
+          docker compose -f docker/docker-compose.yml config
+          docker build --tag signal-ledger-workbench --file docker/Dockerfile .
+          docker run --detach --name signal-ledger-workbench --read-only --tmpfs /tmp -p 8000:8000 -e APP_MODE=public-synthetic-fixture -e SIGNAL_LEDGER_CORS_ORIGINS= signal-ledger-workbench
+          for attempt in $(seq 1 20); do curl --fail --silent --show-error http://127.0.0.1:8000/api/readiness && exit 0; sleep 1; done; exit 1
+      - name: Remove verification container
+        if: always()
+        run: docker rm --force signal-ledger-workbench || true

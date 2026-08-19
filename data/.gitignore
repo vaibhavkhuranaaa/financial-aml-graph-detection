@@ -1,0 +1,8 @@
+*
+!fixtures/
+!fixtures/public_casefile.json
+!fixtures/public_triage.json
+!provenance/
+!provenance/*.json
+!.gitignore
+!.gitkeep

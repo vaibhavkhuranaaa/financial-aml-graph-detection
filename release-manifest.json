@@ -1,0 +1,49 @@
+{
+  "schema": "signal-ledger-release/v1",
+  "version": "1.2.0",
+  "product": "public-replay-and-approved-triage-period",
+  "publication_gate": "project-owner-approval",
+  "release_notes": "docs/releases/1.2.0.md",
+  "runtime_mode": "public-synthetic-fixture",
+  "artifact": {
+    "path": "data/fixtures/public_casefile.json",
+    "schema": "signal-ledger-public-replay/v1",
+    "sha256": "e78b20e8445a7e818c95af6216258487c46cf59ac061c6fcef531f45e10b0160",
+    "pipeline_run_id": "098fc76310d08f4263fb91e1ba772c7e976444e72eff18a9502f11e930f74140",
+    "cases": 6,
+    "transactions": 55
+  },
+  "source": {
+    "manifest": "data/provenance/ibm_aml_data_v8_source.json",
+    "distribution_decision": "data/provenance/ibm_aml_data_v8_distribution.json",
+    "metadata_checked_at": "2026-08-17",
+    "dataset_version": 8,
+    "license": "CDLA-Sharing-1.0"
+  },
+  "public_contract": {
+    "read_only": true,
+    "request_inference": false,
+    "visitor_persistence": false,
+    "required_routes": [
+      "/api/health",
+      "/api/readiness",
+      "/api/cases",
+      "/api/provenance",
+      "/api/triage/period",
+      "/api/triage/evidence",
+      "/api/triage/queue"
+    ],
+    "refused_routes": [],
+    "refusal_rule": "Any artifact that is not the pinned release is refused with HTTP 503, whether or not it carries an approved distribution decision."
+  },
+  "triage_artifact": {
+    "path": "data/fixtures/public_triage.json",
+    "schema": "signal-ledger-public-triage/v1",
+    "sha256": "6a70f44fcce9962e320bb597ec5ce65abe64157aa912c1c10922c15163df4a5f",
+    "distribution_decision": "data/provenance/ibm_aml_data_v8_triage_distribution.json",
+    "review_periods": 1,
+    "period_start": "2022-09-07",
+    "alerts": 749,
+    "scope": "One review period of the HI-Small variant. No other period, not LI-Small, not the alert store, not the feature table, and not the tuned rule parameter values."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "dataset": "IBM Transactions for Anti Money Laundering (AML)",
+  "dataset_version": 8,
+  "license": "CDLA-Sharing-1.0",
+  "license_url": "https://cdla.dev/sharing-1-0/",
+  "provider": "IBM / Erik Altman",
+  "retrieved_at": "2026-08-12T00:00:00Z",
+  "schema": "signal-ledger-source-manifest/v1",
+  "source_file": "LI-Small_Trans.csv",
+  "source_ref": "https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml/versions/8",
+  "source_schema": [
+    "Timestamp",
+    "From Bank",
+    "Account",
+    "To Bank",
+    "Account",
+    "Amount Received",
+    "Receiving Currency",
+    "Amount Paid",
+    "Payment Currency",
+    "Payment Format",
+    "Is Laundering"
+  ],
+  "source_sha256": "f7a9940339c78b5d1476071505b5867c0f5319640b9c4279d13f531bf965319d",
+  "verification_status": "verified"
+}

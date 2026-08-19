@@ -1,0 +1,12 @@
+.git
+.github
+.venv
+.pytest_cache
+.ruff_cache
+artifacts
+docs
+tests
+docker
+data/provenance
+data/raw
+frontend/node_modules
