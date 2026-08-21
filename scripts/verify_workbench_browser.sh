@@ -13,13 +13,13 @@ fi
 
 "$browser_cli" open "$base_url"
 "$browser_cli" wait --load networkidle
-"$browser_cli" eval 'document.body.innerText.includes("Signal Ledger") ? "HAS_CONTENT" : "BLANK"'
+"$browser_cli" eval '/Signal Ledger/i.test(document.body.innerText) ? "HAS_CONTENT" : "BLANK"'
 "$browser_cli" eval 'document.querySelector("[data-nextjs-dialog], .vite-error-overlay, #webpack-dev-server-client-overlay") ? "ERROR_OVERLAY" : "NO_ERROR_OVERLAY"'
 "$browser_cli" snapshot -i
 "$browser_cli" find label "Simulated reviewer rationale" fill "Browser E2E simulated rationale."
 "$browser_cli" find role button click --name "Simulate escalation"
-"$browser_cli" eval 'document.body.innerText.includes("saved in this browser only") ? "LOCAL_RECORD_SAVED" : "LOCAL_RECORD_MISSING"'
+"$browser_cli" eval '/saved in this browser only/i.test(document.body.innerText) ? "LOCAL_RECORD_SAVED" : "LOCAL_RECORD_MISSING"'
 "$browser_cli" find role button click --name "Reset my local records"
-"$browser_cli" eval 'document.body.innerText.includes("read-only example remains") ? "LOCAL_RESET_COMPLETE" : "LOCAL_RESET_MISSING"'
+"$browser_cli" eval '/read-only example remains/i.test(document.body.innerText) ? "LOCAL_RESET_COMPLETE" : "LOCAL_RESET_MISSING"'
 "$browser_cli" eval 'document.querySelectorAll("button, input, select, textarea, [role=button]").length > 0 ? "INTERACTIVE_CONTROLS_PRESENT" : "MISSING_INTERACTIVE_CONTROLS"'
 "$browser_cli" close

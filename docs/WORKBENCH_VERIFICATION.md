@@ -78,6 +78,14 @@ The evidence block adds five: `EVIDENCE_RENDERED`, `FUNNEL_STATES_THE_LOSS`,
 `BOTH_DENOMINATORS_SHOWN`, `COSTLIER_PERIODS_VISIBLE`, which proves a period that
 cost volume keeps its negative sign on screen, and `PER_PERIOD_VOLUME_SHOWN`.
 
+The row budget adds four. The queue renders a bounded number of rows and offers a
+control to extend it. `BUDGET_NAMES_ITS_COUNT` proves that control states the
+exact number it is holding back and says rank is not the reason,
+`WHOLE_PERIOD_RENDERED` proves taking it leaves every alert in the period on
+screen with the ranks contiguous, and `CUT_LINE_SURVIVES_THE_BUDGET` proves the
+line is still drawn afterwards. A budget is a rendering decision; the failure
+these catch is a budget that reads as a filter.
+
 The view controls add four more. `CUT_LINE_SURVIVES_NARROWING` proves a narrowed
 view still draws the cut line, `NARROWED_VIEW_STATED` proves it says how many
 alerts it is not showing and that they remain workable,
@@ -88,6 +96,22 @@ no control on the surface reads as removing, clearing or dismissing an alert.
 `EXPORT_CARRIES_CLAIMS_BOUNDARY` cover the review record export. The journey does
 not click the export itself, because a real download would leave a file on the
 verifying machine.
+
+## What the journey asserts, and what case it asserts it in
+
+Every content assertion in both journeys matches case insensitively.
+`innerText` returns the text as rendered, so a CSS `text-transform` decides its
+case, and a case sensitive match against uppercased copy can never pass however
+correct the surface is. Two assertions were written that way and were executed
+for the first time on 2026-08-21, against the deployed release rather than a
+local build: `BOTH_DENOMINATORS_SHOWN` read the evidence table header, and
+`EXPORT_STATES_LOCAL_BOUNDARY` read the review record boundary line. Both are
+uppercased in the stylesheet. Neither surface was wrong. Both assertions were.
+
+Case belongs to presentation and these assertions are about content, so they now
+match case insensitively, and any new one should. An assertion about
+presentation, such as `RANK_HAS_NO_COLOUR_SCALE`, still reads computed style,
+which is the right source for a question about how something is drawn.
 
 Confirm the public boundary in the same session. Against the committed artifact
 the triage route serves; against any rebuild it refuses, and the replay workbench

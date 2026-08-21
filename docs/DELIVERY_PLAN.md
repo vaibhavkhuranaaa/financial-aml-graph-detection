@@ -154,6 +154,9 @@ The full IBM source is neither committed nor served.
 - A narrowed queue view still draws the cut line, states the count it is not
   showing, leaves every capacity number computed on the whole period, and puts no
   suppression word anywhere on the surface.
+- The queue's row budget names the exact count it holds back and says rank is not
+  the reason, and extending it renders the whole period with contiguous ranks and
+  the cut line still drawn.
 - Deployment readiness reports approved artifact delivery with no inference and
   no visitor persistence.
 - The release verifier proves the local fixture contract and can compare the
