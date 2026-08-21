@@ -118,6 +118,15 @@ textarea { width: calc(100% - 32px); min-height: 120px; margin: 0 16px; resize: 
 @keyframes sweep { to { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
 @media (max-width: 1060px) { .workbench { grid-template-columns: minmax(220px, .72fr) 1.4fr; } .evidence-panel { grid-column: 1 / -1; border-top: 1px solid #405059; border-left: 0; display: grid; grid-template-columns: .8fr 1.2fr; } .evidence-panel .panel-heading, .evidence-panel .uncertainty, .evidence-panel .next-step, .evidence-panel .inline-error { grid-column: 1; } .evidence-panel .evidence-list { grid-column: 2; grid-row: 1 / span 4; margin: 16px; align-self: start; } }
+/* Wide data tables scroll inside their own container rather than pushing the page
+   sideways. The queue row keeps six columns only while they fit; its collapse band
+   starts where they stop fitting, not at the general phone breakpoint. */
+.table-scroll { max-width: 100%; overflow-x: auto; }
+@media (max-width: 820px) { .queue-row { grid-template-columns: 40px minmax(0, 1fr); gap: 6px 10px; } .queue-row .alert-id, .queue-row .rule-pills, .queue-row .subject, .queue-row .amount, .queue-row .status { grid-column: 2; } .queue-row .amount { text-align: left; } }
+/* The section grids hold column minimums that together need 910px of viewport.
+   The single column collapse below starts at 760, which left the band between
+   them overflowing sideways. Collapsing them here closes it. */
+@media (max-width: 920px) { .audit-section, .topology-section, .method { grid-template-columns: 1fr; gap: 28px; } }
 @media (max-width: 760px) { main { padding: 20px 16px 46px; } button, input, select, textarea { min-height: 44px; } .masthead, .opening, .audit-section, .topology-section, .method { grid-template-columns: 1fr; gap: 28px; } .masthead { align-items: flex-start; flex-direction: column; } .opening { padding: 34px 0; } .opening h2 { font-size: clamp(2rem, 11vw, 2.65rem); } .workbench, .audit-workspace { grid-template-columns: 1fr; } .queue, .evidence-panel, .audit-form { border: 0; border-bottom: 1px solid #405059; } .evidence-panel { display: block; } .evidence-panel .evidence-list { margin: 0; } .audit-section, .topology-section, .method { padding: 46px 0 0; } .topology-frame, .graph, .graph-empty { min-height: 320px; height: 320px; } .timeline time { width: 98px; flex-basis: 98px; } .timeline strong { display: none; } .replay-controls label { margin-left: 0; } }
 @media (max-width: 460px) { .masthead h1 { font-size: 2.25rem; } .timeline { padding: 5px 10px 0; } .timeline button { gap: 8px; } .timeline time { width: 82px; flex-basis: 82px; font-size: .58rem; } .transaction b { font-size: .69rem; } .topology-frame, .graph, .graph-empty { min-height: 270px; height: 270px; } }
 

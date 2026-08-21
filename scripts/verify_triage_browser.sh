@@ -33,6 +33,10 @@ fi
 "$browser_cli" eval '/Structural zero/i.test(document.body.innerText) ? "STRUCTURAL_ZERO_RENDERED" : "STRUCTURAL_ZERO_MISSING"'
 "$browser_cli" eval '/Neither means a crime occurred/i.test(document.body.innerText) ? "CLAIMS_COPY_PRESENT" : "CLAIMS_COPY_MISSING"'
 
+# Nothing pushes the page sideways. The width bands are swept by hand, since this
+# journey runs at one viewport; this catches a gross regression at that one.
+"$browser_cli" eval '(() => { const de = document.documentElement; return document.body.scrollWidth > de.clientWidth + 1 ? "PAGE_SCROLLS_SIDEWAYS" : "NO_HORIZONTAL_SCROLL"; })()'
+
 # The evidence block states where the attempts are lost, before the queue is read.
 "$browser_cli" eval 'document.querySelector(".evidence") ? "EVIDENCE_RENDERED" : "EVIDENCE_MISSING"'
 "$browser_cli" eval '/lost here/i.test(document.querySelector(".funnel").innerText) ? "FUNNEL_STATES_THE_LOSS" : "FUNNEL_SILENT"'

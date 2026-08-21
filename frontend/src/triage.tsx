@@ -338,7 +338,8 @@ function Evidence({ data, referenceRung, k }: { data: EvidenceResponse["evidence
       <p className="limitation">{funnel.statement}</p>
 
       <h4>Every week is a different week</h4>
-      <table className="typology-table">
+      <div className="table-scroll">
+        <table className="typology-table">
         <caption>
           Alert volume against a capacity that does not move. Coverage is what a fixed team actually
           sees of that period.
@@ -367,6 +368,7 @@ function Evidence({ data, referenceRung, k }: { data: EvidenceResponse["evidence
           ))}
         </tbody>
       </table>
+        </div>
       <p className="limitation">
         Volume swings {count(Math.min(...per_period.map((r) => r.alerts)))} to {count(peak)} alerts.
         At a capacity that does not move, that is {share(worst.coverage)} of the {worst.period_start}{" "}
@@ -375,7 +377,8 @@ function Evidence({ data, referenceRung, k }: { data: EvidenceResponse["evidence
       </p>
 
       <h4>Two denominators, because they answer different questions</h4>
-      <table className="typology-table">
+      <div className="table-scroll">
+        <table className="typology-table">
         <caption>
           Recall against every live attempt scores the rules. Recall of what the rules surfaced
           scores the ordering. Reporting only the first blames the ranking for a population it never
@@ -406,9 +409,11 @@ function Evidence({ data, referenceRung, k }: { data: EvidenceResponse["evidence
           ))}
         </tbody>
       </table>
+        </div>
 
       <h4>The line that carries the result</h4>
-      <table className="typology-table">
+      <div className="table-scroll">
+        <table className="typology-table">
         <caption>
           Flagged alerts no injected attempt claims. The population is the same{" "}
           {count(unattributed.alerts_in_population)} for every ordering, and per typology recall
@@ -431,10 +436,12 @@ function Evidence({ data, referenceRung, k }: { data: EvidenceResponse["evidence
           ))}
         </tbody>
       </table>
+        </div>
       <p className="limitation">{unattributed.statement}</p>
 
       <h4>The volume claim, unpooled</h4>
-      <table className="typology-table">
+      <div className="table-scroll">
+        <table className="typology-table">
         <caption>
           Volume freed against {volume_reduction.reference_rung} at equal coverage. A negative figure
           means the challenger cost more, not less, and the sign is kept rather than smoothed away.
@@ -463,6 +470,7 @@ function Evidence({ data, referenceRung, k }: { data: EvidenceResponse["evidence
           ))}
         </tbody>
       </table>
+        </div>
       <p className="limitation">
         Pooled, the alert based reduction is {share(volume_reduction.pooled)}. Per period the attempt
         based measure is negative in {negativePeriods.length} of{" "}
@@ -842,7 +850,8 @@ export function TriageDesk() {
               </dd>
             </div>
           </dl>
-          <table className="typology-table">
+          <div className="table-scroll">
+        <table className="typology-table">
             <caption>
               Attempts recovered at this depth, by injected typology. Live and surfaced counts are
               for this review period.
@@ -873,6 +882,7 @@ export function TriageDesk() {
               })}
             </tbody>
           </table>
+        </div>
           <p className="limitation">
             No rule raised an alert on the typologies showing zero surfaced attempts in this period,
             so no ordering can recover them. That is a property of the alert population, not of the
@@ -1093,7 +1103,8 @@ export function TriageDesk() {
 
           <h4>Contributing transactions</h4>
           <p className="field-note">{detail.transaction_bound_note}</p>
-          <table className="txn-table">
+          <div className="table-scroll">
+        <table className="txn-table">
             <thead>
               <tr>
                 <th scope="col">Time</th>
@@ -1117,6 +1128,7 @@ export function TriageDesk() {
               ))}
             </tbody>
           </table>
+        </div>
 
           <h4>Simulated outcome</h4>
           <p>
@@ -1229,6 +1241,7 @@ export function TriageDesk() {
             <h3>What each rule means, what it costs, and what it can reach</h3>
           </div>
         </div>
+        <div className="table-scroll">
         <table className="typology-table">
           <caption>
             Alert volume is a measured cost. A rule with no injected counterpart carries an attempt
@@ -1266,6 +1279,7 @@ export function TriageDesk() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
     </section>
   );

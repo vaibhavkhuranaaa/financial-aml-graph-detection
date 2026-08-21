@@ -35,6 +35,19 @@ timeline, audit, topology, and provenance ordering; use keyboard Tab/Enter to
 reach case, replay, simulated-record, and topology controls. Reduced-motion
 behavior is supplied by the workbench stylesheet.
 
+Sweep the widths rather than checking two of them. Both surfaces are swept at 320,
+360, 390, 430, 500, 560, 620, 700, 760, 761, 800, 850, 900, 920, 921, 1000, 1060,
+1100, 1280, 1440 and 1920, asserting that `document.body.scrollWidth` never
+exceeds the viewport. The values on either side of each breakpoint are the point:
+the overflow this caught in 1.2.1 lived entirely between 761 and 900, which is
+invisible if you check a phone and a desktop and nothing in between. Each journey
+also carries `NO_HORIZONTAL_SCROLL` for the width it happens to run at.
+
+The tab order is walked in full at the wide viewport, confirming every stop takes
+a visible focus ring, no element carries a positive tabindex, and DOM order tracks
+visual order. Inversions inside the topology graph are expected: those nodes are
+placed by the layout, not by the document.
+
 ## The triage desk
 
 The triage desk serves in both application modes now that the owner has recorded

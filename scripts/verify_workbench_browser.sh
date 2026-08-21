@@ -15,6 +15,7 @@ fi
 "$browser_cli" wait --load networkidle
 "$browser_cli" eval '/Signal Ledger/i.test(document.body.innerText) ? "HAS_CONTENT" : "BLANK"'
 "$browser_cli" eval 'document.querySelector("[data-nextjs-dialog], .vite-error-overlay, #webpack-dev-server-client-overlay") ? "ERROR_OVERLAY" : "NO_ERROR_OVERLAY"'
+"$browser_cli" eval '(() => { const de = document.documentElement; return document.body.scrollWidth > de.clientWidth + 1 ? "PAGE_SCROLLS_SIDEWAYS" : "NO_HORIZONTAL_SCROLL"; })()'
 "$browser_cli" snapshot -i
 "$browser_cli" find label "Simulated reviewer rationale" fill "Browser E2E simulated rationale."
 "$browser_cli" find role button click --name "Simulate escalation"
