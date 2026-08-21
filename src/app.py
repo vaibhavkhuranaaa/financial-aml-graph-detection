@@ -71,7 +71,7 @@ APPROVED_PUBLIC_PIPELINE_RUN_ID = (
 # mode only: a local workbench exists to run an artifact an operator just built,
 # and there it would refuse the very thing it is for.
 APPROVED_TRIAGE_ARTIFACT_SHA256 = (
-    "6a70f44fcce9962e320bb597ec5ce65abe64157aa912c1c10922c15163df4a5f"
+    "0cadbdea5025824576c1620d9bafe6aa1fc965d0e9c42dfe87574eeedcf7540e"
 )
 Rail = Literal["ACH", "Cash", "Cheque", "Credit Card"]
 ERROR_RESPONSES = {
@@ -164,7 +164,7 @@ def triage_alert(alert_id: str) -> dict:
 
 app = FastAPI(
     title="Signal Ledger",
-    version="1.2.1",
+    version="1.3.0",
     docs_url=None,
     redoc_url=None,
     openapi_url=None,

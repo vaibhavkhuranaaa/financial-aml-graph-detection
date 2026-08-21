@@ -26,7 +26,7 @@ import polars as pl
 
 from src.pipeline import rules
 
-ENGINE_VERSION = "rules-engine/1"
+ENGINE_VERSION = "rules-engine/2"
 
 ALERT_SCHEMA = [
     "alert_id",

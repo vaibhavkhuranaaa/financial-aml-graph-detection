@@ -22,8 +22,14 @@
   "approved_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
   "verified_source_sha256": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
   "owner_approval": {
-    "approved_at": "2026-08-17",
-    "scope": "One review period of the Signal Ledger triage artifact, derived from the exact verified HI-Small v8 source checksum only, under the publication conditions recorded above. This approval does not extend to any other period, to the LI-Small variant, to the alert store, to the feature table, or to the tuned rule parameter values."
+    "approved_at": "2026-08-21",
+    "engine_version": "rules-engine/2",
+    "scope": "One review period of the Signal Ledger triage artifact, derived from the exact verified HI-Small v8 source checksum only, under the publication conditions recorded above. This approval does not extend to any other period, to the LI-Small variant, to the alert store, to the feature table, or to the tuned rule parameter values.",
+    "supersedes": {
+      "approved_at": "2026-08-17",
+      "engine_version": "rules-engine/1",
+      "reason": "That approval covered a slice built by rules engine version 1. The engine was rebuilt as version 2, widening the fan rules to a three period counterparty window, which changes the alert population the slice is drawn from. The source file, its checksum, the variant and the review period are unchanged, and so are the publication conditions. A slice drawn from a different alert population is a different slice, so it is approved explicitly rather than carried across."
+    }
   },
   "blocker": null
 }

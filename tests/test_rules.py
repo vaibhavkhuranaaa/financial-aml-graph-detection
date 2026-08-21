@@ -211,3 +211,42 @@ def test_threshold_rules_ignore_other_currencies(rule):
         ]
     )
     assert getattr(rules, rule)(frame, rules.Parameters()).height == 0
+
+def test_fan_window_counts_across_periods_but_never_reaches_forward():
+    """The trailing window is what lets a fan spread over days fire at all.
+
+    It must also never see a transaction that had not happened yet: an alert
+    raised on day one cannot be evidenced by day two's counterparties, or the
+    feature build downstream would be training on the future.
+    """
+    spread = txns(
+        [txn(0, 9, f"S{i}", "B", 100.0, day=1) for i in range(2)]
+        + [txn(10 + i, 9, f"T{i}", "B", 100.0, day=2) for i in range(2)]
+    )
+    params = rules.Parameters().replace(r3_min_originators=4, r3_window_periods=3)
+
+    fired = rules.r3_fan_in(spread, params)
+    periods = fired.select(rules.PERIOD).to_series().to_list()
+    assert len(periods) == 1, "only the period whose trailing window holds four fires"
+    assert str(periods[0]) == "2022-09-02"
+
+    narrow = rules.r3_fan_in(spread, params.replace(r3_window_periods=1))
+    assert narrow.height == 0, "two counterparties a day never reach a threshold of four"
+
+
+def test_fan_window_of_one_period_is_the_single_day_rule():
+    same_day = txns([txn(i, i + 1, f"S{i}", "B", 100.0) for i in range(4)])
+    params = rules.Parameters().replace(r3_min_originators=3, r3_window_periods=1)
+    assert rules.r3_fan_in(same_day, params).height == 1
+
+
+def test_fan_evidence_records_the_window_it_counted_over():
+    fan = txns([txn(i, i + 1, f"S{i}", "B", 100.0) for i in range(4)])
+    params = rules.Parameters().replace(r3_min_originators=3, r3_window_periods=3)
+    import json
+
+    evidence = json.loads(
+        rules.r3_fan_in(fan, params).select(rules.EVIDENCE).to_series().to_list()[0]
+    )
+    assert evidence["window_periods"] == 3
+    assert evidence["minimum_counterparties"] == 3

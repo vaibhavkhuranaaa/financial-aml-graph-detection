@@ -42,9 +42,11 @@ class Parameters:
     r2_min_amount: float = 20_000.0
     r2_max_hours: float = 12.0
     # R3 fan in
-    r3_min_originators: int = 12
+    r3_min_originators: int = 18
+    r3_window_periods: int = 3
     # R4 fan out
-    r4_min_beneficiaries: int = 12
+    r4_min_beneficiaries: int = 18
+    r4_window_periods: int = 3
     # R5 round dollar repetition
     r5_multiple: float = 1.0
     r5_min_amount: float = 100.0
@@ -216,28 +218,66 @@ def r2_rapid_movement(txns: pl.DataFrame, params: Parameters) -> pl.DataFrame:
     return _alerts(grouped, "R2", ["pairs", "largest_pass_through", "tolerance"])
 
 
-def _fan(txns: pl.DataFrame, subject: str, counterparty: str, minimum: int, rule: str) -> pl.DataFrame:
+def _fan(
+    txns: pl.DataFrame,
+    subject: str,
+    counterparty: str,
+    minimum: int,
+    window_periods: int,
+    rule: str,
+) -> pl.DataFrame:
+    """Distinct counterparties over a trailing window of review periods.
+
+    The window ends at the period the alert is raised in and never reaches
+    forward, so an alert is evidenced only by transactions that had already
+    happened when it fired. A window of one period is the single day behaviour.
+    """
+    daily = txns.group_by(pl.col(subject).alias(SUBJECT), PERIOD).agg(
+        pl.col(counterparty).alias("counterparty_list"),
+        pl.col("amount").sum().round(2).alias("period_total"),
+        pl.col("txn_id").alias("period_txns"),
+    )
     grouped = (
-        txns.group_by(pl.col(subject).alias(SUBJECT), PERIOD)
+        daily.sort(PERIOD)
+        .rolling(index_column=PERIOD, period=f"{window_periods}d", group_by=SUBJECT)
         .agg(
-            pl.col(counterparty).n_unique().alias("counterparties"),
-            pl.col("amount").sum().round(2).alias("total"),
-            pl.col("txn_id").alias(TXNS),
+            pl.col("counterparty_list").explode().n_unique().alias("counterparties"),
+            pl.col("period_total").sum().round(2).alias("total"),
+            pl.col("period_txns").explode().unique().sort().alias(TXNS),
         )
         .filter(pl.col("counterparties") >= minimum)
-        .with_columns(pl.lit(minimum).alias("minimum_counterparties"))
+        .with_columns(
+            pl.lit(minimum).alias("minimum_counterparties"),
+            pl.lit(window_periods).alias("window_periods"),
+        )
     )
-    return _alerts(grouped, rule, ["counterparties", "total", "minimum_counterparties"])
+    return _alerts(
+        grouped, rule, ["counterparties", "total", "minimum_counterparties", "window_periods"]
+    )
 
 
 def r3_fan_in(txns: pl.DataFrame, params: Parameters) -> pl.DataFrame:
-    """Many distinct originators paying one beneficiary inside a period."""
-    return _fan(txns, "to_account", "from_account", params.r3_min_originators, "R3")
+    """Many distinct originators paying one beneficiary across the trailing window."""
+    return _fan(
+        txns,
+        "to_account",
+        "from_account",
+        params.r3_min_originators,
+        params.r3_window_periods,
+        "R3",
+    )
 
 
 def r4_fan_out(txns: pl.DataFrame, params: Parameters) -> pl.DataFrame:
-    """One originator paying many distinct beneficiaries inside a period."""
-    return _fan(txns, "from_account", "to_account", params.r4_min_beneficiaries, "R4")
+    """One originator paying many distinct beneficiaries across the trailing window."""
+    return _fan(
+        txns,
+        "from_account",
+        "to_account",
+        params.r4_min_beneficiaries,
+        params.r4_window_periods,
+        "R4",
+    )
 
 
 def r5_round_dollar(txns: pl.DataFrame, params: Parameters) -> pl.DataFrame:

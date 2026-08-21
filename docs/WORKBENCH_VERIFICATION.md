@@ -63,7 +63,7 @@ Build the artifact from the local pipeline outputs:
 uv run python -m scripts.build_triage_artifact \
   --transactions <local HI-Small_Trans.csv> \
   --patterns <local HI-Small_Patterns.txt> \
-  --store data/alerts/rules-engine-1_<param set hash> \
+  --store data/alerts/rules-engine-2_<param set hash> \
   --features data/features/alert-features-1.parquet \
   --source-manifest data/provenance/ibm_aml_data_v8_source.json
 ```

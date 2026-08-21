@@ -1,9 +1,9 @@
 {
   "schema": "signal-ledger-release/v1",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "product": "public-replay-and-approved-triage-period",
   "publication_gate": "project-owner-approval",
-  "release_notes": "docs/releases/1.2.1.md",
+  "release_notes": "docs/releases/1.3.0.md",
   "runtime_mode": "public-synthetic-fixture",
   "artifact": {
     "path": "data/fixtures/public_casefile.json",
@@ -39,11 +39,12 @@
   "triage_artifact": {
     "path": "data/fixtures/public_triage.json",
     "schema": "signal-ledger-public-triage/v1",
-    "sha256": "6a70f44fcce9962e320bb597ec5ce65abe64157aa912c1c10922c15163df4a5f",
+    "sha256": "0cadbdea5025824576c1620d9bafe6aa1fc965d0e9c42dfe87574eeedcf7540e",
     "distribution_decision": "data/provenance/ibm_aml_data_v8_triage_distribution.json",
     "review_periods": 1,
     "period_start": "2022-09-07",
-    "alerts": 749,
-    "scope": "One review period of the HI-Small variant. No other period, not LI-Small, not the alert store, not the feature table, and not the tuned rule parameter values."
+    "alerts": 623,
+    "scope": "One review period of the HI-Small variant. No other period, not LI-Small, not the alert store, not the feature table, and not the tuned rule parameter values.",
+    "engine_version": "rules-engine/2"
   }
 }

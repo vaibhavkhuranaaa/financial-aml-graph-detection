@@ -2,7 +2,7 @@
 
 **No model shipped.** A learned ranker was built, trained, measured against a
 four rung baseline ladder, and not promoted. It beat every rung. Its lift over
-the strongest one was 1.2333 with a 95 percent interval of 1.1045 to 1.3967,
+the strongest one was 1.2444 with a 95 percent interval of 1.1460 to 1.3359,
 against a ship gate of 1.3 that was written down before the model existed. The
 improvement is real and it is not enough, so the deliverable is the rules engine,
 the ladder, the measured negative, and the workbench the result is read on. This
@@ -67,10 +67,10 @@ per period.** Ten daily periods in the study window, the first three reserved as
 the minimum training window, seven evaluation periods, 882 worked alerts in
 total.
 
-The rules engine emits 9,171 alerts over the ten periods, 917.1 per period,
+The rules engine emits 7,912 alerts over the ten periods, 791.2 per period,
 inside the 640 to 960 band it was parameterised to. The seven evaluation periods
-carry 5,715 alerts of which 223 are true positives, a population base rate of
-**3.902 percent**. That base rate is the structural ceiling on everything below,
+carry 4,961 alerts of which 204 are true positives, a population base rate of
+**4.112 percent**. That base rate is the structural ceiling on everything below,
 and it is lower than the 4.5 percent estimated before the data was profiled.
 
 ## What was measured
@@ -81,50 +81,52 @@ figure.
 
 | Ordering | True positives | Precision at K | 95 percent interval |
 | --- | --- | --- | --- |
-| B0 random | 41 | 4.65 percent | 3.40 to 6.01 |
-| B1 chronological, oldest first | 100 | 11.34 percent | 9.30 to 13.49 |
-| B2 alert amount descending | 120 | 13.61 percent | 11.45 to 15.99 |
-| B3 rules only priority | 102 | 11.56 percent | 9.30 to 13.61 |
-| B3 with no shrinkage, published beside it | 94 | 10.66 percent | not a reported rung |
-| C1 learned ranker | 148 | 16.78 percent | 14.51 to 19.16 |
+| B0 random | 61 | 6.92 percent | 5.33 to 8.50 |
+| B1 chronological, oldest first | 125 | 14.17 percent | 11.68 to 16.67 |
+| B2 alert amount descending | 135 | 15.31 percent | 12.93 to 17.69 |
+| B3 rules only priority | 133 | 15.08 percent | 12.81 to 17.46 |
+| B3 with no shrinkage, published beside it | 121 | 13.72 percent | not a reported rung |
+| C1 learned ranker | 168 | 19.05 percent | 16.33 to 21.54 |
 
-**The first finding contradicted the plan.** Rules only priority, the rung the
-project named as the number to beat, is itself beaten by sorting on a single
-feature. B3 over B2 is 0.85 with a paired interval of 0.75 to 0.96, upper bound
-below one. B3 over B1 is 1.02, interval 0.97 to 1.06, which is no difference at
-all. Only B0 is clearly beaten, at 2.49. The rung a challenger has to beat was
-therefore fixed as B2 before the challenger was built, and that decision cost the
-model its promotion.
+**The first finding contradicted the plan, and the second engine did not rescue
+it.** Rules only priority, the rung the project named as the number to beat, does
+not beat sorting on a single feature. Under engine 1 it lost outright, 0.85 with
+an interval whose upper bound was below one. Under engine 2 it draws: B3 over B2
+is 0.9852 with a paired interval of 0.9231 to 1.0530, which spans one, so the two
+are not distinguishable. B3 over B1 is 1.0640, interval 1.0236 to 1.1154. Only B0
+is clearly beaten, at 2.1803. The rung a challenger has to beat was fixed as B2
+before the challenger was built, it is still the strongest rung, and that decision
+cost the model its promotion twice.
 
 **Every headline number, with its interval.**
 
 | Metric | Threshold | Result | Interval | Outcome |
 | --- | --- | --- | --- | --- |
-| Precision at K, as lift over B2 | 1.3 | 1.2333 | 1.1045 to 1.3967 | **Missed** |
-| Lift over every rung | above 1.0 | 1.2333 over B2, 1.4510 over B3, 1.4800 over B1, 3.6098 over B0 | lower bounds 1.1045, 1.2315, 1.2778, 2.2667 | Passed |
-| False positive reduction at held coverage | 20 percent | 46.26 percent | per period 7, 93, 61, 15, 108, 107 and 17 alerts freed of 126 | Passed |
+| Precision at K, as lift over B2 | 1.3 | 1.2444 | 1.1460 to 1.3359 | **Missed** |
+| Lift over every rung | above 1.0 | 1.2444 over B2, 1.2632 over B3, 1.3440 over B1, 2.7541 over B0 | lower bounds 1.1460, 1.1884, 1.2462, 2.0238 | Passed |
+| False positive reduction at held coverage | 20 percent | 59.07 percent | per period 42, 76, 83, 63, 105, 110 and 42 alerts freed of 126 | Passed |
 | Per typology recall against B3 | no supported typology more than 5 points below | worst drop 0.0 points | see the table below | Passed |
-| Rank stability across retrains | Spearman 0.70 | 0.9141 mean over six pairs | 0.9034 to 0.9299 | Passed |
-| Rules and model contribution split | reported, not gated | plus 5.22 precision points | rules only accounts for 102 of C1's 148 | Reported |
+| Rank stability across retrains | Spearman 0.70 | 0.9317 mean over six pairs | 0.8998 to 0.9514 | Passed |
+| Rules and model contribution split | reported, not gated | plus 3.97 precision points | rules only accounts for 133 of C1's 168 | Reported |
 | Leakage gate | binary | pass | proven to fail when it should | Passed |
 
 ## What failed, and why the gate was not moved
 
-C1 finds 148 true positives in the 882 alerts a team of six can work across seven
-periods, against 120 for sorting by amount. That is 28 more alerts worth opening,
+C1 finds 168 true positives in the 882 alerts a team of six can work across seven
+periods, against 135 for sorting by amount. That is 33 more alerts worth opening,
 and the paired interval against B2 excludes 1.0. The improvement is real.
 
-It is also 1.2333 rather than 1.3. The threshold was written before any model
+It is also 1.2444 rather than 1.3. The threshold was written before any model
 existed, precisely so that this call could not be argued afterwards. Three
 flattering readings were available and all three were declined.
 
-- **Report the lift against B3.** 1.4510 clears the gate. B3 is beaten by a
-  single feature sort, so a challenger that clears a rung nothing should be
+- **Report the lift against B3.** 1.2632 is the friendlier figure. B3 does not
+  beat a single feature sort, so a challenger that clears a rung nothing should be
   measured against has cleared nothing.
-- **Lower the threshold to 1.2.** Moving the ship gate after seeing 1.2333 is the
+- **Lower the threshold to 1.2.** Moving the ship gate after seeing 1.2444 is the
   failure mode the project was built to avoid.
-- **Promote on the interval.** The interval reaches 1.3967, so the true lift
-  might clear the gate. It might also be 1.1045. The gate is written on the point
+- **Promote on the interval.** The interval reaches 1.3359, so the true lift
+  might clear the gate. It might also be 1.1460. The gate is written on the point
   estimate with an interval condition attached, and both halves have to hold.
 
 **What C1 actually learned, and why the edge is modest.** By gain the model
@@ -142,27 +144,32 @@ definition held fixed.
 
 | Ordering | HI-Small precision at K | LI-Small precision at K |
 | --- | --- | --- |
-| B2 alert amount descending | 13.61 percent | 12.47 percent |
-| B3 rules only priority | 11.56 percent | 11.00 percent |
-| C1 learned ranker | 16.78 percent | 15.99 percent |
-| C1 lift over B2 | 1.2333, interval 1.1045 to 1.3967 | 1.2818, interval 1.1981 to 1.3761 |
+| B1 chronological | 14.17 percent | 16.10 percent |
+| B2 alert amount descending | 15.31 percent | 14.06 percent |
+| B3 rules only priority | 15.08 percent | 14.17 percent |
+| C1 learned ranker | 19.05 percent | 17.23 percent |
+| Strongest rung | B2 | **B1** |
+| C1 lift over the strongest rung | 1.2444, interval 1.1460 to 1.3359 | 1.0704, interval 0.9139 to 1.2441 |
 
-B2 is the strongest rung on both, so the reference the gate is measured against
-is not dataset specific. C1 beats every rung on both and misses the gate on both.
-False positive reduction is 51.47 percent there and rank stability is 0.9222,
-both passing.
+**The strongest rung is not the same one on both variants.** On HI-Small it is B2.
+On LI-Small it is B1 chronological, which is what the queue already does before
+anyone sorts it. Measured against it, C1's interval contains one: on the low
+prevalence variant the learned ranker is not distinguishable from working the
+queue in arrival order. Against B2 the same run reads 1.2258, which is the
+flattering comparison and is not the one that counts. False positive reduction is
+26.64 percent there and rank stability is 0.9014, both passing.
 
 **On LI-Small it also fails a second criterion.** The per typology floor permits a
-supported typology to sit at most 5 recall points below B3. There, B3 recovers
-one CYCLE attempt of twelve and one SCATTER-GATHER attempt of twelve, and C1
-recovers neither, a drop of 8.3333 points. On that variant the model misses two
-of the three ship criteria rather than one.
+supported typology to sit at most 5 recall points below B3. There, B3 recovers one
+GATHER-SCATTER attempt of ten and one SCATTER-GATHER attempt of twelve, and C1
+recovers neither, a worst drop of 10.00 points. On that variant the model misses
+two of the three ship criteria rather than one.
 
 Two things about that comparison are recorded rather than smoothed over. The
 perturbation attenuates: a 44 percent cut in transaction level prevalence, from
-0.10061 to 0.05602 percent in the study window, becomes only a 21 percent cut in
-the alert population base rate, because the rules select for structure and
-structure survives the variant. And K stays at 126 because K is analyst hours, so
+0.10061 to 0.05602 percent in the study window, becomes only a 22 percent cut in
+the alert population base rate, 3.21 percent against 4.11 percent, because the
+rules select for structure and structure survives the variant. And K stays at 126 because K is analyst hours, so
 the same parameters produce a deeper queue on LI-Small and the run varies
 prevalence and queue depth together.
 
@@ -180,8 +187,8 @@ is the finding.
 | --- | --- | --- | --- |
 | R1 | Structuring below a reporting threshold | 1,378 | **0, structural zero** |
 | R2 | Rapid movement of funds | 2,748 | 89, via STACK and CYCLE |
-| R3 | Fan in | 2,101 | 122, via FAN-IN, GATHER-SCATTER and BIPARTITE |
-| R4 | Fan out | 1,094 | 124, via FAN-OUT, SCATTER-GATHER and BIPARTITE |
+| R3 | Fan in | 1,431 | 122, via FAN-IN, GATHER-SCATTER and BIPARTITE |
+| R4 | Fan out | 446 | 124, via FAN-OUT, SCATTER-GATHER and BIPARTITE |
 | R5 | Round amount repetition | 395 | **0, structural zero** |
 | R6 | Dormant then active | 223 | **0, structural zero** |
 | R7 | High risk corridor | 836 | **0, structural zero** |
@@ -189,13 +196,13 @@ is the finding.
 
 Attempt counts for R3 and R4 overlap through BIPARTITE and are never summed, and
 neither are the alert counts, because one alert can fire several rules. Counted
-without double counting, **3,277 of the 9,171 alerts, 35.7 percent of the queue,
-are raised only by the five rules with no injected counterpart**, rising to 2,179
-of 5,715, or 38.1 percent, inside the evaluation periods.
+without double counting, **3,328 of the 7,912 alerts, 42.1 percent of the queue,
+are raised only by the five rules with no injected counterpart**, and 2,193 of
+4,961, or 44.2 percent, inside the evaluation periods.
 
-Those alerts are not empty. They carry **14 of the 223 true positives**, a base
-rate of 0.64 percent against the population's 3.90 percent. So the five rules buy
-6.3 percent of the findable positives for 38.1 percent of the analyst volume, and
+Those alerts are not empty. They carry **14 of the 204 true positives**, a base
+rate of 0.64 percent against the population's 4.11 percent. So the five rules buy
+6.9 percent of the findable positives for 44.2 percent of the analyst volume, and
 switching them off would be a real trade rather than a free deletion. Every one of
 those 14 is a coincidence of timing rather than a typology the rule was written
 for: the rule targets a pattern the simulator never generates, and the alert
@@ -230,29 +237,40 @@ The patterns file names 3,209 of the 5,177 flagged transactions. The other
 attribution at all.** They are positives, they count toward precision, and they
 are reported as their own line rather than folded into a typology or dropped.
 
-| Ordering | Unattributed true positive alerts reached, of 198 available |
+| Ordering | Unattributed true positive alerts reached, of 178 available |
 | --- | --- |
-| B0 random | 40 |
-| B1 chronological | 98 |
-| B2 amount descending | 114 |
-| B3 rules only priority | 101 |
-| C1 learned ranker | 139 |
+| B0 random | 54 |
+| B1 chronological | 121 |
+| B2 amount descending | 126 |
+| B3 rules only priority | 127 |
+| C1 learned ranker | 154 |
 
-**This is the line that explains the headline.** 198 of the 223 true positive
-alerts in the evaluation population carry no attribution, and 139 of C1's 148 are
+**This is the line that explains the headline.** 178 of the 204 true positive
+alerts in the evaluation population carry no attribution, and 154 of C1's 168 are
 on this line. The ranker is mostly ordering the unattributed positives, because
-that is what the alert population is made of. On LI-Small the effect is complete:
-all 141 of C1's true positives are unattributed and it recovers no attempt at all.
+that is what the alert population is made of. On LI-Small the effect is close to
+complete: 150 of C1's 152 true positives are unattributed.
 
 ## What the evidence cannot carry
 
 **The rules surface 7.4 percent of the attempts that are live.** 25 of 337 on
 HI-Small, 8 of 108 on LI-Small: 7.42 and 7.41 percent, two independently injected
-attempt sets, the same fraction to two decimal places. No injected attempt
-presents the counterparty count the fan in and fan out rules require inside a
-single day; the largest single day counterparty count any attempt subject reaches
-is nine, against a threshold in the low teens. The attempts spread their
-structure across several days and the rules are parameterised to a daily volume.
+attempt sets, the same fraction to two decimal places.
+
+The obvious explanation was that the fan in and fan out rules counted
+counterparties inside a single day while the attempts spread their structure
+across several. That explanation was tested rather than assumed. The rules were
+rebuilt to count counterparties over a trailing three period window, the minima
+were re-tuned on alert volume alone to hold the accepted band, and the whole
+pipeline was rerun. **The engine still surfaces 25 of 337, the same 7.42
+percent.** Widening the window while holding the old threshold does surface 49,
+but at 1,188.5 alerts per period against a ceiling of 960, so that surfacing is
+bought with analyst volume rather than found. The bound is not a property of the
+window. It is a property of how small the injected attempts are against any
+threshold that holds a workable queue. Decision record 0014 carries the full
+sensitivity table, including two in band rows that surface more and were not
+taken, because attempts surfaced is computed from the label and choosing
+parameters by it would be choosing parameters against the label.
 **No ordering can recover an attempt no rule raised an alert on**, so per typology
 recall at K is between zero and eight attempts for every rung including the
 ranker, and reparameterising to a multi day window would invalidate the alert

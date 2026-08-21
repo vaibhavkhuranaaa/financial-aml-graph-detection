@@ -36,9 +36,9 @@ describes a measurement nobody ran is worse than no definition.
   reported alongside the point estimate.
 - Direction: higher is better.
 - Baseline: **corrected on measurement.** The reference is the strongest rung of
-  the ladder, which is B2 amount descending on both variants, not B3. Decision
-  record 0006 is why.
-- Result: **46.26 percent on HI-Small, 51.47 percent on LI-Small**, against a
+  the ladder, which is B2 amount descending on HI-Small and B1 chronological on
+  LI-Small, not B3. Decision records 0006 and 0014 are why.
+- Result: **59.07 percent on HI-Small, 26.64 percent on LI-Small**, against a
   threshold of 20 percent. Coverage is held in true positive alerts rather than
   in attempts: at 25 surfaced attempts on HI-Small and 8 on LI-Small the attempt
   criterion is not estimable, and the attempt depths are published beside the
@@ -58,8 +58,8 @@ describes a measurement nobody ran is worse than no definition.
 - Direction: higher is better.
 - Baseline: each rung of the ladder at the same K.
 - Result: K is 126 alerts per period, 882 worked alerts over seven evaluation
-  periods. On HI-Small, B0 4.65, B1 11.34, B2 13.61, B3 11.56 and C1 16.78
-  percent. On LI-Small, B0 3.74, B1 11.45, B2 12.47, B3 11.00 and C1 15.99
+  periods. On HI-Small, B0 6.92, B1 14.17, B2 15.31, B3 15.08 and C1 19.05
+  percent. On LI-Small, B0 4.76, B1 16.10, B2 14.06, B3 14.17 and C1 17.23
   percent. Counts and 95 percent intervals are in the run records and in the
   README.
 - Decision: sets the operating point shown by the capacity control in the
@@ -79,11 +79,11 @@ describes a measurement nobody ran is worse than no definition.
   surfaced shown beside the count live in the period, because a rule targeting a
   pattern the simulator never generates has no recall to compare. The threshold
   is that no supported typology sits more than 5 points below B3.
-- Result: **held on HI-Small at 0.0 points, failed on LI-Small at 8.33 points.**
-  On HI-Small C1 is at or above B3 in every supported typology and recovers 8 of
-  the 25 surfaced attempts against B3's 1. On LI-Small the rules surface 8
-  attempts of 108 live, C1 recovers none of them, and B3 recovers one CYCLE and
-  one SCATTER-GATHER attempt of twelve each. Every per typology recall on that
+- Result: **held on HI-Small at 0.0 points, failed on LI-Small at 10.00 points.**
+  On HI-Small C1 is at or above B3 in every supported typology and recovers 12 of
+  the 25 surfaced attempts against B3's 5. On LI-Small the rules surface 8
+  attempts of 108 live, and B3 recovers one GATHER-SCATTER attempt of ten and one
+  SCATTER-GATHER attempt of twelve where C1 recovers neither. Every per typology recall on that
   variant is zero or one attempt, so the criterion is decided by a single attempt
   landing above or below the cut line; it fails on the point values and that is
   what is reported.
@@ -103,11 +103,13 @@ describes a measurement nobody ran is worse than no definition.
 - Baseline: 1.0, meaning no improvement. The ship gate is 1.3 against the
   strongest rung with the paired interval's lower bound above 1.0, and both
   halves have to hold.
-- Result: **1.2333 on HI-Small, interval 1.1045 to 1.3967. 1.2818 on LI-Small,
-  interval 1.1981 to 1.3761. Missed on both.** The strongest rung is B2 on both
-  variants. C1 beats every rung on both and clears the interval condition on
-  both, and neither point estimate reaches 1.3, so no model is promoted. Decision
-  records 0007 and 0008.
+- Result: **1.2444 on HI-Small, interval 1.1460 to 1.3359. 1.0704 on LI-Small,
+  interval 0.9139 to 1.2441. Missed on both.** The strongest rung is B2 on
+  HI-Small and B1 chronological on LI-Small, so the reference is variant specific
+  under engine 2 and the LI-Small comparison is against arrival order. There the
+  interval contains one, so C1 is not distinguishable from the rung at all. On
+  HI-Small it clears the interval condition and the point estimate does not reach
+  1.3. No model is promoted. Decision records 0007, 0008 and 0014.
 - Decision: each rung must be beaten before the next candidate is justified.
 - Limitation: lift over a weak rung is easy and means little. **Corrected on
   measurement:** the rung that carries the argument is B2, not B3, because B3 is
@@ -127,7 +129,7 @@ describes a measurement nobody ran is worse than no definition.
 - Direction: higher is better.
 - Baseline: not applicable under the corrected method, which compares a model to
   itself. The threshold is a Spearman of 0.70.
-- Result: **0.9141 on HI-Small and 0.9222 on LI-Small**, each a mean over six
+- Result: **0.9317 on HI-Small and 0.9014 on LI-Small**, each a mean over six
   retrain pairs, against a threshold of 0.70. The queue would not reshuffle on
   retrain on either variant.
 - Decision: an unstable queue is a product defect and blocks promotion even when

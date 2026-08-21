@@ -31,20 +31,21 @@ The triage pipeline is complete and runs locally only; the deployed function
 imports none of it. The rules engine, the alert store, the alert level feature
 build, the backtest harness and the learned ranker exist and are measured. At 126
 alerts worked per period across
-seven evaluation periods, alert amount descending finds 120 true positives in the
-882 worked alerts, rules only priority finds 102, and the learned ranker finds
-148. The ranker beats every rung and its lift over the strongest one is 1.23
+seven evaluation periods, alert amount descending finds 135 true positives in the
+882 worked alerts, rules only priority finds 133, and the learned ranker finds
+168. The ranker beats every rung and its lift over the strongest one is 1.2444
 against a gate of 1.3, so no model is promoted and the deliverable is the rules
 engine, the ladder and the measured negative.
 
 The same pipeline was rerun on the low prevalence LI-Small variant with the
 parameter set, the operating point and every metric definition unchanged. The
-ladder ordering is the same, the ranker again beats every rung at 141 true
-positives against 110 for alert amount descending, and its lift over the
-strongest rung is 1.28 against the same gate of 1.3. It also falls 8.33 recall
-points below rules only priority on two supported typologies against a permitted
-5, so on that variant it misses two ship criteria rather than one. The negative
-is not an artifact of one dataset's prevalence.
+strongest rung there is chronological rather than amount descending, and measured
+against it the ranker's lift is 1.0704 with an interval of 0.9139 to 1.2441. That
+interval contains one, so on the low prevalence variant the ranker is not
+distinguishable from working the queue in arrival order. It also falls 10.00
+recall points below rules only priority on two supported typologies against a
+permitted 5, so on that variant it misses two ship criteria rather than one. The
+negative is not an artifact of one dataset's prevalence.
 
 ## What it deliberately does not do
 

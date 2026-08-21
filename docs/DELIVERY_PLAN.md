@@ -52,6 +52,13 @@ imports none of it.
   LI-Small variant, with the parameter set, the operating point and every metric
   definition held fixed, and its result written up against the HI-Small run.
 
+- A second rules engine version, widening the fan rules from a single review
+  period to a trailing three period counterparty window, with the minima re-tuned
+  on alert volume alone to hold the accepted band. The whole pipeline was rerun on
+  both variants. At a held volume it surfaces the same 25 of 337 attempts the
+  single day engine did, so the bound the project keeps reporting is not a
+  property of the window. See decision record 0014.
+
 - A public case study, `docs/CASE_STUDY.md`, stating in its first paragraph that
   no model shipped, and carrying the per typology table with the five structural
   zeros at an attempt count of zero, the unattributed positives as their own
@@ -89,13 +96,15 @@ imports none of it.
 
 ## Not delivered
 
-**No model.** The challenger reaches 16.78 percent precision at K against the
-strongest rung's 13.61 percent, a lift of 1.2333 with an interval of 1.1045 to
-1.3967 against a ship gate of 1.3, so it is measured and not promoted. On
-LI-Small the same challenger reaches 15.99 percent against 12.47 percent, a lift
-of 1.2818 with an interval of 1.1981 to 1.3761 against the same gate, and it also
-falls 8.33 recall points below rules only priority on two supported typologies
-against a permitted 5. The deliverable is the rules engine, its measured volumes,
+**No model.** The challenger reaches 19.05 percent precision at K against the
+strongest rung's 15.31 percent, a lift of 1.2444 with an interval of 1.1460 to
+1.3359 against a ship gate of 1.3, so it is measured and not promoted. On
+LI-Small the strongest rung is B1 chronological at 16.10 percent, the challenger
+reaches 17.23 percent, and the lift is 1.0704 with an interval of 0.9139 to
+1.2441. That interval contains one, so on the low prevalence variant the ranker is
+not distinguishable from working the queue in arrival order. It also falls 10.00
+recall points below rules only priority on two supported typologies there, against
+a permitted 5. The deliverable is the rules engine, its measured volumes,
 the baseline ladder, and the written account in decision records 0007 and 0008.
 
 **Nothing beyond the one approved review period.** The distribution decision in

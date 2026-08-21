@@ -13,7 +13,7 @@ def test_release_manifest_pins_the_approved_public_replay() -> None:
 def test_release_pins_the_approved_triage_period_and_its_scope() -> None:
     """The triage artifact ships, bounded to the one period the owner approved."""
     result = validate_local()
-    assert result["triage_alerts"] == 749
+    assert result["triage_alerts"] == 623
     release = json.loads(Path("release-manifest.json").read_text(encoding="utf-8"))
     assert release["product"] == "public-replay-and-approved-triage-period"
     assert release["triage_artifact"]["review_periods"] == 1
