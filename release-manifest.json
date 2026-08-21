@@ -1,9 +1,9 @@
 {
   "schema": "signal-ledger-release/v1",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "product": "public-replay-and-approved-triage-period",
   "publication_gate": "project-owner-approval",
-  "release_notes": "docs/releases/1.2.0.md",
+  "release_notes": "docs/releases/1.2.1.md",
   "runtime_mode": "public-synthetic-fixture",
   "artifact": {
     "path": "data/fixtures/public_casefile.json",

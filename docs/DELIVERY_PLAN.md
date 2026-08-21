@@ -66,6 +66,11 @@ imports none of it.
   rank stability, and the model's feature gains bounded to 15 of 39. See decision
   record 0013.
 
+- A keyboard exit from the queue. Every alert is its own control, so leaving the
+  queue meant passing several hundred tab stops. A skip link above the queue names
+  how many alerts it passes, states that all of them stay in the queue, and moves
+  focus to the alert detail or the review record. See release 1.2.1.
+
 - Queue view controls and a local review record export on the triage desk. The
   view narrows by typology and by disposition status without touching the
   ordering: positions, the cut line and every capacity number stay computed on
@@ -157,6 +162,9 @@ The full IBM source is neither committed nor served.
 - The queue's row budget names the exact count it holds back and says rank is not
   the reason, and extending it renders the whole period with contiguous ranks and
   the cut line still drawn.
+- The queue can be left from the keyboard without tabbing through it. The skip
+  link names the number of alerts it passes, says they stay in the queue, and
+  lands on a named region.
 - Deployment readiness reports approved artifact delivery with no inference and
   no visitor persistence.
 - The release verifier proves the local fixture contract and can compare the

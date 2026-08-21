@@ -86,6 +86,17 @@ screen with the ranks contiguous, and `CUT_LINE_SURVIVES_THE_BUDGET` proves the
 line is still drawn afterwards. A budget is a rendering decision; the failure
 these catch is a budget that reads as a filter.
 
+The skip link adds four. A queue of several hundred focusable rows needs an exit
+that is not several hundred tab stops. `SKIP_LINK_HIDDEN_UNTIL_FOCUSED` proves it
+stays out of the visual surface until a keyboard reader reaches it,
+`SKIP_LINK_NAMES_ITS_COUNT` proves it states how many alerts it passes and that
+every one of them stays in the queue, `SKIP_LINK_VISIBLE_ON_FOCUS` proves it
+renders once focused, and `SKIP_LINK_LANDS_ON_A_NAMED_REGION` proves focus lands
+on the alert detail or the review record rather than on an unnamed element. The
+third of those can only be measured while the window holds focus, so it prints
+`SKIP_LINK_FOCUS_NOT_TESTABLE_IN_AN_UNFOCUSED_WINDOW` rather than reporting a
+failure it did not observe.
+
 The view controls add four more. `CUT_LINE_SURVIVES_NARROWING` proves a narrowed
 view still draws the cut line, `NARROWED_VIEW_STATED` proves it says how many
 alerts it is not showing and that they remain workable,

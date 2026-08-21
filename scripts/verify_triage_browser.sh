@@ -54,6 +54,17 @@ fi
 "$browser_cli" eval '(() => { const total = Number(document.querySelector(".queue-frame .panel-heading").innerText.match(/(\d[\d,]*) alerts/)[1].replace(/,/g, "")); const ranks = [...document.querySelectorAll(".queue-row .rank")].map((cell) => Number(cell.innerText)); return ranks.length === total && ranks.every((value, index) => value === index + 1) ? "WHOLE_PERIOD_RENDERED" : "PERIOD_TRUNCATED_BY_THE_QUEUE"; })()'
 "$browser_cli" eval 'document.querySelector(".cut-line") ? "CUT_LINE_SURVIVES_THE_BUDGET" : "CUT_LINE_LOST_TO_THE_BUDGET"'
 
+# A queue this long needs an exit that is not several hundred tab stops. The skip
+# link stays out of sight until it is focused, names the exact number of alerts it
+# passes, says they stay in the queue, and lands on a region that has a name to
+# announce. A hidden until focused control can only be measured while the window
+# actually holds focus, so that one assertion says it could not run rather than
+# reporting a failure it did not observe.
+"$browser_cli" eval '(() => { const link = document.querySelector(".skip-queue"); if (!link) { return "SKIP_LINK_MISSING"; } return link.getBoundingClientRect().width <= 2 ? "SKIP_LINK_HIDDEN_UNTIL_FOCUSED" : "SKIP_LINK_ALWAYS_VISIBLE"; })()'
+"$browser_cli" eval '(() => { const link = document.querySelector(".skip-queue"); return /Skip past [\d,]+ alerts/i.test(link.innerText) && /stays in the queue/i.test(link.innerText) ? "SKIP_LINK_NAMES_ITS_COUNT" : "SKIP_LINK_COUNT_MISSING"; })()'
+"$browser_cli" eval '(() => { const link = document.querySelector(".skip-queue"); link.focus(); if (!document.hasFocus()) { return "SKIP_LINK_FOCUS_NOT_TESTABLE_IN_AN_UNFOCUSED_WINDOW"; } return link.getBoundingClientRect().height > 20 ? "SKIP_LINK_VISIBLE_ON_FOCUS" : "SKIP_LINK_STAYS_HIDDEN"; })()'
+"$browser_cli" eval '(() => { document.querySelector(".skip-queue").click(); const target = document.getElementById("past-the-queue"); return document.activeElement === target && target.getAttribute("aria-label") ? "SKIP_LINK_LANDS_ON_A_NAMED_REGION" : "SKIP_LINK_LANDS_NOWHERE"; })()'
+
 # Rank carries no colour: every rank cell renders in the body text colour.
 "$browser_cli" eval '(() => { const colours = new Set([...document.querySelectorAll(".queue-row .rank")].map((cell) => getComputedStyle(cell).color)); return colours.size === 1 ? "RANK_HAS_NO_COLOUR_SCALE" : "RANK_IS_COLOUR_CODED"; })()'
 

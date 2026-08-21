@@ -176,7 +176,7 @@ textarea { width: calc(100% - 32px); min-height: 120px; margin: 0 16px; resize: 
 .evidence { margin: 30px 0 0; border: 1px solid #405059; background: #111a1f; }
 .evidence h4 { margin: 26px 16px 8px; color: #c6ee48; font: 700 .68rem/1.2 ui-monospace, monospace; letter-spacing: .11em; text-transform: uppercase; }
 .evidence .limitation { margin: 10px 16px 20px; }
-.funnel { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: #324149; border-bottom: 1px solid #405059; }
+.funnel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: #324149; border-bottom: 1px solid #405059; }
 .funnel > div { background: #172126; padding: 16px; display: grid; gap: 5px; align-content: start; }
 .funnel .figure { margin: 0; font-size: 1.7rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
 .funnel .field-note { margin: 0; }
@@ -204,6 +204,10 @@ textarea { width: calc(100% - 32px); min-height: 120px; margin: 0 16px; resize: 
 .view-controls label { display: block; margin-bottom: 5px; color: #aebbb4; font: .68rem ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
 .view-controls select { min-width: 210px; border: 1px solid #52636a; background: #111a1f; color: #edf2df; padding: 8px 10px; font-size: .76rem; }
 .view-controls select:focus-visible, .clear-view:focus-visible { outline: 2px solid #c6ee48; outline-offset: 2px; }
+.skip-queue { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip-queue:focus { position: static; width: auto; height: auto; margin: 0; padding: 13px 16px; overflow: visible; clip-path: none; white-space: normal; display: block; border-bottom: 1px solid #405059; background: #10171c; color: #c6ee48; font: 700 .7rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; outline: 3px solid #c6ee48; outline-offset: -3px; }
+.alert-detail, .review-record { scroll-margin-top: 20px; }
+.alert-detail:focus, .review-record:focus { outline: 3px solid #c6ee48; outline-offset: -3px; }
 .clear-view { border: 1px solid #52636a; background: transparent; color: #c6ee48; padding: 8px 12px; font-size: .74rem; }
 .clear-view:hover { border-color: #c6ee48; }
 .queue-view .field-note { margin: 11px 0 10px; }
@@ -244,4 +248,5 @@ textarea { width: calc(100% - 32px); min-height: 120px; margin: 0 16px; resize: 
 .rule-catalogue { margin: 30px 0 0; border: 1px solid #405059; background: #111a1f; }
 .rule-catalogue table { width: calc(100% - 32px); margin: 18px 16px; }
 @media (max-width: 1060px) { .capacity { grid-template-columns: 1fr; } .capacity-control { border-right: 0; border-bottom: 1px solid #405059; } }
+@media (max-width: 620px) { .funnel { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 760px) { .triage { padding: 34px 0 46px; } .queue-row { grid-template-columns: 40px minmax(0, 1fr); gap: 6px 10px; } .queue-row .alert-id { grid-column: 2; } .queue-row .rule-pills, .queue-row .subject, .queue-row .amount, .queue-row .status { grid-column: 2; } .queue-row .amount { text-align: left; } .consequence dl div { grid-template-columns: 1fr; gap: 4px; } .view-controls { display: grid; grid-template-columns: 1fr; } .view-controls select { width: 100%; min-width: 0; } .record-list li { grid-template-columns: 1fr; } }

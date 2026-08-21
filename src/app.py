@@ -164,7 +164,7 @@ def triage_alert(alert_id: str) -> dict:
 
 app = FastAPI(
     title="Signal Ledger",
-    version="1.2.0",
+    version="1.2.1",
     docs_url=None,
     redoc_url=None,
     openapi_url=None,

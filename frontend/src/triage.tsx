@@ -961,6 +961,12 @@ export function TriageDesk() {
           </p>
         </div>
 
+        <a className="skip-queue" href="#past-the-queue">
+          Skip past {count(visible.length)} alerts to{" "}
+          {detail ? "the open alert detail" : "the review record"}. Every one of them stays in the
+          queue.
+        </a>
+
         <ol className="triage-queue" aria-label="Ranked alert queue">
           {visible.map((row, index) => (
             <li key={row.alert_id}>
@@ -1020,7 +1026,12 @@ export function TriageDesk() {
       </div>
 
       {detail && (
-        <div className="alert-detail" aria-label="Alert detail">
+        <div
+          className="alert-detail"
+          aria-label="Alert detail"
+          id="past-the-queue"
+          tabIndex={-1}
+        >
           <div className="panel-heading">
             <div>
               <p className="stamp">Alert {detail.alert_id}</p>
@@ -1153,7 +1164,12 @@ export function TriageDesk() {
         </div>
       )}
 
-      <div className="review-record">
+      <div
+        className="review-record"
+        aria-label="Review record"
+        id={detail ? undefined : "past-the-queue"}
+        tabIndex={detail ? undefined : -1}
+      >
         <div className="panel-heading">
           <div>
             <p className="stamp">Review record</p>
